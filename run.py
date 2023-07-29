@@ -21,9 +21,9 @@ def check_if_won(random_number, player_choice):
 
 def check_choice(random_number, player_choice):
     difference = 0
-    if random_number != player_choice and bool(player_guesses) == False:
+    if bool(player_guesses) == False:
         print("Cold")
-    elif random_number != player_choice and bool(player_guesses):
+    elif bool(player_guesses):
         smaller_number = min(random_number, player_choice)
         bigger_number = max(random_number, player_choice)
         difference = bigger_number - smaller_number
