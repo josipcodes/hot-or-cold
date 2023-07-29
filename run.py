@@ -1,10 +1,7 @@
 import random
 
 random_number = random.randrange(1, 10) #todo: when menu is created, stop needs to depend on the game mode chosen. 
-print(random_number)
-
-player_choice = int(input("Your guess: "))
-    
+player_choice = 0
 
 def check_choice(random_number, player_choice):
     """
@@ -17,4 +14,10 @@ def check_choice(random_number, player_choice):
     elif random_number != player_choice:
         print("Nah")
 
-check_choice(random_number, player_choice)
+while random_number != player_choice:
+    player_choice = int(input("Your guess: "))
+    check_choice(random_number, player_choice)
+    
+
+
+
