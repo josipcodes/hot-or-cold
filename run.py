@@ -1,4 +1,5 @@
 import random
+from simple_term_menu import TerminalMenu
 # Copied from Love sandwiches project
 import gspread
 from google.oauth2.service_account import Credentials
@@ -15,6 +16,40 @@ CREDS = Credentials.from_service_account_file("credentials.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
+
+#at the moment copied from simple term menu, needs review
+def main():
+    options = ["[1] New Game", "[2] About", "[3] Leaderboard", "[4] Quit"]
+    menu = TerminalMenu(options, title = "Main Menu")
+    sub_menu = TerminalMenu(["[1] Beginner","[2] Intermediate", "[3] Expert"], title = "Sub-menu")
+    # main_menu_style = ("bg_red", "fg_yellow") #todo: need to check
+    quit_game = False
+
+    while quit_game == False:
+        option_index = menu.show()
+        user_choice = options[option_index]
+
+        if user_choice == "[4] Quit":
+            quit_game = True
+        elif user_choice == "[1] New Game":
+            sub_menu.show()
+        elif user_choice == "[2] About":
+            pass #todo: need to create
+        elif user_choice == "[3] Leaderboard":
+            pass #todo: need to create
+        # else:
+        #     print(f"You have selected {options[option_index]}!")
+
+        if sub_menu.show():
+            if user_choice == "[1] Beginner":
+                pass #todo: need to create
+            elif user_choice == "[2] Intermediate":
+                pass #todo: need to create
+            elif user_choice == "[3] Expert":
+                pass #todo: need to create
+
+if __name__ == "__main__":
+    main()
 
 
 random_number = random.randint(1, 10) #todo: when menu is created, stop needs to depend on the game mode chosen. 
