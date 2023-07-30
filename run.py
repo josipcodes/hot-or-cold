@@ -14,7 +14,8 @@ SCOPE = [
 CREDS = Credentials.from_service_account_file("credentials.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open("hot-or-cold")
+SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
+
 
 random_number = random.randint(1, 10) #todo: when menu is created, stop needs to depend on the game mode chosen. 
 print(random_number) #todo: delete later
@@ -32,6 +33,10 @@ def check_if_won(random_number, player_choice):
     if random_number == player_choice:
         print("You won!") #todo: need to count checks to calculate highscore.
         print(f"It took you {len(player_guesses) + 1} attempts.")
+        scoreboard_confirm = input("Want to see if you make it onto the scoreboard? y/n ") #todo: Add validation for n and invalid responses
+        if scoreboard_confirm.lower == "y":
+            username = input("Enter a preferred username: ")
+        print(username)
     else:
         check_choice(random_number, player_choice)
 
