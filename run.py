@@ -1,4 +1,20 @@
 import random
+# Copied from Love sandwiches project
+import gspread
+from google.oauth2.service_account import Credentials
+
+# Copied from Love sandwiches project
+SCOPE = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive"
+    ]
+
+# Copied from Love sandwiches project and adjusted with naming
+CREDS = Credentials.from_service_account_file("credentials.json")
+SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+SHEET = GSPREAD_CLIENT.open("hot-or-cold")
 
 random_number = random.randint(1, 10) #todo: when menu is created, stop needs to depend on the game mode chosen. 
 print(random_number) #todo: delete later
@@ -15,6 +31,7 @@ def check_if_won(random_number, player_choice):
     print(player_guesses)
     if random_number == player_choice:
         print("You won!") #todo: need to count checks to calculate highscore.
+        print(f"It took you {len(player_guesses) + 1} attempts.")
     else:
         check_choice(random_number, player_choice)
 
