@@ -1,7 +1,7 @@
 import random
 
 random_number = random.randint(1, 10) #todo: when menu is created, stop needs to depend on the game mode chosen. 
-print(random_number)
+print(random_number) #todo: delete later
 player_choice = 0
 player_guesses = []
 
@@ -10,16 +10,22 @@ def check_if_won(random_number, player_choice):
     """
     Function compares player's guess with the computer's choice.
     If the choice is correct, player won.
-    If the guess is wrong, player is told this. #todo: Decide the hot/cold logic. 
+    If the guess is wrong, check_choice function is called. #todo: Decide the hot/cold logic. 
     """
     print(player_guesses)
     if random_number == player_choice:
-        print("You won!")
+        print("You won!") #todo: need to count checks to calculate highscore.
     else:
         check_choice(random_number, player_choice)
 
 
 def check_choice(random_number, player_choice):
+    """
+    Function calculates the difference between the bigger and smaller number.
+    Numbers are comprised of the computer's and player's choices.
+    Difference is appended to player_guesses.
+    check_difference function is called.
+    """
     difference = 0
     # if not bool(player_guesses):
     #     print("Cold")
