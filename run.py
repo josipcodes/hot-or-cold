@@ -19,10 +19,8 @@ SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 
 random_number = random.randint(1, 10) #todo: when menu is created, stop needs to depend on the game mode chosen. 
 print(random_number) #todo: delete later
-player_choice = 0
+player_choice = None
 player_guesses = []
-scoreboard_handling = check_if_won(random_number, player_choice)
-print(scoreboard_handling)
 
 def check_if_won(random_number, player_choice):
     """
@@ -30,17 +28,23 @@ def check_if_won(random_number, player_choice):
     If the choice is correct, player won.
     If the guess is wrong, check_choice function is called. #todo: Decide the hot/cold logic. 
     """
-    print(player_guesses)
     if random_number == player_choice:
+        if len(player_guesses) != 0:
+            win_statement = "attempts"
+        else:
+            win_statement = "attempt"
         print("You won!") #todo: need to count checks to calculate highscore.
-        print(f"It took you {len(player_guesses) + 1} attempts.")
-        scoreboard_confirm = input("Want to see if you make it onto the scoreboard? y/n ").lower #todo: Add validation for n and invalid responses
+        print(f"It took you {len(player_guesses) + 1} {win_statement}.")
+        scoreboard_confirm = input("Want to see if you make it onto the scoreboard? y/n ") #todo: Add validation for n and invalid responses
+        print(scoreboard_confirm)
         return scoreboard_confirm
+    elif player_choice == None:
+        pass
     else:
         check_choice(random_number, player_choice)
 
 
-def check_choice(random_number, player_choice):
+def check_choice(random_number, player_choice): #investigate why this is called unnecessarily.
     """
     Function calculates the difference between the bigger and smaller number.
     Numbers are comprised of the computer's and player's choices.
@@ -64,8 +68,9 @@ def check_difference(player_guesses):
     If player's last guess is worse than the previous one, player is informed.
     If player's last guess is better than the previous one, player is informed.
     """
-    if len(player_guesses) == 1:
+    if len(player_guesses) == 1: #todo: investigate why this is triggered (early appending)
         #todo: build logic
+        print(player_guesses)
         print("You made a guess...but it's wrong...")
     else:
         if player_guesses[-2] < player_guesses[-1]:
@@ -75,16 +80,20 @@ def check_difference(player_guesses):
         else:
             print("Warmer")
 
+scoreboard_handling = check_if_won(random_number, player_choice)
+print(scoreboard_handling)
+
 def scoreboard(scoreboard_handling):
     if scoreboard_handling == "y":
         username = input("Enter a preferred username: ")
         print(username)
 
 
+
+
 while random_number != player_choice:
     player_choice = int(input("Your guess: "))
     check_if_won(random_number, player_choice)
     
-
 
 
