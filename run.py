@@ -21,7 +21,8 @@ random_number = random.randint(1, 10) #todo: when menu is created, stop needs to
 print(random_number) #todo: delete later
 player_choice = 0
 player_guesses = []
-
+scoreboard_handling = check_if_won(random_number, player_choice)
+print(scoreboard_handling)
 
 def check_if_won(random_number, player_choice):
     """
@@ -33,10 +34,8 @@ def check_if_won(random_number, player_choice):
     if random_number == player_choice:
         print("You won!") #todo: need to count checks to calculate highscore.
         print(f"It took you {len(player_guesses) + 1} attempts.")
-        scoreboard_confirm = input("Want to see if you make it onto the scoreboard? y/n ") #todo: Add validation for n and invalid responses
-        if scoreboard_confirm.lower == "y":
-            username = input("Enter a preferred username: ")
-        print(username)
+        scoreboard_confirm = input("Want to see if you make it onto the scoreboard? y/n ").lower #todo: Add validation for n and invalid responses
+        return scoreboard_confirm
     else:
         check_choice(random_number, player_choice)
 
@@ -49,10 +48,6 @@ def check_choice(random_number, player_choice):
     check_difference function is called.
     """
     difference = 0
-    # if not bool(player_guesses):
-    #     print("Cold")
-    #     check_difference(random_number, player_choice)
-    # elif bool(player_guesses):
     smaller_number = min(random_number, player_choice)
     bigger_number = max(random_number, player_choice)
     difference = bigger_number - smaller_number
@@ -79,6 +74,11 @@ def check_difference(player_guesses):
             print("Try again, still not right.")
         else:
             print("Warmer")
+
+def scoreboard(scoreboard_handling):
+    if scoreboard_handling == "y":
+        username = input("Enter a preferred username: ")
+        print(username)
 
 
 while random_number != player_choice:
