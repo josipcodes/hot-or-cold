@@ -35,9 +35,10 @@ def check_if_won(random_number, player_choice):
             win_statement = "attempt"
         print("You won!") #todo: need to count checks to calculate highscore.
         print(f"It took you {len(player_guesses) + 1} {win_statement}.")
-        scoreboard_confirm = input("Want to see if you make it onto the scoreboard? y/n ") #todo: Add validation for n and invalid responses
-        print(scoreboard_confirm)
-        return scoreboard_confirm
+        scoreboard()
+        # scoreboard_confirm = input("Want to see if you make it onto the scoreboard? y/n ") #todo: Add validation for n and invalid responses
+        # print(scoreboard_confirm)
+        # return scoreboard_confirm
     elif player_choice == None:
         pass
     else:
@@ -80,20 +81,25 @@ def check_difference(player_guesses):
         else:
             print("Warmer")
 
-scoreboard_handling = check_if_won(random_number, player_choice)
-print(scoreboard_handling)
 
-def scoreboard(scoreboard_handling):
-    if scoreboard_handling == "y":
-        username = input("Enter a preferred username: ")
-        print(username)
+# scoreboard_handling = check_if_won(random_number, player_choice)
+# print(scoreboard_handling)
 
 
+def scoreboard():
+    scoreboard_confirm = input("Want to see if you make it onto the leaderboard? (y/n) ") #todo: Add validation for n and invalid responses
+    if scoreboard_confirm == "y":
+        username = input("Enter a preferred username: ") #todo: Add validation
+        print(f"Hi, {username}, let's see if you've scored a position on the leaderboard...")
 
 
 while random_number != player_choice:
     player_choice = int(input("Your guess: "))
     check_if_won(random_number, player_choice)
+
+
+
+
     
 
 
