@@ -20,14 +20,27 @@ SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 # game_running = False
 
 
-def scoreboard():
+def scoreboard(difficulty):
+    data = []
     scoreboard_confirm = input("Want to see if you make it onto the leaderboard? (y/n) ") #todo: Add validation for n and invalid responses
     if scoreboard_confirm == "y":
         username = input("Enter a preferred username: ") #todo: Add validation
+        data.append(username)
+        data.append(len(player_guesses) + 1)
+        # print(data)
         print(f"Hi, {username}, let's see if you've scored a position on the leaderboard...")
+        if difficulty == 10:
+            worksheet = SHEET.worksheet("beginner")
+            worksheet.append_row(data)
+        elif difficulty == 100:
+            worksheet = SHEET.worksheet("intermediate")
+            worksheet.append_row(data)
+        elif difficulty == 1000:
+            worksheet = SHEET.worksheet("expert")
+            worksheet.append_row(data)
 
 
-def check_if_won(random_number, player_choice):
+def check_if_won(random_number, player_choice, difficulty):
     """
     Function compares player's guess with the computer's choice.
     If the choice is correct, player won.
@@ -40,7 +53,7 @@ def check_if_won(random_number, player_choice):
             win_statement = "attempt"
         print("You won!") #todo: need to count checks to calculate highscore.
         print(f"It took you {len(player_guesses) + 1} {win_statement}.")
-        scoreboard()
+        scoreboard(difficulty)
         # scoreboard_confirm = input("Want to see if you make it onto the scoreboard? y/n ") #todo: Add validation for n and invalid responses
         # print(scoreboard_confirm)
         # return scoreboard_confirm
@@ -99,7 +112,7 @@ def run_game(difficulty):
     # if game_active == True:
     while random_number != player_choice:
         player_choice = int(input("Your guess: "))
-        check_if_won(random_number, player_choice)
+        check_if_won(random_number, player_choice, difficulty)
 
 
 def run_beginner_mode():
@@ -123,6 +136,8 @@ def run_expert_mode():
     """
     run_game(1000)
     return "expert"
+
+game_mode = 0 # can this capture mode?
 
 #at the moment copied from simple term menu, needs review
 def main():
