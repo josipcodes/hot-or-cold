@@ -23,6 +23,8 @@ SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 def update_scoreboard(difficulty):
     """
     Function pulls top 10 results depending on the difficulty played.
+    Function collects values from 2 columns.
+    Values are zipped together and sorted by the int in second column.
     """
     if difficulty == 10:
         worksheet = SHEET.worksheet("beginner")
@@ -33,14 +35,15 @@ def update_scoreboard(difficulty):
     # column = sales.col_values(3)
     # print(column)
     columns = []
+    score = []
     for ind in range(1, 3):
         column = worksheet.col_values(ind)
         columns.append(column[1:])
-        score = []
     for username, guess in zip(columns[0], columns[1]):
         score.append((username, int(guess)))
     score.sort(key=lambda tup: tup[1])
-    print(score)
+    for item in score[:10]:
+        print(item)
 
 
 def scoreboard(difficulty):
