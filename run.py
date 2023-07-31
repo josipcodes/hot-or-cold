@@ -1,4 +1,5 @@
 import random
+from pprint import pprint
 from simple_term_menu import TerminalMenu
 # Copied from Love sandwiches project
 import gspread
@@ -19,8 +20,32 @@ SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 
 # game_running = False
 
+def update_scoreboard(difficulty):
+    """
+    Function pulls top 10 results depending on the difficulty played.
+    """
+    if difficulty == 10:
+        worksheet = SHEET.worksheet("beginner")
+    elif difficulty == 100:
+        worksheet = SHEET.worksheet("intermediate")
+    elif difficulty == 1000:
+        worksheet = SHEET.worksheet("expert")
+    # column = sales.col_values(3)
+    # print(column)
+    columns = []
+    for ind in range(1, 3):
+        column = worksheet.col_values(ind)
+        columns.append(column[1:])
+    for column0, column1 in zip(columns[0], columns[1]):
+        print(f"{column0}: {column1}")
+
 
 def scoreboard(difficulty):
+    """
+    Function obtains user's username and pushes it along with the amount of guesses to
+    the relevant worksheet depending on the difficulty played.
+    Function calls update_scoreboard().
+    """
     data = []
     scoreboard_confirm = input("Want to see if you make it onto the leaderboard? (y/n) ") #todo: Add validation for n and invalid responses
     if scoreboard_confirm == "y":
@@ -38,6 +63,7 @@ def scoreboard(difficulty):
         elif difficulty == 1000:
             worksheet = SHEET.worksheet("expert")
             worksheet.append_row(data)
+        update_scoreboard(difficulty)
 
 
 def check_if_won(random_number, player_choice, difficulty):
