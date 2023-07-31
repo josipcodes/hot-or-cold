@@ -1,5 +1,5 @@
 import random
-from pprint import pprint
+from pprint import pprint # is it needed?
 from simple_term_menu import TerminalMenu
 # Copied from Love sandwiches project
 import gspread
@@ -18,13 +18,12 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 
-# game_running = False
-
 def update_scoreboard(difficulty):
     """
     Function pulls top 10 results depending on the difficulty played.
     Function collects values from 2 columns.
     Values are zipped together and sorted by the int in second column.
+    Function prints out top 10 results off the scoreboard
     """
     if difficulty == 10:
         worksheet = SHEET.worksheet("beginner")
@@ -32,8 +31,6 @@ def update_scoreboard(difficulty):
         worksheet = SHEET.worksheet("intermediate")
     elif difficulty == 1000:
         worksheet = SHEET.worksheet("expert")
-    # column = sales.col_values(3)
-    # print(column)
     columns = []
     score = []
     for ind in range(1, 3):
@@ -86,9 +83,6 @@ def check_if_won(random_number, player_choice, difficulty):
         print("You won!") #todo: need to count checks to calculate highscore.
         print(f"It took you {len(player_guesses) + 1} {win_statement}.")
         scoreboard(difficulty)
-        # scoreboard_confirm = input("Want to see if you make it onto the scoreboard? y/n ") #todo: Add validation for n and invalid responses
-        # print(scoreboard_confirm)
-        # return scoreboard_confirm
     elif player_choice == None:
         pass
     else:
@@ -225,17 +219,10 @@ def main():
 if __name__ == "__main__":
     main()
 
-# scoreboard_handling = check_if_won(random_number, player_choice)
-# print(scoreboard_handling)
 
 
-game_running = main()
+# game_running = main()
 
-# def run_game(game_running):
-    # if game_active == True:
-    #     while random_number != player_choice:
-    #         player_choice = int(input("Your guess: "))
-    #         check_if_won(random_number, player_choice)
 
 
 
