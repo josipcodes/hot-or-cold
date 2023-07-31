@@ -36,8 +36,11 @@ def update_scoreboard(difficulty):
     for ind in range(1, 3):
         column = worksheet.col_values(ind)
         columns.append(column[1:])
-    for column0, column1 in zip(columns[0], columns[1]):
-        print(f"{column0}: {column1}")
+        score = []
+    for username, guess in zip(columns[0], columns[1]):
+        score.append((username, int(guess)))
+    score.sort(key=lambda tup: tup[1])
+    print(score)
 
 
 def scoreboard(difficulty):
