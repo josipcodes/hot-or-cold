@@ -18,16 +18,34 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 
 
+def run_game(difficulty):
+    """
+    Function takes the difficulty level chosen and adjust parameters.
+    """
+    random_number = random.randint(1, difficulty) #todo: when menu is created, stop needs to depend on the game mode chosen. 
+    print(random_number) #todo: delete later
+    player_choice = None
+    player_guesses = []
+
+
 def run_beginner_mode():
-    print("beginner")
+    """
+    Function calls the run_game and provides a stop parameter of 10.
+    """
+    run_game(10)
 
 
 def run_intermediate_mode():
-    print("intermediate")
-
+    """
+    Function calls the run_game and provides a stop parameter of 100.
+    """
+    run_game(100)
 
 def run_expert_mode():
-    print("expert")
+    """
+    Function calls the run_game and provides a stop parameter of 1000.
+    """
+    run_game(1000)
 
 #at the moment copied from simple term menu, needs review
 def main():
@@ -77,11 +95,6 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-random_number = random.randint(1, 10) #todo: when menu is created, stop needs to depend on the game mode chosen. 
-print(random_number) #todo: delete later
-player_choice = None
-player_guesses = []
 
 def check_if_won(random_number, player_choice):
     """
