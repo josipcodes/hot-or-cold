@@ -17,83 +17,14 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 
-
-def run_game(difficulty):
-    """
-    Function takes the difficulty level chosen and adjust parameters.
-    """
-    random_number = random.randint(1, difficulty) #todo: when menu is created, stop needs to depend on the game mode chosen. 
-    print(random_number) #todo: delete later
-    player_choice = None
-    player_guesses = []
+# game_running = False
 
 
-def run_beginner_mode():
-    """
-    Function calls the run_game and provides a stop parameter of 10.
-    """
-    run_game(10)
-
-
-def run_intermediate_mode():
-    """
-    Function calls the run_game and provides a stop parameter of 100.
-    """
-    run_game(100)
-
-def run_expert_mode():
-    """
-    Function calls the run_game and provides a stop parameter of 1000.
-    """
-    run_game(1000)
-
-#at the moment copied from simple term menu, needs review
-def main():
-    # Main menu options.
-    main_options = [
-        "[1] New Game", 
-        "[2] About", 
-        "[3] Leaderboard", 
-        "[4] Quit"]
-
-    # Sub-menu options.
-    difficulty_options = [
-        "[1] Beginner",
-        "[2] Intermediate", 
-        "[3] Expert",
-        "[4] Go back"]
-    main_menu = TerminalMenu(main_options, title = "Hot or Cold")
-    difficulty_menu = TerminalMenu(difficulty_options, title = "Difficulty level")
-    # main_menu_style = ("bg_red", "fg_yellow") #todo: need to check
-    quit_game = False
-
-    while quit_game == False or user_choice != "[1] New Game":
-        current_display = main_menu.show()
-        user_choice = main_options[current_display]
-
-        if user_choice == "[4] Quit":
-            print("quit")
-            quit_game = True
-            current_display = main_menu.show()
-        elif user_choice == "[2] About":
-            print("about")
-        elif user_choice == "[3] Leaderboard":
-            print("leaderboard")
-        elif user_choice == "[1] New Game":
-            current_display = difficulty_menu.show()
-            user_choice = difficulty_options[current_display]
-            # if difficulty_menu.show(): #todo: shorten by avoiding repetition
-            if user_choice == "[1] Beginner":
-                run_beginner_mode()
-            elif user_choice == "[2] Intermediate":
-                run_intermediate_mode()
-            elif user_choice == "[3] Expert":
-                run_expert_mode()
-            # else:
-            #     print(f"You have selected {options[option_index]}!")
-
-if __name__ == "__main__":
-    main()
+def scoreboard():
+    scoreboard_confirm = input("Want to see if you make it onto the leaderboard? (y/n) ") #todo: Add validation for n and invalid responses
+    if scoreboard_confirm == "y":
+        username = input("Enter a preferred username: ") #todo: Add validation
+        print(f"Hi, {username}, let's see if you've scored a position on the leaderboard...")
 
 
 def check_if_won(random_number, player_choice):
@@ -151,28 +82,113 @@ def check_difference(player_guesses):
         if player_guesses[-2] < player_guesses[-1]:
             print("Colder...")
         elif player_guesses[-2] == player_guesses[-1]:
-            print("Try again, still not right.")
+            print("Hmmm, not warmer, nor colder, surprisingly.")
         else:
             print("Warmer")
 
+player_guesses = []
+
+def run_game(difficulty):
+    """
+    Function takes the difficulty level chosen and adjust parameters.
+    """
+    random_number = random.randint(1, difficulty) #todo: when menu is created, stop needs to depend on the game mode chosen. 
+    print(f"You need to guess a number between 1 and {difficulty}.")
+    print(random_number) #todo: delete later
+    player_choice = None
+    # if game_active == True:
+    while random_number != player_choice:
+        player_choice = int(input("Your guess: "))
+        check_if_won(random_number, player_choice)
+
+
+def run_beginner_mode():
+    """
+    Function calls the run_game and provides a stop parameter of 10.
+    """
+    run_game(10)
+    return "beginner"
+
+
+def run_intermediate_mode():
+    """
+    Function calls the run_game and provides a stop parameter of 100.
+    """
+    run_game(100)
+    return "intermediate"
+
+def run_expert_mode():
+    """
+    Function calls the run_game and provides a stop parameter of 1000.
+    """
+    run_game(1000)
+    return "expert"
+
+#at the moment copied from simple term menu, needs review
+def main():
+    # Main menu options.
+    main_options = [
+        "[1] New Game", 
+        "[2] About", 
+        "[3] Leaderboard", 
+        "[4] Quit"]
+
+    # Sub-menu options.
+    difficulty_options = [
+        "[1] Beginner",
+        "[2] Intermediate", 
+        "[3] Expert",
+        "[4] Go back"]
+    main_menu = TerminalMenu(main_options, title = "Hot or Cold")
+    difficulty_menu = TerminalMenu(difficulty_options, title = "Difficulty level")
+    # main_menu_style = ("bg_red", "fg_yellow") #todo: need to check
+    quit_game = False
+
+    while quit_game == False:
+        current_display = main_menu.show()
+        user_choice = main_options[current_display]
+
+        if user_choice == "[4] Quit":
+            print("quit")
+            quit_game = True
+            current_display = main_menu.show()
+        elif user_choice == "[2] About":
+            print("about")
+        elif user_choice == "[3] Leaderboard":
+            print("leaderboard")
+        elif user_choice == "[1] New Game":
+            current_display = difficulty_menu.show()
+            user_choice = difficulty_options[current_display]
+            # if difficulty_menu.show(): #todo: shorten by avoiding repetition
+            if user_choice == "[1] Beginner":
+                # current_display = None
+                run_beginner_mode()
+                break
+            elif user_choice == "[2] Intermediate":
+                # current_display = None
+                run_intermediate_mode()
+                break
+            elif user_choice == "[3] Expert":
+                # current_display = None
+                run_expert_mode()
+                break
+            # else:
+            #     print(f"You have selected {options[option_index]}!")
+
+if __name__ == "__main__":
+    main()
 
 # scoreboard_handling = check_if_won(random_number, player_choice)
 # print(scoreboard_handling)
 
 
-def scoreboard():
-    scoreboard_confirm = input("Want to see if you make it onto the leaderboard? (y/n) ") #todo: Add validation for n and invalid responses
-    if scoreboard_confirm == "y":
-        username = input("Enter a preferred username: ") #todo: Add validation
-        print(f"Hi, {username}, let's see if you've scored a position on the leaderboard...")
-
 game_running = main()
 
-def run_game(game_running):
-    if game_active == True:
-        while random_number != player_choice:
-            player_choice = int(input("Your guess: "))
-            check_if_won(random_number, player_choice)
+# def run_game(game_running):
+    # if game_active == True:
+    #     while random_number != player_choice:
+    #         player_choice = int(input("Your guess: "))
+    #         check_if_won(random_number, player_choice)
 
 
 
