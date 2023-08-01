@@ -140,29 +140,6 @@ def run_game(difficulty):
         player_choice = int(input("Your guess: "))
         check_if_won(random_number, player_choice, difficulty)
 
-
-def run_beginner_mode():
-    """
-    Function calls the run_game and provides a stop parameter of 10.
-    """
-    run_game(10)
-    return "beginner"
-
-
-def run_intermediate_mode():
-    """
-    Function calls the run_game and provides a stop parameter of 100.
-    """
-    run_game(100)
-    return "intermediate"
-
-def run_expert_mode():
-    """
-    Function calls the run_game and provides a stop parameter of 1000.
-    """
-    run_game(1000)
-    return "expert"
-
 game_mode = 0 # can this capture mode?
 
 #at the moment copied from simple term menu, needs review
@@ -190,7 +167,8 @@ def main():
         user_choice = main_options[current_display]
 
         if user_choice == "[4] Quit":
-            print("quit")
+            print("Thank you for playing Hot or Cold.")
+            print("Hope to see you soon.")
             quit_game = True
             current_display = main_menu.show()
         elif user_choice == "[2] About":
@@ -203,30 +181,19 @@ def main():
             # if difficulty_menu.show(): #todo: shorten by avoiding repetition
             if user_choice == "[1] Beginner":
                 # current_display = None
-                run_beginner_mode()
+                run_game(10)
                 break
             elif user_choice == "[2] Intermediate":
                 # current_display = None
-                run_intermediate_mode()
+                run_game(100)
                 break
             elif user_choice == "[3] Expert":
                 # current_display = None
-                run_expert_mode()
+                run_game(1000)
                 break
             # else:
             #     print(f"You have selected {options[option_index]}!")
 
 if __name__ == "__main__":
     main()
-
-
-
-# game_running = main()
-
-
-
-
-
-    
-
 
