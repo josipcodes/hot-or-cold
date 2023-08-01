@@ -18,19 +18,21 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 
-def update_scoreboard(difficulty):
+
+def update_scoreboard(game_mode):
     """
     Function pulls top 10 results depending on the difficulty played.
     Function collects values from 2 columns.
     Values are zipped together and sorted by the int in second column.
     Function prints out top 10 results off the scoreboard
     """
-    if difficulty == 10:
-        worksheet = SHEET.worksheet("beginner")
-    elif difficulty == 100:
-        worksheet = SHEET.worksheet("intermediate")
-    elif difficulty == 1000:
-        worksheet = SHEET.worksheet("expert")
+    worksheet = SHEET.worksheet(game_mode)
+    # if difficulty == 10:
+    #     worksheet = SHEET.worksheet("beginner")
+    # elif difficulty == 100:
+    #     worksheet = SHEET.worksheet("intermediate")
+    # elif difficulty == 1000:
+    #     worksheet = SHEET.worksheet("expert")
     columns = []
     score = []
     for ind in range(1, 3):
@@ -43,7 +45,7 @@ def update_scoreboard(difficulty):
         print(item)
 
 
-def scoreboard(difficulty):
+def scoreboard(game_mode):
     """
     Function obtains user's username and pushes it along with the amount of guesses to
     the relevant worksheet depending on the difficulty played.
@@ -57,19 +59,21 @@ def scoreboard(difficulty):
         data.append(len(player_guesses) + 1)
         # print(data)
         print(f"Hi, {username}, let's see if you've scored a position on the leaderboard...")
-        if difficulty == 10:
-            worksheet = SHEET.worksheet("beginner")
-            worksheet.append_row(data)
-        elif difficulty == 100:
-            worksheet = SHEET.worksheet("intermediate")
-            worksheet.append_row(data)
-        elif difficulty == 1000:
-            worksheet = SHEET.worksheet("expert")
-            worksheet.append_row(data)
-        update_scoreboard(difficulty)
+        worksheet = SHEET.worksheet(game_mode)
+        worksheet.append_row(data)
+        # if difficulty == 10:
+        #     worksheet = SHEET.worksheet("beginner")
+        #     worksheet.append_row(data)
+        # elif difficulty == 100:
+        #     worksheet = SHEET.worksheet("intermediate")
+        #     worksheet.append_row(data)
+        # elif difficulty == 1000:
+        #     worksheet = SHEET.worksheet("expert")
+        #     worksheet.append_row(data)
+        update_scoreboard(game_mode)
 
 
-def check_if_won(random_number, player_choice, difficulty):
+def check_if_won(random_number, player_choice, game_mode):
     """
     Function compares player's guess with the computer's choice.
     If the choice is correct, player won.
@@ -80,9 +84,9 @@ def check_if_won(random_number, player_choice, difficulty):
             win_statement = "attempts"
         else:
             win_statement = "attempt"
-        print("You won!") #todo: need to count checks to calculate highscore.
+        print("You won!") 
         print(f"It took you {len(player_guesses) + 1} {win_statement}.")
-        scoreboard(difficulty)
+        scoreboard(game_mode)
     elif player_choice == None:
         pass
     else:
@@ -157,6 +161,7 @@ def run_game(difficulty):
     """
     Function takes the difficulty level chosen and adjust parameters.
     """
+
     random_number = random.randint(1, difficulty) #todo: when menu is created, stop needs to depend on the game mode chosen. 
     print(f"You need to guess a number between 1 and {difficulty}.")
     print(random_number) #todo: delete later
@@ -164,9 +169,8 @@ def run_game(difficulty):
     # if game_active == True:
     while random_number != player_choice:
         player_choice = int(input("Your guess: "))
-        check_if_won(random_number, player_choice, difficulty)
+        check_if_won(random_number, player_choice, game_mode)
 
-game_mode = 0 # can this capture mode?
 
 #at the moment copied from simple term menu, needs review
 def main():
@@ -206,19 +210,21 @@ def main():
             user_choice = difficulty_options[current_display]
             # if difficulty_menu.show(): #todo: shorten by avoiding repetition
             if user_choice == "[1] Beginner":
-                # current_display = None
                 run_game(10)
+                return("beginner")
                 break
             elif user_choice == "[2] Intermediate":
-                # current_display = None
                 run_game(100)
+                return("intermediate")
                 break
             elif user_choice == "[3] Expert":
-                # current_display = None
                 run_game(1000)
-                break
+                return("expert")
+                # break
             # else:
             #     print(f"You have selected {options[option_index]}!")
+
+game_mode = main()
 
 if __name__ == "__main__":
     main()
