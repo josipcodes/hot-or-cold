@@ -176,43 +176,31 @@ def run_game(difficulty, game_mode):
     while validation == False:
         player_choice = input("Your guess: ")
         if validate_input(player_choice, difficulty):
+            player_choice = int(player_choice)
             check_if_won(random_number, player_choice, game_mode, difficulty)
-
-    # while random_number != player_choice:
-    #     validation = False
-    #     while validation == False:
-    #         player_choice = input("Your guess: ")
-    #         try:
-    #             if not int(player_choice):
-    #                 ValueError(f"'{player_choice}' has to be a number")
-    #         except ValueError as e:
-    #             print("Your entry is incorrect. {e}")
-    #         else:
-    #             if int(player_choice) in range(1, difficulty):
-    #                 validation = True
-    #             elif int(player_choice) == player_choice:
-    #                 print(f"Hold on, Katy Perry, you're guessing a number between 1 and {difficulty} \n")
-    #             # else:
-    #             # print(f"You have entered '{player_choice}', which is not a valid guess.")
 
 
 def validate_input(player_choice, difficulty):
+    """
+    Function validates user's input by checking if int.
+    If not int, user is notified.
+    If choice is outside of parameters, user is notified.
+    If the choice is valid, bool True is returned.
+    """
     try:
-        if not bool(int(player_choice)):
-            ValueError(f"'{player_choice}' has to be a number")
-    except ValueError as e:
-        print(f"Your entry is incorrect. {e}") #why is wording different?
+        player_choice = int(player_choice)
+    except ValueError:
+        print(f"You have entered '{player_choice}' instead of a number.")
         print("Please try again. \n")
         return False
     else:
-        if int(player_choice) in range(1, difficulty):
+        if int(player_choice) in range(1, difficulty + 1):
             return True
         else:
-            print(f"Hold on, Katy Perry, you're guessing a number between 1 and {difficulty}. \n")
+            print(
+                f"Hold on, Katy Perry, you're guessing a number between 1 and {difficulty}. \n"
+                )
             return False
-
-
-
 
 
 #at the moment copied from simple term menu, needs review
