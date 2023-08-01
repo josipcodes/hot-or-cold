@@ -48,10 +48,10 @@ def scoreboard(game_mode): #review function naming
     """
     data = []
     while True:
-        scoreboard_confirm = input("Want to see if you make it onto the leaderboard? (y/n) ") #todo: Add validation for n and invalid responses
+        scoreboard_confirm = input("Want to see if you make it onto the leaderboard? (y/n) ")
         print(scoreboard_confirm)
         if scoreboard_confirm.lower() == "y":
-            username = input("Enter a preferred username: ") #todo: Add validation
+            username = input("Enter a preferred username: ")
             data.append(username)
             data.append(len(player_guesses) + 1)
             print(f"Hi, {username}, let's see if you've scored a position on the leaderboard...")
@@ -172,11 +172,47 @@ def run_game(difficulty, game_mode):
     print(f"You need to guess a number between 1 and {difficulty}.")
     print(random_number) #todo: delete later
     player_choice = None
-    # if game_active == True:
-    while random_number != player_choice:
-        print(player_choice)
-        player_choice = int(input("Your guess: "))
-        check_if_won(random_number, player_choice, game_mode, difficulty)
+    validation = False
+    while validation == False:
+        player_choice = input("Your guess: ")
+        if validate_input(player_choice, difficulty):
+            check_if_won(random_number, player_choice, game_mode, difficulty)
+
+    # while random_number != player_choice:
+    #     validation = False
+    #     while validation == False:
+    #         player_choice = input("Your guess: ")
+    #         try:
+    #             if not int(player_choice):
+    #                 ValueError(f"'{player_choice}' has to be a number")
+    #         except ValueError as e:
+    #             print("Your entry is incorrect. {e}")
+    #         else:
+    #             if int(player_choice) in range(1, difficulty):
+    #                 validation = True
+    #             elif int(player_choice) == player_choice:
+    #                 print(f"Hold on, Katy Perry, you're guessing a number between 1 and {difficulty} \n")
+    #             # else:
+    #             # print(f"You have entered '{player_choice}', which is not a valid guess.")
+
+
+def validate_input(player_choice, difficulty):
+    try:
+        if not bool(int(player_choice)):
+            ValueError(f"'{player_choice}' has to be a number")
+    except ValueError as e:
+        print(f"Your entry is incorrect. {e}") #why is wording different?
+        print("Please try again. \n")
+        return False
+    else:
+        if int(player_choice) in range(1, difficulty):
+            return True
+        else:
+            print(f"Hold on, Katy Perry, you're guessing a number between 1 and {difficulty}. \n")
+            return False
+
+
+
 
 
 #at the moment copied from simple term menu, needs review
@@ -233,7 +269,6 @@ def main():
     """
     Function unpacks a tuple
     """
-    print("running")
     game_status, difficulty, game_mode = menu()
     if game_status == True:
         print("if reached")
