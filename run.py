@@ -27,12 +27,6 @@ def update_scoreboard(game_mode):
     Function prints out top 10 results off the scoreboard
     """
     worksheet = SHEET.worksheet(game_mode)
-    # if difficulty == 10:
-    #     worksheet = SHEET.worksheet("beginner")
-    # elif difficulty == 100:
-    #     worksheet = SHEET.worksheet("intermediate")
-    # elif difficulty == 1000:
-    #     worksheet = SHEET.worksheet("expert")
     columns = []
     score = []
     for ind in range(1, 3):
@@ -45,7 +39,7 @@ def update_scoreboard(game_mode):
         print(item)
 
 
-def scoreboard(game_mode):
+def scoreboard(game_mode): #review function naming
     """
     Function obtains user's username and pushes it along with the amount of guesses to
     the relevant worksheet depending on the difficulty played.
@@ -61,15 +55,6 @@ def scoreboard(game_mode):
         print(f"Hi, {username}, let's see if you've scored a position on the leaderboard...")
         worksheet = SHEET.worksheet(game_mode)
         worksheet.append_row(data)
-        # if difficulty == 10:
-        #     worksheet = SHEET.worksheet("beginner")
-        #     worksheet.append_row(data)
-        # elif difficulty == 100:
-        #     worksheet = SHEET.worksheet("intermediate")
-        #     worksheet.append_row(data)
-        # elif difficulty == 1000:
-        #     worksheet = SHEET.worksheet("expert")
-        #     worksheet.append_row(data)
         update_scoreboard(game_mode)
 
 
@@ -85,7 +70,7 @@ def check_if_won(random_number, player_choice, game_mode):
         else:
             win_statement = "attempt"
         print("You won!") 
-        print(f"It took you {len(player_guesses) + 1} {win_statement}.")
+        print(f"It took you {len(player_guesses) + 1} {win_statement}.\n")
         scoreboard(game_mode)
     elif player_choice == None:
         pass
@@ -160,6 +145,9 @@ player_guesses = []
 def run_game(difficulty, game_mode):
     """
     Function takes the difficulty level chosen and adjust parameters.
+    Function obtains a pseudo-random number between 1 and difficulty int.
+    It asks for input from user as long as user doesn't guess the number.
+
     """
 
     random_number = random.randint(1, difficulty) #todo: when menu is created, stop needs to depend on the game mode chosen. 
@@ -168,6 +156,7 @@ def run_game(difficulty, game_mode):
     player_choice = None
     # if game_active == True:
     while random_number != player_choice:
+        print(player_choice)
         player_choice = int(input("Your guess: "))
         check_if_won(random_number, player_choice, game_mode)
 
@@ -228,7 +217,7 @@ def main():
     """
     game_status, difficulty, game_mode = menu()
     if game_status == True:
-    run_game(difficulty, game_mode)
+        run_game(difficulty, game_mode)
 
 
 main()
