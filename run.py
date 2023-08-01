@@ -112,18 +112,44 @@ def check_difference(player_guesses):
     player is informed they haven't guessed the number.
     If player's last guess is worse than the previous one, player is informed.
     If player's last guess is better than the previous one, player is informed.
+    #need to add a note regarding multiple statements.
     """
     if len(player_guesses) == 1: #todo: investigate why this is triggered (early appending)
         #todo: build logic
         print(player_guesses)
-        print("You made a guess...but it's wrong...")
+        first_guess_statements = [
+            "You made a guess...but it's wrong...", 
+            "Hmmm, not quite right, try again.", 
+            "Wanna take another swing at this?"
+            ]
+        statement_index = random.randint(0, 2)
+        print(f"{first_guess_statements[statement_index]}")
     else:
         if player_guesses[-2] < player_guesses[-1]:
-            print("Colder...")
+            colder_statements = [
+            "Colder...", 
+            "If you're trying to be bad at this, great job!", 
+            "Snowman alert!"
+            ]
+            statement_index = random.randint(0, 2)
+            print(f"{colder_statements[statement_index]}")
         elif player_guesses[-2] == player_guesses[-1]:
-            print("Hmmm, not warmer, nor colder, surprisingly.")
+            same_difference_statements = [
+            "Hmmm, not warmer, nor colder, surprisingly.", 
+            "Yeah, so the answer is somewhere in between your previous guess and this one.", 
+            "Same temperature, seems like you like consistency.",
+            "April 25th, it's not too hot, not too cold. All you need is a light jacket."
+            ]
+            statement_index = random.randint(0, 3)
+            print(f"{same_difference_statements[statement_index]}")
         else:
-            print("Warmer")
+            warmer_statements = [
+            "Warmer...", 
+            "Temperature rising!", 
+            "Oooh, someone switched on the heating!"
+            ]
+            statement_index = random.randint(0, 2)
+            print(f"{warmer_statements[statement_index]}")
 
 player_guesses = []
 
