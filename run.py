@@ -1,4 +1,5 @@
 import random
+import math
 from pprint import pprint # is it needed?
 from simple_term_menu import TerminalMenu
 # Copied from Love sandwiches project
@@ -46,19 +47,28 @@ def scoreboard(game_mode): #review function naming
     Function calls update_scoreboard().
     """
     data = []
-    scoreboard_confirm = input("Want to see if you make it onto the leaderboard? (y/n) ") #todo: Add validation for n and invalid responses
-    if scoreboard_confirm == "y":
-        username = input("Enter a preferred username: ") #todo: Add validation
-        data.append(username)
-        data.append(len(player_guesses) + 1)
-        # print(data)
-        print(f"Hi, {username}, let's see if you've scored a position on the leaderboard...")
-        worksheet = SHEET.worksheet(game_mode)
-        worksheet.append_row(data)
-        update_scoreboard(game_mode)
+    while True:
+        scoreboard_confirm = input("Want to see if you make it onto the leaderboard? (y/n) ") #todo: Add validation for n and invalid responses
+        print(scoreboard_confirm)
+        if scoreboard_confirm.lower() == "y":
+            username = input("Enter a preferred username: ") #todo: Add validation
+            data.append(username)
+            data.append(len(player_guesses) + 1)
+            print(f"Hi, {username}, let's see if you've scored a position on the leaderboard...")
+            worksheet = SHEET.worksheet(game_mode)
+            worksheet.append_row(data)
+            update_scoreboard(game_mode)
+            break
+        elif scoreboard_confirm.lower() == "n":
+            print("Not a competitive one, eh?")
+            print("That's ok, thank you for playing! \n")
+            break
+        else:
+            print(f"You have entered '{scoreboard_confirm}', which is not a valid command.")
+            print("Please enter a valid command. \n")
 
 
-def check_if_won(random_number, player_choice, game_mode):
+def check_if_won(random_number, player_choice, game_mode, difficulty):
     """
     Function compares player's guess with the computer's choice.
     If the choice is correct, player won.
@@ -75,10 +85,10 @@ def check_if_won(random_number, player_choice, game_mode):
     elif player_choice == None:
         pass
     else:
-        check_choice(random_number, player_choice)
+        check_choice(random_number, player_choice, difficulty)
 
 
-def check_choice(random_number, player_choice): #investigate why this is called unnecessarily.
+def check_choice(random_number, player_choice, difficulty): #investigate why this is called unnecessarily.
     """
     Function calculates the difference between the bigger and smaller number.
     Numbers are comprised of the computer's and player's choices.
@@ -90,10 +100,10 @@ def check_choice(random_number, player_choice): #investigate why this is called 
     bigger_number = max(random_number, player_choice)
     difference = bigger_number - smaller_number
     player_guesses.append(difference)
-    check_difference(player_guesses)
+    check_difference(player_guesses, difficulty)
 
 
-def check_difference(player_guesses):
+def check_difference(player_guesses, difficulty):
     """
     Function checks player's guesses.
     If it's player's first guess, confirms it's not right.
@@ -103,14 +113,22 @@ def check_difference(player_guesses):
     If player's last guess is better than the previous one, player is informed.
     #need to add a note regarding multiple statements.
     """
-    if len(player_guesses) == 1: #todo: investigate why this is triggered (early appending)
+    if player_guesses[-1] <= difficulty / 10:
+        hot_statements = [
+        "Hot! Hot! Hot!...", 
+        "Sizzling!", 
+        "Global warming ahead, you're close!"
+        ]
+        statement_index = random.randint(0, 2)
+        print(f"{hot_statements[statement_index]}")
+    elif len(player_guesses) == 1: #todo: investigate why this is triggered (early appending)
         #todo: build logic
         print(player_guesses)
         first_guess_statements = [
-            "You made a guess...but it's wrong...", 
-            "Hmmm, not quite right, try again.", 
-            "Wanna take another swing at this?"
-            ]
+        "You made a guess...but it's wrong...", 
+        "Hmmm, not quite right, try again.", 
+        "Wanna take another swing at this?"
+        ]
         statement_index = random.randint(0, 2)
         print(f"{first_guess_statements[statement_index]}")
     else:
@@ -158,7 +176,7 @@ def run_game(difficulty, game_mode):
     while random_number != player_choice:
         print(player_choice)
         player_choice = int(input("Your guess: "))
-        check_if_won(random_number, player_choice, game_mode)
+        check_if_won(random_number, player_choice, game_mode, difficulty)
 
 
 #at the moment copied from simple term menu, needs review
@@ -215,14 +233,16 @@ def main():
     """
     Function unpacks a tuple
     """
+    print("running")
     game_status, difficulty, game_mode = menu()
     if game_status == True:
+        print("if reached")
         run_game(difficulty, game_mode)
-
+    
 
 main()
-
 menu()
+
 
 
 
