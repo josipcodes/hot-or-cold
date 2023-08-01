@@ -157,7 +157,7 @@ def check_difference(player_guesses):
 
 player_guesses = []
 
-def run_game(difficulty):
+def run_game(difficulty, game_mode):
     """
     Function takes the difficulty level chosen and adjust parameters.
     """
@@ -173,7 +173,7 @@ def run_game(difficulty):
 
 
 #at the moment copied from simple term menu, needs review
-def main():
+def menu():
     # Main menu options.
     main_options = [
         "[1] New Game", 
@@ -210,22 +210,30 @@ def main():
             user_choice = difficulty_options[current_display]
             # if difficulty_menu.show(): #todo: shorten by avoiding repetition
             if user_choice == "[1] Beginner":
-                run_game(10)
-                return("beginner")
+                return(True, 10, "beginner")
                 break
             elif user_choice == "[2] Intermediate":
-                run_game(100)
-                return("intermediate")
+                return(True, 100, "intermediate")
                 break
             elif user_choice == "[3] Expert":
-                run_game(1000)
-                return("expert")
-                # break
+                return(True, 1000, "expert")
+                break
             # else:
             #     print(f"You have selected {options[option_index]}!")
 
-game_mode = main()
 
-if __name__ == "__main__":
-    main()
+def main():
+    """
+    Function unpacks a tuple
+    """
+    game_status, difficulty, game_mode = menu()
+    if game_status == True:
+    run_game(difficulty, game_mode)
+
+
+main()
+
+menu()
+
+
 
