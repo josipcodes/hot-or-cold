@@ -19,6 +19,23 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 
 
+def continue_playing():
+    check = True
+    while check:
+        user_input = input("Wanna play again? (y/n) ")
+        if user_input.lower() == "y":
+            difficulty_menu()
+            check = False
+        elif user_input.lower() == "n":
+            quit_game()
+            check = False
+            # break
+        else:
+            print(f"You have entered '{scoreboard_confirm}'.")
+            print("This is not a valid command.")
+            print("Please enter a valid command. \n")
+
+
 def update_scoreboard(game_mode):
     """
     Function pulls top 10 results depending on the difficulty played:
@@ -37,6 +54,8 @@ def update_scoreboard(game_mode):
     score.sort(key=lambda tup: tup[1])
     for item in score[:10]:
         print(item)
+    print()
+    continue_playing()
 
 
 def scoreboard(game_mode):  # review function naming
@@ -48,7 +67,8 @@ def scoreboard(game_mode):  # review function naming
     Alternatively, function thanks user for playing.
     """
     data = []
-    while True:
+    check = True
+    while check:
         scoreboard_confirm = input(
             "Want to see if you make it onto the leaderboard? (y/n) "
         )
@@ -62,11 +82,14 @@ def scoreboard(game_mode):  # review function naming
             worksheet = SHEET.worksheet(game_mode)
             worksheet.append_row(data)
             update_scoreboard(game_mode)
-            break
+            check = False
+            # break
         elif scoreboard_confirm.lower() == "n":
             print("Not a competitive one, eh?")
             print("That's ok, thank you for playing! \n")
-            break
+            continue_playing()
+            check = False
+            # break
         else:
             print(f"You have entered '{scoreboard_confirm}'.")
             print("This is not a valid command.")
@@ -88,10 +111,13 @@ def check_if_won(random_number, player_choice, game_mode, difficulty):
         print("You won!")
         print(f"It took you {len(player_guesses) + 1} {win_statement}.\n")
         scoreboard(game_mode)
+        return True
     elif player_choice is None:
         pass
+        return False
     else:
         check_choice(random_number, player_choice, difficulty)
+        return False
 
 
 def check_choice(random_number, player_choice, difficulty):
@@ -186,11 +212,12 @@ def run_game(difficulty, game_mode):
     print(random_number)  # todo: delete later
     player_choice = None
     validation = False
+    print(validation, "validation")
     while validation is False:
         player_choice = input("Your guess: ")
         if validate_input(player_choice, difficulty):
             player_choice = int(player_choice)
-            check_if_won(random_number, player_choice, game_mode, difficulty)
+            validation = check_if_won(random_number, player_choice, game_mode, difficulty)
         # if scoreboard(game_mode):
             # return True
 
@@ -252,20 +279,8 @@ def main():
         elif user_choice == "[3] Leaderboard":
             leaderboard_info()
         elif user_choice == "[4] Quit":
-            print("Thank you for playing Hot or Cold.")
-            print("Hope to see you soon.")
+            quit_game()
             return False
-
-
-def test():
-    """
-    Function unpacks a tuple.
-    It calls run_game if the game_status is True.
-    """
-    game_status, difficulty, game_mode = menu()
-    if game_status is True:
-        print("if reached")
-        run_game(difficulty, game_mode)
 
 
 def difficulty_menu():
@@ -334,6 +349,10 @@ def return_option():
     user_choice = return_option[current_display]
     if user_choice == return_option[current_display]:
         main()
+
+def quit_game():
+    print("Thank you for playing Hot or Cold.")
+    print("Hope to see you soon.")
 
 
 main()
