@@ -1,6 +1,13 @@
 import random
 from pprint import pprint  # is it needed?
 from simple_term_menu import TerminalMenu
+from statements import (
+    HOT_STATEMENTS,
+    FIRST_GUESS_STATEMENTS,
+    COLDER_STATEMENTS,
+    SAME_DIFFERENCE_STATEMENTS,
+    WARMER_STATEMENTS
+    )
 # Copied from Love sandwiches project
 import gspread
 from google.oauth2.service_account import Credentials
@@ -29,7 +36,6 @@ def continue_playing():
         elif user_input.lower() == "n":
             quit_game()
             check = False
-            # break
         else:
             print(f"You have entered '{scoreboard_confirm}'.")
             print("This is not a valid command.")
@@ -83,13 +89,11 @@ def scoreboard(game_mode):  # review function naming
             worksheet.append_row(data)
             update_scoreboard(game_mode)
             check = False
-            # break
         elif scoreboard_confirm.lower() == "n":
             print("Not a competitive one, eh?")
             print("That's ok, thank you for playing! \n")
             continue_playing()
             check = False
-            # break
         else:
             print(f"You have entered '{scoreboard_confirm}'.")
             print("This is not a valid command.")
@@ -147,50 +151,22 @@ def check_difference(player_guesses, difficulty):
     #need to add a note regarding multiple statements.
     """
     if player_guesses[-1] <= difficulty / 10:
-        hot_statements = [
-            "Hot! Hot! Hot!...",
-            "Sizzling!",
-            "Global warming ahead, you're close!"
-        ]
         statement_index = random.randint(0, 2)
-        print(f"{hot_statements[statement_index]}")
+        print(f"{HOT_STATEMENTS[statement_index]}")
     elif len(player_guesses) == 1:
         print(player_guesses)
-        first_guess_statements = [
-            "You made a guess...but it's wrong...",
-            "Hmmm, not quite right, try again.",
-            "Wanna take another swing at this?"
-        ]
         statement_index = random.randint(0, 2)
-        print(f"{first_guess_statements[statement_index]}")
+        print(f"{FIRST_GUESS_STATEMENTS[statement_index]}")
     else:
         if player_guesses[-2] < player_guesses[-1]:
-            colder_statements = [
-                "Colder...",
-                "If you're trying to be bad at this, great job!",
-                "Snowman alert!"
-            ]
             statement_index = random.randint(0, 2)
-            print(f"{colder_statements[statement_index]}")
+            print(f"{COLDER_STATEMENTS[statement_index]}")
         elif player_guesses[-2] == player_guesses[-1]:
-            same_difference_statements = [
-                "Hmmm, not warmer, nor colder, surprisingly.",
-                "Yeah, so the answer is somewhere in " \
-                "between your previous guess and this one.",
-                "Same temperature, seems like you like consistency.",
-                "April 25th, it's not too hot, not too cold. " \
-                "All you need is a light jacket."
-            ]
             statement_index = random.randint(0, 3)
-            print(f"{same_difference_statements[statement_index]}")
+            print(f"{SAME_DIFFERENCE_STATEMENTS[statement_index]}")
         else:
-            warmer_statements = [
-                "Warmer...",
-                "Temperature rising!",
-                "Oooh, someone switched on the heating!"
-            ]
             statement_index = random.randint(0, 2)
-            print(f"{warmer_statements[statement_index]}")
+            print(f"{WARMER_STATEMENTS[statement_index]}")
 
 
 player_guesses = []
