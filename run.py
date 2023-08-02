@@ -42,7 +42,7 @@ def continue_playing():
             print("Please enter a valid command. \n")
 
 
-def update_scoreboard(game_mode):
+def print_scoreboard(game_mode):
     """
     Function pulls top 10 results depending on the difficulty played:
     Function collects values from 2 columns.
@@ -69,7 +69,7 @@ def scoreboard(game_mode):  # review function naming
     Function obtains user's username,
     pushes it along with the amount of guesses to
     the relevant worksheet depending on the difficulty played.
-    Function calls update_scoreboard().
+    Function calls print_scoreboard().
     Alternatively, function thanks user for playing.
     """
     data = []
@@ -87,7 +87,7 @@ def scoreboard(game_mode):  # review function naming
                 "if you've scored a position on the leaderboard...")
             worksheet = SHEET.worksheet(game_mode)
             worksheet.append_row(data)
-            update_scoreboard(game_mode)
+            print_scoreboard(game_mode)
             check = False
         elif scoreboard_confirm.lower() == "n":
             print("Not a competitive one, eh?")
@@ -277,7 +277,6 @@ def difficulty_menu():
     user_choice = difficulty_options[current_display]
 
     if user_choice == "[1] Beginner":
-        print("beginner")
         run_game(10, "beginner")
     elif user_choice == "[2] Intermediate":
         run_game(100, "intermediate")
@@ -308,10 +307,32 @@ def about_info():
 
 
 def leaderboard_info():
-    print(
-        "leaderboard"
+    """
+    Function generates a sub-menu to choose which leaderboard to show.
+    Function calls print_scoreboard() once difficulty chosen,
+    or main() if user chooses to go back a step.
+
+    """
+    # Sub-menu options.
+    leaderboard_options = [
+        "[1] Beginner",
+        "[2] Intermediate",
+        "[3] Expert",
+        "[4] Go back"
+        ]
+
+    leaderboard_menu = TerminalMenu(
+        leaderboard_options,
+        title = "Leadeboard"
     )
-    return_option()
+
+    current_display = leaderboard_menu.show()
+    user_choice = leaderboard_options[current_display]
+
+    if user_choice == "[4] Go back":
+        main()
+    else:
+        print_scoreboard(user_choice.lower()[4:])
 
 
 def return_option():
