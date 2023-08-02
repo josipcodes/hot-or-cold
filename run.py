@@ -58,7 +58,7 @@ def scoreboard(game_mode):  # review function naming
             data.append(username)
             data.append(len(player_guesses) + 1)
             print(f"Hi {username}, let's see " \
-            "if you've scored a position on the leaderboard...")
+                "if you've scored a position on the leaderboard...")
             worksheet = SHEET.worksheet(game_mode)
             worksheet.append_row(data)
             update_scoreboard(game_mode)
@@ -170,6 +170,7 @@ def check_difference(player_guesses, difficulty):
 player_guesses = []
 
 
+
 def run_game(difficulty, game_mode):
     """
     Function takes the difficulty level chosen and adjust parameters.
@@ -190,6 +191,8 @@ def run_game(difficulty, game_mode):
         if validate_input(player_choice, difficulty):
             player_choice = int(player_choice)
             check_if_won(random_number, player_choice, game_mode, difficulty)
+        # if scoreboard(game_mode):
+            # return True
 
 
 def validate_input(player_choice, difficulty):
@@ -211,15 +214,15 @@ def validate_input(player_choice, difficulty):
         else:
             print(
                 "Hold on, Katy Perry, " \
-                f"you're guessing a number between 1 and {difficulty}. \n"
+                f"you're guessing a number between 1 and {difficulty}.\n"
                 )
             return False
 
 
 # at the moment copied from simple term menu, needs review
-def menu():
+def main():
     """
-    Function creates a main menu and a difficulty menu.
+    Function creates a main menu.
     """
     # Main menu options.
     main_options = [
@@ -228,69 +231,33 @@ def menu():
         "[3] Leaderboard",
         "[4] Quit"]
 
-    # Sub-menu options.
-    difficulty_options = [
-        "[1] Beginner",
-        "[2] Intermediate",
-        "[3] Expert",
-        "[4] Go back"]
     main_menu = TerminalMenu(
         main_options,
         title = "Hot or Cold"
     )
-    difficulty_menu = TerminalMenu(
-        difficulty_options,
-        title = "Difficulty level"
-    )
-    # main_menu_style = ("bg_red", "fg_yellow") #todo: need to check
-    quit_game = False
 
-    while quit_game is False:
+    user_choice = None
+
+    # main_menu_style = ("bg_red", "fg_yellow") #todo: need to check
+
+    while True:
         current_display = main_menu.show()
         user_choice = main_options[current_display]
 
-        if user_choice == "[4] Quit":
+        if user_choice == "[1] New Game":
+            difficulty_menu()
+            return False 
+        elif user_choice == "[2] About":
+            about_info()
+        elif user_choice == "[3] Leaderboard":
+            leaderboard_info()
+        elif user_choice == "[4] Quit":
             print("Thank you for playing Hot or Cold.")
             print("Hope to see you soon.")
-            quit_game = True
-            current_display = main_menu.show()
-        elif user_choice == "[2] About":
-            print(
-                "This game was created for educational purposes " \
-                "only as a part of the course with Code Institute. \n"
-            )
-            print(
-                "The objective of the game is to guess the correct number. " \
-                "The player can choose the difficulty, and as a result " \
-                "the player will have to guess a number between " \
-                "1-10, 1-100 or 1-1000. \n"
-            )
-            print(
-                "Unlike the usual guessing games, this one won't help " \
-                "the player by saying if the number is higher or lower. " \
-                "Worry not, the player will be told if their number is... " \
-                "Well, hot! \n"
-            )
-        elif user_choice == "[3] Leaderboard":
-            print("leaderboard")
-        elif user_choice == "[1] New Game":
-            current_display = difficulty_menu.show()
-            user_choice = difficulty_options[current_display]
-            # if difficulty_menu.show(): #todo: shorten by avoiding repetition
-            if user_choice == "[1] Beginner":
-                return(True, 10, "beginner")
-                break
-            elif user_choice == "[2] Intermediate":
-                return(True, 100, "intermediate")
-                break
-            elif user_choice == "[3] Expert":
-                return(True, 1000, "expert")
-                break
-            # else:
-            #     print(f"You have selected {options[option_index]}!")
+            return False
 
 
-def main():
+def test():
     """
     Function unpacks a tuple.
     It calls run_game if the game_status is True.
@@ -301,5 +268,72 @@ def main():
         run_game(difficulty, game_mode)
 
 
+def difficulty_menu():
+    # Sub-menu options.
+    difficulty_options = [
+        "[1] Beginner",
+        "[2] Intermediate",
+        "[3] Expert",
+        "[4] Go back"
+    ]
+
+    difficulty_menu = TerminalMenu(
+        difficulty_options,
+        title = "Difficulty level"
+    )
+
+    current_display = difficulty_menu.show()
+    user_choice = difficulty_options[current_display]
+
+    if user_choice == "[1] Beginner":
+        print("beginner")
+        run_game(10, "beginner")
+    elif user_choice == "[2] Intermediate":
+        run_game(100, "intermediate")
+    elif user_choice == "[3] Expert":
+        run_game(1000, "expert")
+    elif user_choice == "[4] Go back":
+        main()
+
+
+def about_info():
+    print(
+        "This game was created for educational purposes " \
+        "only as a part of the course with Code Institute. \n"
+    )
+    print(
+            "The objective of the game is to guess the correct number. " \
+        "The player can choose the difficulty, and as a result " \
+        "the player will have to guess a number between " \
+        "1-10, 1-100 or 1-1000. \n"
+    )
+    print(
+        "Unlike the usual guessing games, this one won't help " \
+        "the player by saying if the number is higher or lower. " \
+        "Worry not, the player will be told if their number is... " \
+        "Well, hot! \n"
+    )
+    return_option()
+
+
+def leaderboard_info():
+    print(
+        "leaderboard"
+    )
+    return_option()
+
+
+def return_option():
+    return_option = [
+        "[r] Go back"
+        ]
+    return_menu = TerminalMenu(
+        return_option
+    )
+    current_display = return_menu.show()
+    user_choice = return_option[current_display]
+    if user_choice == return_option[current_display]:
+        main()
+
+
 main()
-menu()
