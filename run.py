@@ -49,6 +49,8 @@ def print_scoreboard(game_mode):
     Function collects values from 2 columns.
     Values are zipped together and sorted by the int in second column.
     Results are unpacked from a tuple and printed out aligned.
+    If there are less than 10 results available,
+    only available results are printed.
     """
     worksheet = SHEET.worksheet(game_mode)
     columns = []
@@ -60,10 +62,11 @@ def print_scoreboard(game_mode):
         score.append((username, int(guess)))
     score.sort(key=lambda tup: tup[1])
     position = 0
-    print(f"{'Position' : <10} {'Username' : ^25} {'Result' : >5}")
+    print()
+    print(f"{'Position' : <10} {'Username' : ^27} {'Result' : >3}")
     for item in score[:10]:
         position += 1
-        position_string = str(x) + '.'
+        position_string = str(position) + '.'
         username, result = item
         print(f"{position_string : <10} {username : ^25} {result : >5}")
     print()
