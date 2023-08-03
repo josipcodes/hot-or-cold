@@ -30,7 +30,7 @@ SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 def continue_playing():
     check = True
     while check:
-        user_input = input("Wanna play again? (y/n)")
+        user_input = input("Wanna play again? (y/n) ")
         if user_input.lower() == "y":
             difficulty_menu()
             check = False
@@ -38,7 +38,7 @@ def continue_playing():
             quit_game()
             check = False
         else:
-            print(f"You have entered '{scoreboard_confirm}'.")
+            print(f"You have entered '{user_input}'.")
             print("This is not a valid command.")
             print("Please enter a valid command. \n")
 
