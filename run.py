@@ -2,11 +2,12 @@ import random
 from pprint import pprint  # is it needed?
 from simple_term_menu import TerminalMenu
 from statements import (
+    LAVA_STATEMENTS,
     HOT_STATEMENTS,
+    WARMER_STATEMENTS,
     FIRST_GUESS_STATEMENTS,
     COLDER_STATEMENTS,
-    SAME_DIFFERENCE_STATEMENTS,
-    WARMER_STATEMENTS
+    SAME_DIFFERENCE_STATEMENTS
     )
 # Copied from Love sandwiches project
 import gspread
@@ -150,7 +151,10 @@ def check_difference(player_guesses, difficulty):
     If the guess is within 10% of the random_number, player is informed.
     #need to add a note regarding multiple statements.
     """
-    if player_guesses[-1] <= difficulty / 10:
+    if player_guesses[-1] <= difficulty / 20:
+        statement_index = random.randint(0, 2)
+        print(f"{LAVA_STATEMENTS[statement_index]}")
+    elif player_guesses[-1] <= difficulty / 10:
         statement_index = random.randint(0, 2)
         print(f"{HOT_STATEMENTS[statement_index]}")
     elif len(player_guesses) == 1:

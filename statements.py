@@ -1,8 +1,20 @@
-HOT_STATEMENTS = [
+LAVA_STATEMENTS = [
             "Hot! Hot! Hot!...",
             "Sizzling!",
             "Global warming ahead, you're close!"
         ]
+
+HOT_STATEMENTS = [
+            "Feels like a summer day.",
+            "Is the oven on?",
+            "Oooh, someone switched on the heating!"
+        ]
+
+WARMER_STATEMENTS = [
+                "Warmer...",
+                "Temperature rising!",
+                "Bright copper kettles and warm woolen mittens."
+            ]
 
 FIRST_GUESS_STATEMENTS = [
             "You made a guess...but it's wrong...",
@@ -23,10 +35,4 @@ SAME_DIFFERENCE_STATEMENTS = [
                 "Same temperature, seems like you like consistency.",
                 "April 25th, it's not too hot, not too cold. " \
                 "All you need is a light jacket."
-            ]
-
-WARMER_STATEMENTS = [
-                "Warmer...",
-                "Temperature rising!",
-                "Oooh, someone switched on the heating!"
             ]
