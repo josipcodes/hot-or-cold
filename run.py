@@ -256,12 +256,13 @@ def main():
         " / __\  / _ \  | |    __| |")
     print("|   __   | | | | |  | |     | | | | |  _/  "
         " | |   | | | | | |   / _  |")
-    print("|  |  |  | | |_| |  | |_    | | | | | |    "
-        " | |__ | | | | | |_ | | | |")
+    print("|  |  |  | | |_| |  | |_    | |_| | | |    "
+        " | |__ | |_| | | |_ | |_| |")
     print("|__|  |__|  \___/   |___|    \___/  |_|    "
         " \___/  \___/  |___| \___/")
     print()  
-    print("Welcome, stranger! Choose an option: \n")
+    print("Welcome, stranger! Choose an option below. " 
+        "All of them are bad, really. \n")
      
     # Main menu options.
     main_options = [
@@ -304,9 +305,10 @@ def difficulty_menu():
         "[4] Go back"
     ]
 
+    print("Choose a difficulty level, I dare you. \n")
+
     difficulty_menu = TerminalMenu(
         difficulty_options,
-        title = "Difficulty level"
     )
 
     current_display = difficulty_menu.show()
@@ -357,6 +359,8 @@ def leaderboard_info():
         "[4] Go back"
         ]
 
+    print("Choose which leaderboard you wish to take a sneak peak into.\n")
+
     leaderboard_menu = TerminalMenu(
         leaderboard_options,
         title = "Leadeboard"
@@ -368,6 +372,7 @@ def leaderboard_info():
     if user_choice == "[4] Go back":
         main()
     else:
+        print(f"{user_choice[4:]} leaderboard:")
         print_scoreboard(user_choice.lower()[4:])
 
 
