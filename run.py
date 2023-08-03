@@ -1,5 +1,4 @@
 import random
-from pprint import pprint  # is it needed?
 from simple_term_menu import TerminalMenu
 from statements import (
     LAVA_STATEMENTS,
@@ -249,6 +248,21 @@ def main():
     """
     Function creates a main menu.
     """
+    print(" __    __            _                     "
+            "                _        _")
+    print("|  |  |  |   ___    | |       ___    _  _  "
+            "  ___    ___   | |      | |")
+    print("|  |__|  |  / _ \  |   |     / _ \  | |/ | "
+        " / __\  / _ \  | |    __| |")
+    print("|   __   | | | | |  | |     | | | | |  _/  "
+        " | |   | | | | | |   / _  |")
+    print("|  |  |  | | |_| |  | |_    | | | | | |    "
+        " | |__ | | | | | |_ | | | |")
+    print("|__|  |__|  \___/   |___|    \___/  |_|    "
+        " \___/  \___/  |___| \___/")
+    print()  
+    print("Welcome, stranger! Choose an option: \n")
+     
     # Main menu options.
     main_options = [
         "[1] New Game",
@@ -258,7 +272,7 @@ def main():
 
     main_menu = TerminalMenu(
         main_options,
-        title = "Hot or Cold"
+        # title = "Hot or Cold"
     )
 
     user_choice = None
@@ -370,8 +384,8 @@ def return_option():
         main()
 
 def quit_game():
-    print("Thank you for playing Hot or Cold.")
-    print("Hope to see you soon.")
+    print("Thank you for playing Hot or Cold. \n")
+    print("Hope to see you soon. \n")
 
 
 main()
