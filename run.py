@@ -48,7 +48,7 @@ def print_scoreboard(game_mode):
     Function pulls top 10 results depending on the difficulty played:
     Function collects values from 2 columns.
     Values are zipped together and sorted by the int in second column.
-    Function prints out top 10 results off the scoreboard
+    Results are unpacked from a tuple and printed out aligned.
     """
     worksheet = SHEET.worksheet(game_mode)
     columns = []
@@ -59,13 +59,13 @@ def print_scoreboard(game_mode):
     for username, guess in zip(columns[0], columns[1]):
         score.append((username, int(guess)))
     score.sort(key=lambda tup: tup[1])
-    x = 0
+    position = 0
     print(f"{'Position' : <10} {'Username' : ^25} {'Result' : >5}")
     for item in score[:10]:
-        x += 1
-        x_copy = str(x) + '.'
+        position += 1
+        position_string = str(x) + '.'
         username, result = item
-        print(f"{x_copy : <10} {username : ^25} {result : >5}")
+        print(f"{position_string : <10} {username : ^25} {result : >5}")
     print()
     continue_playing()
 
