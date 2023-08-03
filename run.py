@@ -30,7 +30,7 @@ SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 def continue_playing():
     check = True
     while check:
-        user_input = input("Wanna play again? (y/n) ")
+        user_input = input("Wanna play again? (y/n)")
         if user_input.lower() == "y":
             difficulty_menu()
             check = False
@@ -43,7 +43,7 @@ def continue_playing():
             print("Please enter a valid command. \n")
 
 
-def print_scoreboard(game_mode):
+def print_scoreboard(game_mode, flag):
     """
     Function pulls top 10 results depending on the difficulty played:
     Function collects values from 2 columns.
@@ -70,7 +70,8 @@ def print_scoreboard(game_mode):
         username, result = item
         print(f"{position_string : >5} {username : ^35} {result : >4}")
     print()
-    continue_playing()
+    if flag:
+        continue_playing()
 
 
 def scoreboard_preference(game_mode):  # review function naming
@@ -90,7 +91,7 @@ def scoreboard_preference(game_mode):  # review function naming
         scoreboard_confirm = input(
             "Want to see if you make it onto the leaderboard? (y/n) "
         )
-        print(scoreboard_confirm)
+        print()
         if scoreboard_confirm.lower() == "y":
             username_check = False
             while username_check is False:
@@ -107,7 +108,7 @@ def scoreboard_preference(game_mode):  # review function naming
                         "if you've scored a position on the leaderboard...")
                     worksheet = SHEET.worksheet(game_mode)
                     worksheet.append_row(data)
-                    print_scoreboard(game_mode)
+                    print_scoreboard(game_mode, True)
                     check = False
         elif scoreboard_confirm.lower() == "n":
             print("Not a competitive one, eh?")
@@ -206,9 +207,9 @@ def run_game(game_mode):
 
     """
     # difficulty = ""
-    if game_mode == "Beginner":
+    if game_mode == "beginner":
         difficulty = 10
-    elif game_mode == "Intermediate":
+    elif game_mode == "intermediate":
         difficulty = 100
     else:
         difficulty = 1000
@@ -310,6 +311,7 @@ def difficulty_menu():
         "[4] Go back"
     ]
 
+    print()
     print("Choose a difficulty level, I dare you. \n")
 
     difficulty_menu = TerminalMenu(
@@ -322,7 +324,7 @@ def difficulty_menu():
     if user_choice == "[4] Go back":
         main()
     else:
-        run_game(user_choice[4:])
+        run_game(user_choice.lower()[4:])
 
 
 def about_info():
@@ -374,7 +376,7 @@ def leaderboard_info():
         main()
     else:
         print(f"{user_choice[4:]} leaderboard:\n")
-        print_scoreboard(user_choice.lower()[4:])
+        print_scoreboard(user_choice.lower()[4:], False)
 
 
 def return_option():
