@@ -9,6 +9,7 @@ from statements import (
     COLDER_STATEMENTS,
     SAME_DIFFERENCE_STATEMENTS
     )
+
 # Copied from Love sandwiches project
 import gspread
 from google.oauth2.service_account import Credentials
@@ -63,23 +64,26 @@ def print_scoreboard(game_mode):
     score.sort(key=lambda tup: tup[1])
     position = 0
     print()
-    print(f"{'Position' : <10} {'Username' : ^27} {'Result' : >3}")
+    print(f"{'Position' : <10} {'Username' : ^27} {'Result' : >10}")
     for item in score[:10]:
         position += 1
         position_string = str(position) + '.'
         username, result = item
-        print(f"{position_string : >5} {username : ^25} {result : >5}")
+        print(f"{position_string : >5} {username : ^35} {result : >4}")
     print()
     continue_playing()
 
 
 def scoreboard_preference(game_mode):  # review function naming
     """
-    Function obtains user's username,
+    Functions checks user's preference to add their name to the scoreboard.
+    Function obtains user's validated username,
     pushes it along with the amount of guesses to
     the relevant worksheet depending on the difficulty played.
     Function calls print_scoreboard().
     Alternatively, function thanks user for playing.
+    Username validation - length of 15 characters,
+    accepts all characters.
     """
     data = []
     check = True
