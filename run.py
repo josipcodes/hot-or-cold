@@ -68,12 +68,12 @@ def print_scoreboard(game_mode):
         position += 1
         position_string = str(position) + '.'
         username, result = item
-        print(f"{position_string : <10} {username : ^25} {result : >5}")
+        print(f"{position_string : >5} {username : ^25} {result : >5}")
     print()
     continue_playing()
 
 
-def scoreboard(game_mode):  # review function naming
+def scoreboard_preference(game_mode):  # review function naming
     """
     Function obtains user's username,
     pushes it along with the amount of guesses to
@@ -89,15 +89,23 @@ def scoreboard(game_mode):  # review function naming
         )
         print(scoreboard_confirm)
         if scoreboard_confirm.lower() == "y":
-            username = input("Enter a preferred username: ")
-            data.append(username)
-            data.append(len(player_guesses) + 1)
-            print(f"Hi {username}, let's see " \
-                "if you've scored a position on the leaderboard...")
-            worksheet = SHEET.worksheet(game_mode)
-            worksheet.append_row(data)
-            print_scoreboard(game_mode)
-            check = False
+            username_check = False
+            while username_check is False:
+                username = input("Enter a preferred username: ")
+                if len(username) > 15:
+                    print()
+                    print("Username can only be 15 characters long. \n")
+                else:
+                    username_check = True
+                    data.append(username)
+                    data.append(len(player_guesses) + 1)
+                    print()
+                    print(f"Hi {username}, let's see " \
+                        "if you've scored a position on the leaderboard...")
+                    worksheet = SHEET.worksheet(game_mode)
+                    worksheet.append_row(data)
+                    print_scoreboard(game_mode)
+                    check = False
         elif scoreboard_confirm.lower() == "n":
             print("Not a competitive one, eh?")
             print("That's ok, thank you for playing! \n")
@@ -123,7 +131,7 @@ def check_if_won(random_number, player_choice, game_mode, difficulty):
             win_statement = "attempt"
         print("You won!")
         print(f"It took you {len(player_guesses) + 1} {win_statement}.\n")
-        scoreboard(game_mode)
+        scoreboard_preference(game_mode)
         return True
     elif player_choice is None:
         pass
@@ -206,8 +214,6 @@ def run_game(difficulty, game_mode):
         if validate_input(player_choice, difficulty):
             player_choice = int(player_choice)
             validation = check_if_won(random_number, player_choice, game_mode, difficulty)
-        # if scoreboard(game_mode):
-            # return True
 
 
 def validate_input(player_choice, difficulty):
