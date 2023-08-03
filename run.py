@@ -177,7 +177,6 @@ def check_difference(player_guesses, difficulty):
         statement_index = random.randint(0, 2)
         print(f"{HOT_STATEMENTS[statement_index]}")
     elif len(player_guesses) == 1:
-        print(player_guesses)
         statement_index = random.randint(0, 2)
         print(f"{FIRST_GUESS_STATEMENTS[statement_index]}")
     else:
@@ -196,7 +195,7 @@ player_guesses = []
 
 
 
-def run_game(difficulty, game_mode):
+def run_game(game_mode):
     """
     Function takes the difficulty level chosen and adjust parameters.
     It obtains a pseudo-random number between 1 and difficulty int.
@@ -206,12 +205,18 @@ def run_game(difficulty, game_mode):
     input is converted into an integer and check_if_won is called.
 
     """
+    # difficulty = ""
+    if game_mode == "Beginner":
+        difficulty = 10
+    elif game_mode == "Intermediate":
+        difficulty = 100
+    else:
+        difficulty = 1000
     random_number = random.randint(1, difficulty)
     print(f"You need to guess a number between 1 and {difficulty}.")
     print(random_number)  # todo: delete later
     player_choice = None
     validation = False
-    print(validation, "validation")
     while validation is False:
         player_choice = input("Your guess: ")
         if validate_input(player_choice, difficulty):
@@ -314,14 +319,10 @@ def difficulty_menu():
     current_display = difficulty_menu.show()
     user_choice = difficulty_options[current_display]
 
-    if user_choice == "[1] Beginner":
-        run_game(10, "beginner")
-    elif user_choice == "[2] Intermediate":
-        run_game(100, "intermediate")
-    elif user_choice == "[3] Expert":
-        run_game(1000, "expert")
-    elif user_choice == "[4] Go back":
+    if user_choice == "[4] Go back":
         main()
+    else:
+        run_game(user_choice[4:])
 
 
 def about_info():
@@ -372,7 +373,7 @@ def leaderboard_info():
     if user_choice == "[4] Go back":
         main()
     else:
-        print(f"{user_choice[4:]} leaderboard:")
+        print(f"{user_choice[4:]} leaderboard:\n")
         print_scoreboard(user_choice.lower()[4:])
 
 
