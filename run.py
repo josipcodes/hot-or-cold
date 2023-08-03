@@ -59,8 +59,13 @@ def print_scoreboard(game_mode):
     for username, guess in zip(columns[0], columns[1]):
         score.append((username, int(guess)))
     score.sort(key=lambda tup: tup[1])
+    x = 0
+    print(f"{'Position' : <10} {'Username' : ^25} {'Result' : >5}")
     for item in score[:10]:
-        print(item)
+        x += 1
+        x_copy = str(x) + '.'
+        username, result = item
+        print(f"{x_copy : <10} {username : ^25} {result : >5}")
     print()
     continue_playing()
 
