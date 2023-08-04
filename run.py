@@ -8,6 +8,10 @@ from statements import (
     COLDER_STATEMENTS,
     SAME_DIFFERENCE_STATEMENTS
     )
+from leaderboard import (
+    print_scoreboard,
+    scoreboard_preference
+    )
 
 # Copied from Love sandwiches project
 import gspread
@@ -48,88 +52,6 @@ def continue_playing():
             print("Please enter a valid command. \n")
 
 
-def print_scoreboard(game_mode, flag):
-    """
-    Function pulls top 10 results depending on the difficulty played:
-    Function collects values from 2 columns.
-    Values are zipped together and sorted by the int in second column.
-    Results are unpacked from a tuple and printed out aligned with header.
-    If there are less than 10 results available,
-    only available results are printed.
-    """
-    worksheet = SHEET.worksheet(game_mode)
-    columns = []
-    score = []
-    for ind in range(1, 3):
-        column = worksheet.col_values(ind)
-        columns.append(column[1:])
-    for username, guess in zip(columns[0], columns[1]):
-        score.append((username, int(guess)))
-    score.sort(key=lambda tup: tup[1])
-    position = 0
-    print()
-    print(f"{'Position' : <10} {'Username' : ^27} {'Result' : >10}")
-    for item in score[:10]:
-        position += 1
-        position_string = str(position) + '.'
-        username, result = item
-        print(f"{position_string : >5} {username : ^35} {result : >4}")
-    print()
-    if flag:
-        continue_playing()
-
-
-def scoreboard_preference(game_mode):  # review function naming
-    """
-    Functions checks user's preference to add their name to the scoreboard.
-    Function obtains user's validated username,
-    pushes it along with the amount of guesses to
-    the relevant worksheet depending on the difficulty played.
-    Function calls print_scoreboard().
-    To control the flow, bool is passed to print_scoreboard().
-    Alternatively, function thanks user for playing.
-    Username validation - length of 15 characters,
-    accepts all characters.
-    """
-    data = []
-    check = True
-    while check:
-        scoreboard_confirm = input(
-            "Want to see if you make it onto the leaderboard? (y/n) "
-        )
-        print()
-        if scoreboard_confirm.lower() == "y":
-            username_check = False
-            while username_check is False:
-                username = input("Enter a preferred username: ")
-                if len(username) > 15:
-                    print()
-                    print("Username can only be 15 characters long. \n")
-                else:
-                    username_check = True
-                    data.append(username)
-                    data.append(len(player_guesses) + 1)
-                    print()
-                    print(
-                        f"Hi {username}, let's see "
-                        "if you've scored a position on the leaderboard..."
-                    )
-                    worksheet = SHEET.worksheet(game_mode)
-                    worksheet.append_row(data)
-                    print_scoreboard(game_mode, True)
-                    player_guesses.clear()
-                    check = False
-        elif scoreboard_confirm.lower() == "n":
-            print("Not a competitive one, eh?")
-            print("That's ok, thank you for playing! \n")
-            continue_playing()
-            check = False
-        else:
-            print(f"You have entered '{scoreboard_confirm}'.")
-            print("This is not a valid command.")
-            print("Please enter a valid command. \n")
-
-
 def check_if_won(random_number, player_choice, game_mode, difficulty):
     """
     Function compares player's guess with the computer's choice.
@@ -145,7 +67,7 @@ def check_if_won(random_number, player_choice, game_mode, difficulty):
             win_statement = "attempt"
         print("You won!")
         print(f"It took you {len(player_guesses) + 1} {win_statement}.\n")
-        scoreboard_preference(game_mode)
+        scoreboard_preference(game_mode, player_guesses, SHEET, continue_playing)
         return True
     elif player_choice is None:
         pass
@@ -420,7 +342,12 @@ def leaderboard_info():
         main()
     else:
         print(f"{user_choice[4:]} leaderboard:\n")
-        print_scoreboard(user_choice.lower()[4:], False)
+        print_scoreboard(
+            user_choice.lower()[4:],
+            False,
+            SHEET,
+            continue_playing
+            )
 
 
 def return_option():
