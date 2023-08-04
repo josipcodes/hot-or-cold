@@ -65,9 +65,14 @@ def check_if_won(random_number, player_choice, game_mode, difficulty):
             win_statement = "attempts"
         else:
             win_statement = "attempt"
-        print("You won!")
+        print("You won! 🍀")
         print(f"It took you {len(player_guesses) + 1} {win_statement}.\n")
-        scoreboard_preference(game_mode, player_guesses, SHEET, continue_playing)
+        scoreboard_preference(
+            game_mode,
+            player_guesses,
+            SHEET,
+            continue_playing
+        )
         return True
     elif player_choice is None:
         pass
@@ -151,7 +156,9 @@ def run_game(game_mode):
     player_choice = None
     validation = False
     while validation is False:
+        print()
         player_choice = input("Your guess: ")
+        print()
         if validate_input(player_choice, difficulty):
             player_choice = int(player_choice)
             validation = check_if_won(
