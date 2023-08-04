@@ -105,7 +105,7 @@ def scoreboard_preference(game_mode):  # review function naming
                     data.append(len(player_guesses) + 1)
                     print()
                     print(f"Hi {username}, let's see " \
-                        "if you've scored a position on the leaderboard...")
+                            "if you've scored a position on the leaderboard...")
                     worksheet = SHEET.worksheet(game_mode)
                     worksheet.append_row(data)
                     print_scoreboard(game_mode, True)
