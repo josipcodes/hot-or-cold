@@ -107,7 +107,7 @@ def scoreboard_preference(game_mode):  # review function naming
                     print(
                         f"Hi {username}, let's see "
                         "if you've scored a position on the leaderboard..."
-                        )
+                    )
                     worksheet = SHEET.worksheet(game_mode)
                     worksheet.append_row(data)
                     print_scoreboard(game_mode, True)
@@ -128,7 +128,8 @@ def check_if_won(random_number, player_choice, game_mode, difficulty):
     Function compares player's guess with the computer's choice.
     If the choice is correct, player won:
     Function informs the player - wording depends on the guess volume.
-    If the guess is wrong, check_choice function is called.
+    If the guess is wrong, check_choice() function is called.
+    Return statements are sent to run_game() to control the flow.
     """
     if random_number == player_choice:
         if len(player_guesses) != 0:
@@ -151,8 +152,8 @@ def check_choice(random_number, player_choice, difficulty):
     """
     Function calculates min and max between random_number and player_choice.
     Function calculates the difference between the bigger and smaller number.
-    Difference is appended to player_guesses.
-    check_difference function is called.
+    Difference is appended to player_guesses variable.
+    check_difference() function is called.
     """
     difference = 0
     smaller_number = min(random_number, player_choice)
@@ -170,8 +171,8 @@ def check_difference(player_guesses, difficulty):
     player is informed they haven't guessed the number.
     If the last guess is worse than the previous one, player is informed.
     If the last guess is better than the previous one, player is informed.
-    If the guess is within 10% of the random_number, player is informed.
-    #need to add a note regarding multiple statements.
+    If the guess is within 5% of the random_number,
+    player is informed. This is valid for intermediate and expert difficulties.
     """
     if player_guesses[-1] <= difficulty / 20:
         statement_index = random.randint(0, 2)
@@ -199,15 +200,15 @@ player_guesses = []
 
 def run_game(game_mode):
     """
-    Function takes the difficulty level chosen and adjust parameters.
+    Function takes the game_mode and
+    adjusts difficulty level parameter.
     It obtains a pseudo-random number between 1 and difficulty int.
-    It asks for input from user as long as user doesn't guess the number.
-    Once input is received, validate_input is called.
-    When validation result is received back,
-    input is converted into an integer and check_if_won is called.
+    It asks for input from user as long as the user doesn't guess the number.
+    Once input is received, validate_input() is called.
+    When validation result is returned,
+    input is converted into an integer and check_if_won() is called.
 
     """
-    # difficulty = ""
     if game_mode == "beginner":
         difficulty = 10
     elif game_mode == "intermediate":
@@ -227,14 +228,16 @@ def run_game(game_mode):
                 random_number,
                 player_choice,
                 game_mode,
-                difficulty)
+                difficulty
+            )
 
 
 def validate_input(player_choice, difficulty):
     """
     Function validates user's input by checking if int.
-    If not int, user is notified.
-    If choice is outside of parameters, user is notified.
+    If not int, user is notified and asked for input.
+    If choice is outside of parameters,
+    user is notified and asked for input.
     If the choice is valid, bool True is returned.
     """
     try:
@@ -258,6 +261,11 @@ def validate_input(player_choice, difficulty):
 def main():
     """
     Function creates a main menu.
+    If user chooses 'New Game', difficulty_menu() is called.
+    If user chooses 'About', about_info() is called.
+    If user chooses 'Leaderboard', leaderboard_info() is called.
+    If user chooses 'Quit game', quit_game() is called,
+    while loop is stopped.
     """
     print(
         " __    __            _                     "
@@ -287,8 +295,8 @@ def main():
     print(
         "Welcome, stranger! Choose an option below. "
         "All of them are bad, really. \n"
-        )
-     
+    )
+    
     # Main menu options.
     main_options = [
         "[1] New Game",
@@ -298,7 +306,6 @@ def main():
 
     main_menu = TerminalMenu(
         main_options,
-        # title = "Hot or Cold"
     )
 
     user_choice = None
@@ -322,6 +329,12 @@ def main():
 
 
 def difficulty_menu():
+    """
+    Function generates a sub-menu to show difficulty levels available.
+    If difficulty is chosen, run_game() is called,
+    difficulty is passed on.
+    Otherwise if user chooses to go back, function calls main().
+    """
     # Sub-menu options.
     difficulty_options = [
         "[1] Beginner",
@@ -347,6 +360,10 @@ def difficulty_menu():
 
 
 def about_info():
+    """
+    Function prints out information about the game.
+    Function then calls return_option()
+    """
     print(
         "This game was created for educational purposes "
         "only as a part of the course with Code Institute. \n"
@@ -398,6 +415,11 @@ def leaderboard_info():
 
 
 def return_option():
+    """
+    Function adds an option of returning to the main menu,
+    triggered by 'r'.
+    Function calls main() when 'r' is pressed.
+    """
     return_option = [
         "[r] Go back"
         ]
@@ -411,8 +433,12 @@ def return_option():
 
 
 def quit_game():
+    """
+    Function prints a goodbye message to the user.
+    """
     print("Thank you for playing Hot or Cold. \n")
     print("Hope to see you soon. \n")
 
 
+# calls main function
 main()
