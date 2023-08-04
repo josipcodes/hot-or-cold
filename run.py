@@ -27,14 +27,6 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 
 
-def empty_guesses():
-    """
-    Attempt to fix the score bug where it doesn't reset.
-    """
-    player_guesses = []
-    return player_guesses
-
-
 def continue_playing():
     """
     Function asks player if they would like to play again.
@@ -47,7 +39,6 @@ def continue_playing():
         if user_input.lower() == "y":
             difficulty_menu()
             check = False
-            empty_guesses()
         elif user_input.lower() == "n":
             quit_game()
             check = False
@@ -126,6 +117,7 @@ def scoreboard_preference(game_mode):  # review function naming
                     worksheet = SHEET.worksheet(game_mode)
                     worksheet.append_row(data)
                     print_scoreboard(game_mode, True)
+                    player_guesses.clear()
                     check = False
         elif scoreboard_confirm.lower() == "n":
             print("Not a competitive one, eh?")
@@ -210,7 +202,7 @@ def check_difference(player_guesses, difficulty):
             print(f"{WARMER_STATEMENTS[statement_index]}")
 
 
-player_guesses = empty_guesses()
+player_guesses = []
 
 
 def run_game(game_mode):
@@ -224,6 +216,7 @@ def run_game(game_mode):
     input is converted into an integer and check_if_won() is called.
 
     """
+    player_guesses.clear()
     if game_mode == "beginner":
         difficulty = 10
     elif game_mode == "intermediate":
