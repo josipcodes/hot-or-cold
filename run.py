@@ -104,8 +104,10 @@ def scoreboard_preference(game_mode):  # review function naming
                     data.append(username)
                     data.append(len(player_guesses) + 1)
                     print()
-                    print(f"Hi {username}, let's see " \
-                            "if you've scored a position on the leaderboard...")
+                    print(
+                        f"Hi {username}, let's see "
+                        "if you've scored a position on the leaderboard..."
+                        )
                     worksheet = SHEET.worksheet(game_mode)
                     worksheet.append_row(data)
                     print_scoreboard(game_mode, True)
@@ -195,14 +197,13 @@ def check_difference(player_guesses, difficulty):
 player_guesses = []
 
 
-
 def run_game(game_mode):
     """
     Function takes the difficulty level chosen and adjust parameters.
     It obtains a pseudo-random number between 1 and difficulty int.
     It asks for input from user as long as user doesn't guess the number.
     Once input is received, validate_input is called.
-    When validation result is received back, 
+    When validation result is received back,
     input is converted into an integer and check_if_won is called.
 
     """
@@ -222,7 +223,11 @@ def run_game(game_mode):
         player_choice = input("Your guess: ")
         if validate_input(player_choice, difficulty):
             player_choice = int(player_choice)
-            validation = check_if_won(random_number, player_choice, game_mode, difficulty)
+            validation = check_if_won(
+                random_number,
+                player_choice,
+                game_mode,
+                difficulty)
 
 
 def validate_input(player_choice, difficulty):
@@ -243,7 +248,7 @@ def validate_input(player_choice, difficulty):
             return True
         else:
             print(
-                "Hold on, Katy Perry, " \
+                "Hold on, Katy Perry, "
                 f"you're guessing a number between 1 and {difficulty}.\n"
                 )
             return False
@@ -254,21 +259,35 @@ def main():
     """
     Function creates a main menu.
     """
-    print(" __    __            _                     "
-            "                _        _")
-    print("|  |  |  |   ___    | |       ___    _  _  "
-            "  ___    ___   | |      | |")
-    print("|  |__|  |  / _ \  |   |     / _ \  | |/ | "
-        " / __\  / _ \  | |    __| |")
-    print("|   __   | | | | |  | |     | | | | |  _/  "
-        " | |   | | | | | |   / _  |")
-    print("|  |  |  | | |_| |  | |_    | |_| | | |    "
-        " | |__ | |_| | | |_ | |_| |")
-    print("|__|  |__|  \___/   |___|    \___/  |_|    "
-        " \___/  \___/  |___| \___/")
+    print(
+        " __    __            _                     "
+        "                _        _"
+        )
+    print(
+        "|  |  |  |   ___    | |       ___    _  _  "
+        "  ___    ___   | |      | |"
+        )
+    print(
+        "|  |__|  |  / _ \  |   |     / _ \  | |/ | "
+        " / __\  / _ \  | |    __| |"
+        )
+    print(
+        "|   __   | | | | |  | |     | | | | |  _/  "
+        " | |   | | | | | |   / _  |"
+        )
+    print(
+        "|  |  |  | | |_| |  | |_    | |_| | | |    "
+        " | |__ | |_| | | |_ | |_| |"
+        )
+    print(
+        "|__|  |__|  \___/   |___|    \___/  |_|    "
+        " \___/  \___/  |___| \___/"
+        )
     print()  
-    print("Welcome, stranger! Choose an option below. " 
-        "All of them are bad, really. \n")
+    print(
+        "Welcome, stranger! Choose an option below. "
+        "All of them are bad, really. \n"
+        )
      
     # Main menu options.
     main_options = [
@@ -292,7 +311,7 @@ def main():
 
         if user_choice == "[1] New Game":
             difficulty_menu()
-            return False 
+            return False
         elif user_choice == "[2] About":
             about_info()
         elif user_choice == "[3] Leaderboard":
@@ -329,19 +348,19 @@ def difficulty_menu():
 
 def about_info():
     print(
-        "This game was created for educational purposes " \
+        "This game was created for educational purposes "
         "only as a part of the course with Code Institute. \n"
     )
     print(
-            "The objective of the game is to guess the correct number. " \
-        "The player can choose the difficulty, and as a result " \
-        "the player will have to guess a number between " \
+        "The objective of the game is to guess the correct number. "
+        "The player can choose the difficulty, and as a result "
+        "the player will have to guess a number between "
         "1-10, 1-100 or 1-1000. \n"
     )
     print(
-        "Unlike the usual guessing games, this one won't help " \
-        "the player by saying if the number is higher or lower. " \
-        "Worry not, the player will be told if their number is... " \
+        "Unlike the usual guessing games, this one won't help "
+        "the player by saying if the number is higher or lower. "
+        "Worry not, the player will be told if their number is... "
         "Well, hot! \n"
     )
     return_option()
@@ -366,7 +385,6 @@ def leaderboard_info():
 
     leaderboard_menu = TerminalMenu(
         leaderboard_options,
-        title = "Leadeboard"
     )
 
     current_display = leaderboard_menu.show()
@@ -390,6 +408,7 @@ def return_option():
     user_choice = return_option[current_display]
     if user_choice == return_option[current_display]:
         main()
+
 
 def quit_game():
     print("Thank you for playing Hot or Cold. \n")
