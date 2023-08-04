@@ -27,13 +27,27 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 
 
+def empty_guesses():
+    """
+    Attempt to fix the score bug where it doesn't reset.
+    """
+    player_guesses = []
+    return player_guesses
+
+
 def continue_playing():
+    """
+    Function asks player if they would like to play again.
+    If yes, difficulty_menu() is called.
+    Otherwise quit_game() is called.
+    """
     check = True
     while check:
         user_input = input("Wanna play again? (y/n) ")
         if user_input.lower() == "y":
             difficulty_menu()
             check = False
+            empty_guesses()
         elif user_input.lower() == "n":
             quit_game()
             check = False
@@ -48,7 +62,7 @@ def print_scoreboard(game_mode, flag):
     Function pulls top 10 results depending on the difficulty played:
     Function collects values from 2 columns.
     Values are zipped together and sorted by the int in second column.
-    Results are unpacked from a tuple and printed out aligned.
+    Results are unpacked from a tuple and printed out aligned with header.
     If there are less than 10 results available,
     only available results are printed.
     """
@@ -81,6 +95,7 @@ def scoreboard_preference(game_mode):  # review function naming
     pushes it along with the amount of guesses to
     the relevant worksheet depending on the difficulty played.
     Function calls print_scoreboard().
+    To control the flow, bool is passed to print_scoreboard().
     Alternatively, function thanks user for playing.
     Username validation - length of 15 characters,
     accepts all characters.
@@ -195,7 +210,7 @@ def check_difference(player_guesses, difficulty):
             print(f"{WARMER_STATEMENTS[statement_index]}")
 
 
-player_guesses = []
+player_guesses = empty_guesses()
 
 
 def run_game(game_mode):
@@ -388,6 +403,7 @@ def leaderboard_info():
     Function generates a sub-menu to choose which leaderboard to show.
     Function calls print_scoreboard() once difficulty chosen,
     or main() if user chooses to go back a step.
+    To control the flow, bool is passed to print_scoreboard().
 
     """
     # Sub-menu options.
