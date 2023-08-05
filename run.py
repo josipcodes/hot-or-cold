@@ -1,5 +1,7 @@
 import random
 from simple_term_menu import TerminalMenu
+from art import *
+
 from statements import (
     LAVA_STATEMENTS,
     HOT_STATEMENTS,
