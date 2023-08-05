@@ -206,7 +206,8 @@ def main():
     If user chooses 'Quit game', quit_game() is called,
     while loop is stopped.
     """
-    tprint("Hot or cold", font="chiseled")
+    tprint("Hot or cold", font="dancingfont")
+    tprint("Hot or cold", font="graffiti")
     # print(
     #     " __    __            _                     "
     #     "                _        _"
