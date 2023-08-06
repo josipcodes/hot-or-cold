@@ -77,7 +77,7 @@ def scoreboard_preference(
                     check = False
         elif scoreboard_confirm.lower() == "n":
             clear()
-            print("Not a competitive one, eh?")
+            print("Not a competitive one, eh? \n")
             print("That's ok, thank you for playing! \n")
             continue_playing()
             check = False

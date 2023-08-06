@@ -5,7 +5,7 @@ LAVA_STATEMENTS = [
     ]
 
 HOT_STATEMENTS = [
-    "Feels like a summer day.",
+    "Feels like a hot summer day.",
     "Is the oven on?",
     "Oooh, someone switched on the heating!"
     ]

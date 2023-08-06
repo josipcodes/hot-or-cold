@@ -156,6 +156,7 @@ def run_game(game_mode):
 
     """
     player_guesses.clear()
+    clear()
     if game_mode == "beginner":
         difficulty = 10
     elif game_mode == "intermediate":
@@ -164,15 +165,22 @@ def run_game(game_mode):
         difficulty = 1000
     random_number = random.randint(1, difficulty)
     print(f"You need to guess a number between 1 and {difficulty}.")
-    # print(random_number)  # todo: delete later
     player_choice = None
+    previous_choices = []
     validation = False
+    previous_choices_str = ""
     while validation is False:
         print()
         player_choice = input("Your guess: ")
-        print()
+        clear()
         if validate_input(player_choice, difficulty):
             player_choice = int(player_choice)
+            previous_choices.append(player_choice)
+            previous_choices.sort()
+            previous_choices_str = ', '.join(
+                [str(choice) for choice in previous_choices]
+                )
+            print(f"Your previous guesses: {previous_choices_str} \n")
             validation = check_if_won(
                 random_number,
                 player_choice,
