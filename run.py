@@ -6,7 +6,9 @@ from simple_term_menu import TerminalMenu
 from art import *
 # importing to enable clearing terminal
 import os
-#importing statements.py
+import sys
+import time
+# importing statements.py
 from statements import (
     LAVA_STATEMENTS,
     HOT_STATEMENTS,
@@ -15,7 +17,7 @@ from statements import (
     COLDER_STATEMENTS,
     SAME_DIFFERENCE_STATEMENTS
     )
-#importing leaderboard.py
+# importing leaderboard.py
 from leaderboard import (
     print_scoreboard,
     scoreboard_preference
@@ -36,6 +38,7 @@ CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
+
 
 # obtained from: https://www.geeksforgeeks.org/clear-screen-python/
 def clear():
@@ -248,7 +251,7 @@ def main():
         main_options,
     )
 
-    #variable stores user's current choice within the menu.
+    # variable stores user's current choice within the menu.
     user_choice = None
 
     while True:

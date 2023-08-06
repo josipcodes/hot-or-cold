@@ -1,3 +1,19 @@
+import sys
+import time
+
+
+# Original code borrowed from gnuton (GitHub),
+# however, adjusted for suitability and learning purposes.
+def slow_print(line):
+    """
+    Prints each string/line with a delay of .3 sec.
+    Link to the source code is within the Credits section of the README file.
+    """
+    sys.stdout.write(line + "\n")
+    # sys.stdout.flush()
+    time.sleep(0.3)
+
+
 def print_scoreboard(game_mode, player_won, SHEET, continue_playing):
     """
     Function pulls top 10 results depending on the difficulty played:
@@ -26,7 +42,7 @@ def print_scoreboard(game_mode, player_won, SHEET, continue_playing):
         position += 1
         position_string = str(position) + '.'
         username, result = item
-        print(f"{position_string : >5} {username : ^35} {result : >4}")
+        slow_print(f"{position_string : >5} {username : ^35} {result : >4}")
     print()
     if player_won:
         continue_playing()
