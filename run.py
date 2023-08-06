@@ -1,6 +1,7 @@
 import random
 from simple_term_menu import TerminalMenu
 from art import *
+import os
 
 from statements import (
     LAVA_STATEMENTS,
@@ -31,6 +32,13 @@ CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
+
+
+def clear():
+    """
+    Function clears the terminal to prevent clutter.
+    """
+    os.system('cls' if os.name=='nt' else 'clear')
 
 
 def continue_playing():
@@ -67,13 +75,15 @@ def check_if_won(random_number, player_choice, game_mode, difficulty):
             win_statement = "attempts"
         else:
             win_statement = "attempt"
+        clear()
         print("You won! 🍀")
         print(f"It took you {len(player_guesses) + 1} {win_statement}.\n")
         scoreboard_preference(
             game_mode,
             player_guesses,
             SHEET,
-            continue_playing
+            continue_playing,
+            clear
         )
         return True
     elif player_choice is None:
@@ -154,7 +164,7 @@ def run_game(game_mode):
         difficulty = 1000
     random_number = random.randint(1, difficulty)
     print(f"You need to guess a number between 1 and {difficulty}.")
-    print(random_number)  # todo: delete later
+    # print(random_number)  # todo: delete later
     player_choice = None
     validation = False
     while validation is False:
@@ -206,7 +216,7 @@ def main():
     If user chooses 'Quit game', quit_game() is called,
     while loop is stopped.
     """
-    tprint("Hot or cold", font="dancingfont")
+    clear()
     tprint("Hot or cold", font="graffiti")
     # print(
     #     " __    __            _                     "
@@ -232,7 +242,6 @@ def main():
     #     "|__|  |__|  \___/   |___|    \___/  |_|    "
     #     " \___/  \___/  |___| \___/"
     #     )
-    print()  
     print(
         "Welcome, stranger! Choose an option below. "
         "All of them are bad, really. \n"
@@ -284,7 +293,7 @@ def difficulty_menu():
         "[4] Go back"
     ]
 
-    print()
+    clear()
     print("Choose a difficulty level, I dare you. \n")
 
     difficulty_menu = TerminalMenu(
@@ -305,6 +314,7 @@ def about_info():
     Function prints out information about the game.
     Function then calls return_option()
     """
+    clear()
     print(
         "This game was created for educational purposes "
         "only as a part of the course with Code Institute. \n"
@@ -332,6 +342,7 @@ def leaderboard_info():
     To control the flow, bool is passed to print_scoreboard().
 
     """
+    clear()
     # Sub-menu options.
     leaderboard_options = [
         "[1] Beginner",
@@ -359,6 +370,7 @@ def leaderboard_info():
             SHEET,
             continue_playing
             )
+        return_option()
 
 
 def return_option():
@@ -383,8 +395,10 @@ def quit_game():
     """
     Function prints a goodbye message to the user.
     """
+    clear()
     print("Thank you for playing Hot or Cold. \n")
     print("Hope to see you soon. \n")
+    tprint("Bye", font="graffiti")
 
 
 # calls main function

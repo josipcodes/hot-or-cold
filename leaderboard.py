@@ -33,7 +33,8 @@ def scoreboard_preference(
         game_mode,
         player_guesses,
         SHEET,
-        continue_playing):
+        continue_playing,
+        clear):
     """
     Functions checks user's preference to add their name to the scoreboard.
     Function obtains user's validated username,
@@ -57,9 +58,11 @@ def scoreboard_preference(
             while username_check is False:
                 username = input("Enter a preferred username: ")
                 if len(username) > 15:
+                    clear()
                     print()
                     print("Username can only be 15 characters long. \n")
                 else:
+                    clear()
                     username_check = True
                     data.append(username)
                     data.append(len(player_guesses) + 1)
@@ -73,11 +76,13 @@ def scoreboard_preference(
                     print_scoreboard(game_mode, True, SHEET, continue_playing)
                     check = False
         elif scoreboard_confirm.lower() == "n":
+            clear()
             print("Not a competitive one, eh?")
             print("That's ok, thank you for playing! \n")
             continue_playing()
             check = False
         else:
+            clear()
             print(f"You have entered '{scoreboard_confirm}'.")
             print("This is not a valid command.")
             print("Please enter a valid command. \n")
