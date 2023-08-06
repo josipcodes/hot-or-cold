@@ -1,8 +1,12 @@
+#importing random to enable randomisation
 import random
+#importing to assist with menu building
 from simple_term_menu import TerminalMenu
+#importing art to print game name and goodbye messages
 from art import *
+# importing to enable clearing terminal
 import os
-
+#importing statements.py
 from statements import (
     LAVA_STATEMENTS,
     HOT_STATEMENTS,
@@ -11,11 +15,11 @@ from statements import (
     COLDER_STATEMENTS,
     SAME_DIFFERENCE_STATEMENTS
     )
+#importing leaderboard.py
 from leaderboard import (
     print_scoreboard,
     scoreboard_preference
     )
-
 # Copied from Love sandwiches project
 import gspread
 from google.oauth2.service_account import Credentials
@@ -33,20 +37,22 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 
-
+# obtained from: https://www.geeksforgeeks.org/clear-screen-python/
 def clear():
     """
     Function clears the terminal to prevent clutter.
     """
-    os.system('cls' if os.name=='nt' else 'clear')
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def continue_playing():
     """
     Function asks player if they would like to play again.
     If yes, difficulty_menu() is called.
+    One could call main() but this prevents unnecessary clicks.
     Otherwise quit_game() is called.
     """
+    # using check to control while loop
     check = True
     while check:
         user_input = input("Wanna play again? (y/n) ")
@@ -86,9 +92,9 @@ def check_if_won(random_number, player_choice, game_mode, difficulty):
             clear
         )
         return True
-    elif player_choice is None:
-        pass
-        return False
+    # elif player_choice is None:
+    #     pass
+    #     return False
     else:
         check_choice(random_number, player_choice, difficulty)
         return False
@@ -112,13 +118,14 @@ def check_choice(random_number, player_choice, difficulty):
 def check_difference(player_guesses, difficulty):
     """
     Function checks player's guesses.
-    If it's player's first guess, confirms it's not right.
+    Player is informed if:
+    -their first guess is wrong.
     If the last two guesses player made are equal length away from the result,
-    player is informed they haven't guessed the number.
-    If the last guess is worse than the previous one, player is informed.
-    If the last guess is better than the previous one, player is informed.
-    If the guess is within 5% of the random_number,
-    player is informed. This is valid for intermediate and expert difficulties.
+    -if the last guess is worse than the previous one,
+    -if the last guess is better than the previous one,
+    -if the guess is within 5% or 10% of the random_number
+    5% notification is valid for intermediate and expert difficulties.
+    Wording is randomised between the available choices.
     """
     if player_guesses[-1] <= difficulty / 20:
         statement_index = random.randint(0, 2)
@@ -141,6 +148,7 @@ def check_difference(player_guesses, difficulty):
             print(f"{WARMER_STATEMENTS[statement_index]}")
 
 
+# list collecting difference between random number and player's choice.
 player_guesses = []
 
 
@@ -153,7 +161,7 @@ def run_game(game_mode):
     Once input is received, validate_input() is called.
     When validation result is returned,
     input is converted into an integer and check_if_won() is called.
-
+    Function prints out previous wrong guesses.
     """
     player_guesses.clear()
     clear()
@@ -192,8 +200,7 @@ def run_game(game_mode):
 def validate_input(player_choice, difficulty):
     """
     Function validates user's input by checking if int.
-    If not int, user is notified and asked for input.
-    If choice is outside of parameters,
+    If not int or choice is outside of parameters,
     user is notified and asked for input.
     If the choice is valid, bool True is returned.
     """
@@ -214,10 +221,9 @@ def validate_input(player_choice, difficulty):
             return False
 
 
-# at the moment copied from simple term menu, needs review
 def main():
     """
-    Function creates a main menu.
+    Function prints out the game name and creates a main menu.
     If user chooses 'New Game', difficulty_menu() is called.
     If user chooses 'About', about_info() is called.
     If user chooses 'Leaderboard', leaderboard_info() is called.
@@ -226,30 +232,6 @@ def main():
     """
     clear()
     tprint("Hot or cold", font="graffiti")
-    # print(
-    #     " __    __            _                     "
-    #     "                _        _"
-    #     )
-    # print(
-    #     "|  |  |  |   ___    | |       ___    _  _  "
-    #     "  ___    ___   | |      | |"
-    #     )
-    # print(
-    #     "|  |__|  |  / _ \  |   |     / _ \  | |/ | "
-    #     " / __\  / _ \  | |    __| |"
-    #     )
-    # print(
-    #     "|   __   | | | | |  | |     | | | | |  _/  "
-    #     " | |   | | | | | |   / _  |"
-    #     )
-    # print(
-    #     "|  |  |  | | |_| |  | |_    | |_| | | |    "
-    #     " | |__ | |_| | | |_ | |_| |"
-    #     )
-    # print(
-    #     "|__|  |__|  \___/   |___|    \___/  |_|    "
-    #     " \___/  \___/  |___| \___/"
-    #     )
     print(
         "Welcome, stranger! Choose an option below. "
         "All of them are bad, really. \n"
@@ -266,9 +248,8 @@ def main():
         main_options,
     )
 
+    #variable stores user's current choice within the menu.
     user_choice = None
-
-    # main_menu_style = ("bg_red", "fg_yellow") #todo: need to check
 
     while True:
         current_display = main_menu.show()
@@ -314,6 +295,8 @@ def difficulty_menu():
     if user_choice == "[4] Go back":
         main()
     else:
+        # user_choice is used to navigate through run_game
+        # choice wording is shortened and turned to lowercase
         run_game(user_choice.lower()[4:])
 
 
@@ -384,8 +367,8 @@ def leaderboard_info():
 def return_option():
     """
     Function adds an option of returning to the main menu,
-    triggered by 'r'.
-    Function calls main() when 'r' is pressed.
+    triggered by 'r' or Enter since 'r' is the default option.
+    Function calls main().
     """
     return_option = [
         "[r] Go back"

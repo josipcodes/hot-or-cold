@@ -1,11 +1,14 @@
-def print_scoreboard(game_mode, flag, SHEET, continue_playing):
+def print_scoreboard(game_mode, player_won, SHEET, continue_playing):
     """
     Function pulls top 10 results depending on the difficulty played:
     Function collects values from 2 columns.
-    Values are zipped together and sorted by the int in second column.
+    Values are zipped together and sorted by the int (second column).
     Results are unpacked from a tuple and printed out aligned with header.
     If there are less than 10 results available,
     only available results are printed.
+    player_won:
+    False if function accessed through leaderboard_info(),
+    True if player won, continue_playing() gets called.
     """
     worksheet = SHEET.worksheet(game_mode)
     columns = []
@@ -25,7 +28,7 @@ def print_scoreboard(game_mode, flag, SHEET, continue_playing):
         username, result = item
         print(f"{position_string : >5} {username : ^35} {result : >4}")
     print()
-    if flag:
+    if player_won:
         continue_playing()
 
 

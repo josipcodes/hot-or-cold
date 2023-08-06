@@ -1,3 +1,4 @@
+# constant variables used for game output
 LAVA_STATEMENTS = [
     "Hot! Hot! Hot!...",
     "Sizzling!",
