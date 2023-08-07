@@ -58,21 +58,32 @@ def continue_playing():
     One could call main() but this prevents unnecessary clicks.
     Otherwise quit_game() is called.
     """
-    # using check to control while loop
-    check = True
-    while check:
-        user_input = input("Wanna play again? (y/n) ")
-        if user_input.lower() == "y":
+
+    # Continue options.
+    continue_options = [
+        "[y] Yes",
+        "[n] No"
+    ]
+
+    continue_menu = TerminalMenu(
+        continue_options,
+    )
+
+    # variable stores user's current choice within the menu.
+    user_choice = None
+
+    print("Wanna play again?")
+
+    while True:
+        current_display = continue_menu.show()
+        user_choice = continue_options[current_display]
+
+        if user_choice == "[y] Yes":
             difficulty_menu()
-            check = False
-        elif user_input.lower() == "n":
+            return False
+        elif user_choice == "[n] No":
             quit_game()
-            check = False
-        else:
-            print(f"You have entered '{user_input}'.")
-            print(Fore.RED + "This is not a valid command.")
-            print(Style.RESET_ALL)
-            print("Please enter a valid command. \n")
+            return False
 
 
 def check_if_won(random_number, player_choice, game_mode, difficulty):
