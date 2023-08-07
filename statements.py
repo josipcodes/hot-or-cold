@@ -1,20 +1,20 @@
 # constant variables used for game output
 LAVA_STATEMENTS = [
-    "Hot! Hot! Hot!...",
-    "Sizzling!",
-    "Global warming ahead, you're close!"
+    "Hot! Hot! Hot!...🔥🔥🔥",
+    "Sizzling! 🔥🔥🔥",
+    "Global warming ahead, you're close! 🔥🔥🔥"
     ]
 
 HOT_STATEMENTS = [
-    "Feels like a hot summer day.",
-    "Is the oven on?",
-    "Oooh, someone switched on the heating!"
+    "Feels like a hot summer day. 🔥🔥",
+    "Is the oven on? 🔥🔥",
+    "Oooh, someone switched on the heating! 🔥🔥"
     ]
 
 WARMER_STATEMENTS = [
-    "Warmer...",
-    "Temperature rising!",
-    "Bright copper kettles and warm woolen mittens."
+    "Warmer... 🔥",
+    "Temperature rising! 🔥",
+    "Bright copper kettles and warm woolen mittens. 🔥"
     ]
 
 FIRST_GUESS_STATEMENTS = [
@@ -24,9 +24,9 @@ FIRST_GUESS_STATEMENTS = [
     ]
 
 COLDER_STATEMENTS = [
-    "Colder...",
-    "If you're trying to be bad at this, great job!",
-    "Snowman alert!"
+    "Colder... ☃️",
+    "If you're trying to be bad at this, great job! ☃️",
+    "Snowman alert! ☃️"
     ]
 
 SAME_DIFFERENCE_STATEMENTS = [
