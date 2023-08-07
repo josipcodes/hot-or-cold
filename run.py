@@ -5,8 +5,8 @@ from simple_term_menu import TerminalMenu
 #importing art to print game name and goodbye messages
 from art import tprint
 # importing to enable clearing terminal
-import os
-import sys
+# import os
+# import sys
 # importing to delay printing
 import time
 # importing to enable text coloring
@@ -25,6 +25,10 @@ from leaderboard import (
     print_scoreboard,
     scoreboard_preference
     )
+from helpers import (
+    slow_print,
+    clear
+)
 # Copied from Love sandwiches project
 import gspread
 from google.oauth2.service_account import Credentials
@@ -43,12 +47,12 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 
 
-# obtained from: https://www.geeksforgeeks.org/clear-screen-python/
-def clear():
-    """
-    Function clears the terminal to prevent clutter.
-    """
-    os.system('cls' if os.name == 'nt' else 'clear')
+# # obtained from: https://www.geeksforgeeks.org/clear-screen-python/
+# def clear():
+#     """
+#     Function clears the terminal to prevent clutter.
+#     """
+#     os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def continue_playing():
@@ -106,7 +110,6 @@ def check_if_won(random_number, player_choice, game_mode, difficulty):
             player_guesses,
             SHEET,
             continue_playing,
-            clear
         )
         return True
     else:
