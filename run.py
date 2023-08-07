@@ -7,7 +7,10 @@ from art import *
 # importing to enable clearing terminal
 import os
 import sys
+# importing to delay printing
 import time
+# importing to enable text coloring
+from colorama import Fore, Style
 # importing statements.py
 from statements import (
     LAVA_STATEMENTS,
@@ -67,7 +70,8 @@ def continue_playing():
             check = False
         else:
             print(f"You have entered '{user_input}'.")
-            print("This is not a valid command.")
+            print(Fore.RED + "This is not a valid command.")
+            print(Style.RESET_ALL)
             print("Please enter a valid command. \n")
 
 
@@ -130,10 +134,19 @@ def check_difference(player_guesses, difficulty):
     5% notification is valid for intermediate and expert difficulties.
     Wording is randomised between the available choices.
     """
-    if player_guesses[-1] <= difficulty / 20:
+    if difficulty == 10:
+        lava_divisor = 10
+        hot_divisor = 5
+    elif difficulty == 100:
+        lava_divisor = 20
+        hot_divisor = 10
+    elif difficulty == 1000:
+        lava_divisor = 50
+        hot_divisor = 25
+    if player_guesses[-1] <= difficulty / lava_divisor:
         statement_index = random.randint(0, 2)
         print(f"{LAVA_STATEMENTS[statement_index]}")
-    elif player_guesses[-1] <= difficulty / 10:
+    elif player_guesses[-1] <= difficulty / hot_divisor:
         statement_index = random.randint(0, 2)
         print(f"{HOT_STATEMENTS[statement_index]}")
     elif len(player_guesses) == 1:
@@ -191,7 +204,8 @@ def run_game(game_mode):
             previous_choices_str = ', '.join(
                 [str(choice) for choice in previous_choices]
                 )
-            print(f"Your previous guesses: {previous_choices_str} \n")
+            print(Fore.YELLOW + f"Your previous guesses: {previous_choices_str}")
+            print(Style.RESET_ALL)
             validation = check_if_won(
                 random_number,
                 player_choice,
@@ -210,8 +224,10 @@ def validate_input(player_choice, difficulty):
     try:
         player_choice = int(player_choice)
     except ValueError:
-        print(f"You have entered '{player_choice}' instead of a number.")
-        print("Please try again. \n")
+        print(f"You have entered '{player_choice}' instead of a number. \n")
+        print(Fore.RED + "This is not a valid command.")
+        print(Style.RESET_ALL)
+        print("Please try again.")
         return False
     else:
         if int(player_choice) in range(1, difficulty + 1):

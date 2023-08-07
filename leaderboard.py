@@ -1,5 +1,6 @@
 import sys
 import time
+from colorama import Fore, Style
 
 
 # Original code borrowed from gnuton (GitHub),
@@ -79,7 +80,8 @@ def scoreboard_preference(
                 if len(username) > 15:
                     clear()
                     print()
-                    print("Username can only be 15 characters long. \n")
+                    print(Fore.RED + "Username can only be 15 characters long. \n")
+                    print(Style.RESET_ALL)
                 else:
                     clear()
                     username_check = True
@@ -103,5 +105,6 @@ def scoreboard_preference(
         else:
             clear()
             print(f"You have entered '{scoreboard_confirm}'.")
-            print("This is not a valid command.")
+            print(Fore.RED + "This is not a valid command.")
+            print(Style.RESET_ALL)
             print("Please enter a valid command. \n")
