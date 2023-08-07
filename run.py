@@ -58,7 +58,6 @@ def continue_playing():
     One could call main() but this prevents unnecessary clicks.
     Otherwise quit_game() is called.
     """
-
     # Continue options.
     continue_options = [
         "[y] Yes",

@@ -1,6 +1,9 @@
 import sys
 import time
+# importing to enable text coloring
 from colorama import Fore, Style
+#importing to assist with menu building
+from simple_term_menu import TerminalMenu
 
 
 # Original code borrowed from gnuton (GitHub),
@@ -68,19 +71,36 @@ def scoreboard_preference(
     """
     data = []
     check = True
-    while check:
-        scoreboard_confirm = input(
-            "Want to see if you make it onto the leaderboard? (y/n) "
+
+    # Leaderboard options.
+    leaderboard_options = [
+        "[y] Yes",
+        "[n] No"
+        ]
+
+    leaderboard_menu = TerminalMenu(
+        leaderboard_options
         )
-        print()
-        if scoreboard_confirm.lower() == "y":
+
+    # variable stores user's current choice within the menu.
+    user_choice = None
+
+    print("Want to see if you make it onto the leaderboard?")
+
+    while True:
+        current_display = leaderboard_menu.show()
+        user_choice = leaderboard_options[current_display]
+
+        if user_choice == "[y] Yes":
             username_check = False
             while username_check is False:
+                # print()
                 username = input("Enter a preferred username: ")
-                if len(username) > 15:
+                if len(username) > 15 or len(username)  < 2:
                     clear()
-                    print()
-                    print(Fore.RED + "Username can only be 15 characters long. \n")
+                    # print()
+                    print(Fore.RED + "Username must be at least 2 characters long, "
+                    " and can only be 15 characters long. \n")
                     print(Style.RESET_ALL)
                 else:
                     clear()
@@ -95,16 +115,12 @@ def scoreboard_preference(
                     worksheet = SHEET.worksheet(game_mode)
                     worksheet.append_row(data)
                     print_scoreboard(game_mode, True, SHEET, continue_playing)
-                    check = False
-        elif scoreboard_confirm.lower() == "n":
+                    # check = False
+                    return False
+        elif user_choice == "[n] No":
             clear()
             print("Not a competitive one, eh? \n")
             print("That's ok, thank you for playing! \n")
             continue_playing()
-            check = False
-        else:
-            clear()
-            print(f"You have entered '{scoreboard_confirm}'.")
-            print(Fore.RED + "This is not a valid command.")
-            print(Style.RESET_ALL)
-            print("Please enter a valid command. \n")
+            return False
+
