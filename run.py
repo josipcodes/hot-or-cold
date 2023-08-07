@@ -3,7 +3,7 @@ import random
 #importing to assist with menu building
 from simple_term_menu import TerminalMenu
 #importing art to print game name and goodbye messages
-from art import *
+from art import tprint
 # importing to enable clearing terminal
 import os
 import sys
@@ -109,9 +109,6 @@ def check_if_won(random_number, player_choice, game_mode, difficulty):
             clear
         )
         return True
-    # elif player_choice is None:
-    #     pass
-    #     return False
     else:
         check_choice(random_number, player_choice, difficulty)
         return False
@@ -321,12 +318,10 @@ def difficulty_menu():
     current_display = difficulty_menu.show()
     user_choice = difficulty_options[current_display]
 
-    if user_choice == "[4] Go back":
-        main()
-    else:
-        # user_choice is used to navigate through run_game
-        # choice wording is shortened and turned to lowercase
-        run_game(user_choice.lower()[4:])
+    # calls main() if user wants to go back
+    # user_choice is used to navigate through run_game
+    # choice wording is shortened and turned to lowercase
+    main() if user_choice == "[4] Go back" else run_game(user_choice.lower()[4:])
 
 
 def about_info():

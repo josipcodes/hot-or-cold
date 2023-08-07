@@ -113,6 +113,14 @@ Because why? Because we might have hidden a few throughout our sassy game.
 
     - When launching the game, the number user needs to guess will be randomly chosen, allowing for countless plays.
 
+![screenshot](documentation/features/PLACEHOLDER.png)
+
+- **Colors**
+
+    - Colors are user within the game for the sole purpose of emphasising information.
+
+![screenshot](documentation/features/PLACEHOLDER.png)
+
 
 ### Future Features
 
