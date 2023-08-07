@@ -5,6 +5,20 @@ from colorama import Fore, Style
 #importing to assist with menu building
 from simple_term_menu import TerminalMenu
 
+# Original code borrowed from: 
+# https://python-programs.com/python-how-to-find-an-element-in-tuple-by-value/
+def searchElement(given_tuple, element):
+    """
+    Function returns True if given element is found in a tuple
+    """
+    # using for loop to traverse the tuple
+    for value in given_tuple:
+        # if the given element is equal to the value then return True
+        if(value == element):
+            return True
+    # if the element is not found in tuple then return False
+    return False
+
 
 # Original code borrowed from gnuton (GitHub),
 # however, adapted for suitability and learning purposes.
@@ -13,7 +27,9 @@ def slow_print(line):
     Prints each string/line with a delay of .3 sec.
     Link to the source code is within the Credits section of the README file.
     """
+    # prints a line and goes to the next row
     sys.stdout.write(line + "\n")
+    # sets delay to 0.3s
     time.sleep(0.3)
 
 
@@ -40,13 +56,27 @@ def print_scoreboard(game_mode, player_won, SHEET, continue_playing):
     score.sort(key=lambda tup: tup[1])
     position = 0
     print()
+    # prints a header
     print(f"{'Position' : <10} {'Username' : ^27} {'Result' : >10}")
     for item in score[:10]:
         position += 1
         position_string = str(position) + '.'
-        username, result = item
-        slow_print(f"{position_string : >5} {username : ^35} {result : >4}")
+        usernames, results = item
+        # if True, slow prints in green and resets style
+        if player_won == False:
+            slow_print(f"{position_string : >5} {usernames : ^35} {results : >4}")
+        elif searchElement(item, username):
+            slow_print(
+                Fore.GREEN + 
+                f"{position_string : >5} {username : ^35} {results : >4}" + 
+                Style.RESET_ALL
+                )
+        # If False, slow prints normally
+        else:
+            slow_print(f"{position_string : >5} {usernames : ^35} {results : >4}")
     print()
+    # If True (player won and is not accessing leaderboard via the menu),
+    # calls function
     if player_won:
         continue_playing()
 
@@ -68,8 +98,8 @@ def scoreboard_preference(
     Username validation - length of > 2 and <= 15 characters,
     accepts all characters.
     """
+    # collects username and guess amount
     data = []
-    check = True
 
     # Leaderboard options.
     leaderboard_options = [
@@ -97,8 +127,7 @@ def scoreboard_preference(
                 if len(username) > 15 or len(username)  < 2:
                     clear()
                     print(Fore.RED + "Username must be at least 3 characters long, "
-                    " and can only be 15 characters long. \n")
-                    print(Style.RESET_ALL)
+                    " and can only be 15 characters long. \n" + Style.RESET_ALL)
                 else:
                     clear()
                     username_check = True
@@ -112,7 +141,6 @@ def scoreboard_preference(
                     worksheet = SHEET.worksheet(game_mode)
                     worksheet.append_row(data)
                     print_scoreboard(game_mode, True, SHEET, continue_playing)
-                    # check = False
                     return False
         elif user_choice == "[n] No":
             clear()
