@@ -7,14 +7,13 @@ from simple_term_menu import TerminalMenu
 
 
 # Original code borrowed from gnuton (GitHub),
-# however, adjusted for suitability and learning purposes.
+# however, adapted for suitability and learning purposes.
 def slow_print(line):
     """
     Prints each string/line with a delay of .3 sec.
     Link to the source code is within the Credits section of the README file.
     """
     sys.stdout.write(line + "\n")
-    # sys.stdout.flush()
     time.sleep(0.3)
 
 
@@ -66,7 +65,7 @@ def scoreboard_preference(
     Function calls print_scoreboard().
     To control the flow, bool is passed to print_scoreboard().
     Alternatively, function thanks user for playing.
-    Username validation - length of 15 characters,
+    Username validation - length of > 2 and <= 15 characters,
     accepts all characters.
     """
     data = []
@@ -94,12 +93,10 @@ def scoreboard_preference(
         if user_choice == "[y] Yes":
             username_check = False
             while username_check is False:
-                # print()
                 username = input("Enter a preferred username: ")
                 if len(username) > 15 or len(username)  < 2:
                     clear()
-                    # print()
-                    print(Fore.RED + "Username must be at least 2 characters long, "
+                    print(Fore.RED + "Username must be at least 3 characters long, "
                     " and can only be 15 characters long. \n")
                     print(Style.RESET_ALL)
                 else:
