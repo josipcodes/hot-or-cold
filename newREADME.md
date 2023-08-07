@@ -13,6 +13,22 @@ Because why? Because we might have hidden a few throughout our sassy game.
 
 ![screenshot](documentation/PLACEHOLDER.png)
 
+## UX
+
+### Colour Scheme
+
+Colour scheme is simple:
+Color is used to emphasise information for the user.
+
+- `#FF0000` used for invalid information entered.
+- `#FFFF00` user a reminder of the previous guesses within the game.
+- `#00FF00` used as main informational color.
+- `#FFFFFF` used as main informational color.
+
+I used [coolors.co](https://coolors.co/ff0000-ffff00-00ff00-ffffff) to generate my colour palette:
+
+![screenshot](documentation/colour-scheme.png)
+
 ## Flowchart
 
 ## Features

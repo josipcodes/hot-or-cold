@@ -47,14 +47,6 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 
 
-# # obtained from: https://www.geeksforgeeks.org/clear-screen-python/
-# def clear():
-#     """
-#     Function clears the terminal to prevent clutter.
-#     """
-#     os.system('cls' if os.name == 'nt' else 'clear')
-
-
 def continue_playing():
     """
     Function asks player if they would like to play again.
@@ -260,6 +252,7 @@ def main():
     while loop is stopped.
     """
     clear()
+    # prints game name in graffity
     tprint("Hot or cold", font="graffiti")
     print(
         "Welcome, stranger! Choose an option below. "

@@ -41,7 +41,7 @@ def print_scoreboard(game_mode, player_won, SHEET, continue_playing):
         # if True, slow prints in green and resets style
         if player_won == False:
             slow_print(f"{position_string : >5} {usernames : ^35} {results : >4}")
-        if searchElement(item, username):
+        elif searchElement(item, username):
             slow_print(
                 Fore.GREEN + 
                 f"{position_string : >5} {username : ^35} {results : >4}" + 
