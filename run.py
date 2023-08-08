@@ -8,7 +8,6 @@ from art import tprint
 import time
 # enabling text coloring
 import colorama
-# colorama.init(autoreset=True)
 # importing statements.py
 from statements import (
     LAVA_STATEMENTS,
@@ -332,6 +331,7 @@ def difficulty_menu():
     ]
 
     clear()
+    tprint("Hot or cold", font="graffiti")
     print("Choose a difficulty level, I dare you. \n")
 
     # Difficulty menu.
