@@ -1,10 +1,11 @@
 # importing to enable text coloring
 from colorama import Fore, Style
-#importing to assist with menu building
+# importing to assist with menu building
 from simple_term_menu import TerminalMenu
+# importing helper functions
 from helpers import (
     slow_print,
-    searchElement,
+    search_element,
     clear
 )
 
@@ -39,17 +40,23 @@ def print_scoreboard(game_mode, player_won, SHEET, continue_playing):
         position_string = str(position) + '.'
         usernames, results = item
         # if True, slow prints in green and resets style
-        if player_won == False:
-            slow_print(f"{position_string : >5} {usernames : ^35} {results : >4}")
-        elif searchElement(item, username):
+        if player_won is False:
             slow_print(
-                Fore.GREEN + 
-                f"{position_string : >5} {username : ^35} {results : >4}" + 
+                f"{position_string : >5} "
+                f"{usernames : ^35} {results : > 4}"
+                )
+        elif search_element(item, username):
+            slow_print(
+                Fore.GREEN +
+                f"{position_string : >5} {username : ^35} {results : >4}" +
                 Style.RESET_ALL
                 )
         # If False, slow prints normally
         else:
-            slow_print(f"{position_string : >5} {usernames : ^35} {results : >4}")
+            slow_print(
+                f"{position_string : >5} "
+                f"{usernames : ^35} {results : > 4}"
+                )
     print()
     # If True (player won and is not accessing leaderboard via the menu),
     # calls function
@@ -100,10 +107,14 @@ def scoreboard_preference(
             username_check = False
             while username_check is False:
                 username = input("Enter a preferred username: ")
-                if len(username) > 15 or len(username)  < 2:
+                if len(username) > 15 or len(username) < 2:
                     clear()
-                    print(Fore.RED + "Username must be at least 3 characters long, "
-                    " and can only be 15 characters long. \n" + Style.RESET_ALL)
+                    print(
+                        Fore.RED +
+                        "Username must be at least 3 characters long, "
+                        "and can only be 15 characters long. \n" +
+                        Style.RESET_ALL
+                        )
                 else:
                     clear()
                     username_check = True
@@ -124,4 +135,3 @@ def scoreboard_preference(
             print("That's ok, thank you for playing! \n")
             continue_playing()
             return False
-

@@ -1,12 +1,9 @@
-#importing random to enable randomisation
+# importing random to enable randomisation
 import random
-#importing to assist with menu building
+# importing to assist with menu building
 from simple_term_menu import TerminalMenu
-#importing art to print game name and goodbye messages
+# importing art to print game name and goodbye messages
 from art import tprint
-# importing to enable clearing terminal
-# import os
-# import sys
 # importing to delay printing
 import time
 # importing to enable text coloring
@@ -206,7 +203,10 @@ def run_game(game_mode):
             previous_choices_str = ', '.join(
                 [str(choice) for choice in previous_choices]
                 )
-            print(Fore.YELLOW + f"Your previous guesses: {previous_choices_str}")
+            print(
+                Fore.YELLOW +
+                f"Your previous guesses: {previous_choices_str}"
+                )
             print(Style.RESET_ALL)
             validation = check_if_won(
                 random_number,
@@ -258,7 +258,7 @@ def main():
         "Welcome, stranger! Choose an option below. "
         "All of them are bad, really. \n"
     )
-    
+
     # Main menu options.
     main_options = [
         "[1] New Game",
@@ -317,7 +317,9 @@ def difficulty_menu():
     # calls main() if user wants to go back
     # user_choice is used to navigate through run_game
     # choice wording is shortened and turned to lowercase
-    main() if user_choice == "[4] Go back" else run_game(user_choice.lower()[4:])
+    main() if user_choice == "[4] Go back" else run_game(
+        user_choice.lower()[4:]
+        )
 
 
 def about_info():

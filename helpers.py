@@ -1,17 +1,20 @@
+# used to delay print
 import sys
 import time
+# used to clear terminal
 import os
 
-# Original code borrowed from: 
+
+# Original code borrowed from:
 # https://python-programs.com/python-how-to-find-an-element-in-tuple-by-value/
-def searchElement(given_tuple, element):
+def search_element(given_tuple, element):
     """
     Function returns True if given element is found in a tuple
     """
     # using for loop to traverse the tuple
     for value in given_tuple:
         # if the given element is equal to the value then return True
-        if(value == element):
+        if value == element:
             return True
     # if the element is not found in tuple then return False
     return False
