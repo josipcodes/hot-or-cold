@@ -67,7 +67,7 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 
     - User can choose to see scoreboard depending on the difficulty to know what they should be aiming for.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/scoreboard.gif)
 
 - **Scoreboard output - colored**
 
@@ -79,7 +79,7 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 
     - User can choose to read up on the game.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/about.gif)
 
 - **Username input**
 
@@ -91,13 +91,13 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 
     - User will be notified if their input is invalid and prompted for another attempt.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/input-validation.gif)
 
 - **Guess output**
 
     - User will receive feedback on their guess within the game.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/feedback.gif)
 
 - **Guess reminder**
 

@@ -83,8 +83,8 @@ def scoreboard_preference(
     Function calls print_scoreboard().
     To control the flow, bool is passed to print_scoreboard().
     Alternatively, function thanks user for playing.
-    Username validation - length of > 2 and <= 15 characters,
-    accepts all characters.
+    Username validation - length of >= 2 and <= 15 characters,
+    accepts all characters. Does not accept all empty spaces.
     """
     # collects username and guess amount
     data = []
@@ -121,7 +121,7 @@ def scoreboard_preference(
                     clear()
                     print(
                         Fore.RED +
-                        "Username must be at least 3 characters long, "
+                        "Username must be at least 2 characters long, "
                         "and can only be 15 characters long. \n" +
                         "Username cannot consist solely of spaces.")
                     print(Style.RESET_ALL)
