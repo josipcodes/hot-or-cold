@@ -57,97 +57,97 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 
     - User can choose their difficulty level.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/difficulty.gif)
 
 - **Scoreboard input**
 
     - User can choose to attempt to score a position in the scoreboard.
 
-![screenshot](documentation/features/features/username.gif)
+![screenshot](documentation/features/username.gif)
 
 - **Scoreboard output**
 
     - User can choose to see scoreboard depending on the difficulty to know what they should be aiming for.
 
-![screenshot](documentation/features/features/scoreboard.gif)
+![screenshot](documentation/features/scoreboard.gif)
 
 - **Scoreboard output - colored**
 
     - If the user won the game and scored a position on the leaderboard, their line will be emphasised with a green color.
 
-![screenshot](documentation/features/features/username.gif)
+![screenshot](documentation/features/username.gif)
 
 - **About section**
 
     - User can choose to read up on the game.
 
-![screenshot](documentation/features/features/about.gif)
+![screenshot](documentation/features/about.gif)
 
 - **Username input**
 
     - User can choose their username. Username will be validated.
 
-![screenshot](documentation/features/features/username.gif)
+![screenshot](documentation/features/username.gif)
 
 - **Input validation**
 
     - User will be notified if their input is invalid and prompted for another attempt.
 
-![screenshot](documentation/features/features/input-validation.gif)
+![screenshot](documentation/features/input-validation.gif)
 
 - **Guess output**
 
     - User will receive feedback on their guess within the game.
 
-![screenshot](documentation/features/features/feedback.gif)
+![screenshot](documentation/features/feedback.gif)
 
 - **Guess reminder**
 
     - User has access to their previous guesses so they don't have to memorise it.
 
-![screenshot](documentation/features/features/guess-reminder.gif)
+![screenshot](documentation/features/guess-reminder.gif)
 
 - **Play again?**
 
     - When viewing the scoreboard, user will be asked if they want to play again. This will only happen if the user finished the game before this.
 
-![screenshot](documentation/features/features/play-again.gif)
+![screenshot](documentation/features/play-again.gif)
 
 - **Quit game**
 
     - User can choose to quit the game. The game will thank them for their participation.
 
-![screenshot](documentation/features/features/bye.gif)
+![screenshot](documentation/features/bye.gif)
 
 - **Score calculation**
 
     - Score equals to the amount of player's guesses. It is used to compare user's result to others' on the scoreboard.
 
-![screenshot](documentation/features/features/username.gif)
+![screenshot](documentation/features/username.gif)
 
 - **Game won confirmation**
 
     - Once player guesses the correct number, they will be notified and prompted to choose if they want to attempt to add their name to the scoreboard.
 
-![screenshot](documentation/features/features/random.gif)
+![screenshot](documentation/features/random.gif)
 
 - **Shortcuts**
 
     - Our menu contains shortcuts, easily visible and accessible to the user.
 
-![screenshot](documentation/features/features/menu.gif)
+![screenshot](documentation/features/menu.gif)
 
 - **Re-playability**
 
     - When launching the game, the number user needs to guess will be randomly chosen, allowing for countless plays.
 
-![screenshot](documentation/features/features/random.gif)
+![screenshot](documentation/features/random.gif)
 
 - **Colors**
 
     - Colors are used within the game for the sole purpose of emphasising information.
 
-![screenshot](documentation/features/features/color.gif)
+![screenshot](documentation/features/color.gif)
 
 
 ### Future Features
