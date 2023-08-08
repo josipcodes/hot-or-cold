@@ -49,7 +49,7 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 
     - Our menu is clear and elegant.
 
-![screenshot](documentation/PLACEHOLDER.png)
+![screenshot](documentation/features/menu.gif)
 
 - **Difficulty levels**
 

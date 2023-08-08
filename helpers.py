@@ -3,6 +3,8 @@ import sys
 import time
 # used to clear terminal
 import os
+# importing art to print game name and goodbye messages
+from art import tprint
 
 
 # Original code borrowed from:
@@ -39,3 +41,11 @@ def clear():
     Function clears the terminal to prevent clutter.
     """
     os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def hello():
+    tprint("Hot or cold", font="graffiti")
+
+
+def bye():
+    tprint("Bye", font="graffiti")

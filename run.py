@@ -2,8 +2,6 @@
 import random
 # importing to assist with menu building
 from simple_term_menu import TerminalMenu
-# importing art to print game name and goodbye messages
-from art import tprint
 # importing to delay printing
 import time
 # enabling text coloring
@@ -25,7 +23,9 @@ from leaderboard import (
 # importing helper functions
 from helpers import (
     slow_print,
-    clear
+    clear,
+    hello,
+    bye
 )
 # Copied from Love sandwiches project
 import gspread
@@ -278,7 +278,7 @@ def main():
     """
     clear()
     # prints game name in graffity
-    tprint("Hot or cold", font="graffiti")
+    hello()
     print(
         "Welcome, stranger! Choose an option below. "
         "All of them are bad, really. \n"
@@ -331,7 +331,8 @@ def difficulty_menu():
     ]
 
     clear()
-    tprint("Hot or cold", font="graffiti")
+    # prints game name in grafitti
+    hello()
     print("Choose a difficulty level, I dare you. \n")
 
     # Difficulty menu.
@@ -466,6 +467,7 @@ def quit_game():
     # Variable stores user's current choice within the menu.
     user_choice = None
 
+    hello()
     print("Are you sure you want to quit?")
 
     while True:
@@ -476,10 +478,13 @@ def quit_game():
             clear()
             print("Thank you for playing Hot or Cold. \n")
             print("Hope to see you soon. \n")
-            tprint("Bye", font="graffiti")
+            # prints goodbye in grafitti
+            bye()
         # if 'n', calls return_option()
         elif user_choice == "[n] No":
             clear()
+            # prints game name in graffiti
+            hello()
             print("Let's go back. \n")
             return_option()
         return False
