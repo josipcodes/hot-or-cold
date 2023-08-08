@@ -468,8 +468,7 @@ def quit_game():
     user_choice = None
 
     hello()
-    print()
-    print("Are you sure you want to quit?")
+    print("Are you sure you want to quit? \n")
 
     while True:
         current_display = quit_menu.show()
