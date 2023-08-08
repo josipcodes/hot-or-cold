@@ -360,18 +360,17 @@ def about_info():
     hello()
     print(
         "This game was created for educational purposes "
-        "only as a part of the course with Code Institute. \n"
+        "as a part of the course with Code Institute. \n"
     )
     print(
         "The objective of the game is to guess the correct number. "
-        "The player can choose the difficulty, and as a result "
-        "the player will have to guess a number between "
-        "1-10, 1-100 or 1-1000. \n"
+        "The player can choose the difficulty, meaning they "
+        "will have to guess a number between 1-10, 1-100 or 1-1000. \n"
     )
     print(
-        "Unlike the usual guessing games, this one won't help "
-        "the player by saying if the number is higher or lower. "
-        "Worry not, the player will be told if their number is... "
+        "Unlike the usual guessing games, this one won't tell "
+        "the player if the number is higher or lower.\n"
+        "Worry not, the player will be told if their number is...\n"
         "Well, hot! \n"
     )
     return_option()
