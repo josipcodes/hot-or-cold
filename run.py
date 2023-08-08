@@ -393,6 +393,8 @@ def leaderboard_info():
         "[4] Go back"
         ]
 
+    # prints game name in grafitti
+    hello()
     print("Choose which leaderboard you wish to take a sneak peak into.\n")
 
     # Leaderboard menu.
@@ -409,6 +411,9 @@ def leaderboard_info():
     # Prints which leaderboard was chosen.
     # No need to use .title() due to the user_choice format.
     else:
+        clear()
+        # prints game name in grafitti
+        hello()
         print(f"{user_choice[4:]} leaderboard:\n")
         # Calls print_scoreboard.
         print_scoreboard(
