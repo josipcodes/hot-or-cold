@@ -427,7 +427,7 @@ def return_option():
     """
     # Return options.
     return_option = [
-        "[r] Go back"
+        "[r] Go back to Main Menu"
         ]
 
     # Return menu.
