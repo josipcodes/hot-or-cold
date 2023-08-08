@@ -22,41 +22,46 @@ def print_scoreboard(game_mode, player_won, SHEET, continue_playing):
     False if function accessed through leaderboard_info(),
     True if player won, continue_playing() gets called.
     """
+    # Sets worksheet to match the game_mode
     worksheet = SHEET.worksheet(game_mode)
+    # Collects values in columns
     columns = []
+    # Collects usernames tied to the guesses
     score = []
-    for ind in range(1, 3):
-        column = worksheet.col_values(ind)
+    for index in range(1, 3):
+        column = worksheet.col_values(index)
         columns.append(column[1:])
     for username, guess in zip(columns[0], columns[1]):
         score.append((username, int(guess)))
+    # Sorts score by the guess volume, from least to most
     score.sort(key=lambda tup: tup[1])
+    # Used to calculate a position on the scoreboard
     position = 0
-    print()
+    # print()
     # prints a header
     print(f"{'Position' : <10} {'Username' : ^27} {'Result' : >10}")
+    # Loop uses first 10 results on the worksheet.
     for item in score[:10]:
+        # Increases position by 1.
         position += 1
+        # Turns position int into str.
         position_string = str(position) + '.'
+        # Unpacking a tuple
         usernames, results = item
-        # if True, slow prints in green and resets style
+        # If player_won is False, calls slow_print_default.
         if player_won is False:
-            slow_print(
-                f"{position_string : >5} "
-                f"{usernames : ^35} {results : > 4}"
-                )
+            slow_print_default(position_string, usernames, results)
+        # If player_won is True, and username is on the board,
+        # slow prints their username in green and resets style.
         elif search_element(item, username):
             slow_print(
                 Fore.GREEN +
                 f"{position_string : >5} {username : ^35} {results : >4}" +
                 Style.RESET_ALL
                 )
-        # If False, slow prints normally
+        # Else, calls slow_print_default()
         else:
-            slow_print(
-                f"{position_string : >5} "
-                f"{usernames : ^35} {results : > 4}"
-                )
+            slow_print_default(position_string, usernames, results)
     print()
     # If True (player won and is not accessing leaderboard via the menu),
     # calls function
@@ -90,6 +95,7 @@ def scoreboard_preference(
         "[n] No"
         ]
 
+    # Leaderboard menu.
     leaderboard_menu = TerminalMenu(
         leaderboard_options
         )
@@ -102,36 +108,57 @@ def scoreboard_preference(
     while True:
         current_display = leaderboard_menu.show()
         user_choice = leaderboard_options[current_display]
-
+        # Checks if the user wants to add their name to the board.
         if user_choice == "[y] Yes":
+            # set a validation flag, default is False.
             username_check = False
             while username_check is False:
                 username = input("Enter a preferred username: ")
-                if len(username) > 15 or len(username) < 2:
+                # If username is too short/long or blank, warn player.
+                if len(username) > 15 or len(username) < 2 or str.isspace(
+                        username
+                        ):
                     clear()
                     print(
                         Fore.RED +
                         "Username must be at least 3 characters long, "
                         "and can only be 15 characters long. \n" +
-                        Style.RESET_ALL
-                        )
+                        "Username cannot consist solely of spaces.")
+                    print(Style.RESET_ALL)
+                # If validation passed, update flag to True
                 else:
                     clear()
                     username_check = True
+                    # Append username and score to data.
                     data.append(username)
                     data.append(len(player_guesses) + 1)
                     print()
                     print(
                         f"Hi {username}, let's see "
-                        "if you've scored a position on the leaderboard..."
+                        "if you've scored a position on the leaderboard... \n"
                     )
+                    # Set worksheet to the relevant worksheet
                     worksheet = SHEET.worksheet(game_mode)
+                    # Append data onto relevant worksheet
                     worksheet.append_row(data)
+                    # Calls print_scoreboard()
                     print_scoreboard(game_mode, True, SHEET, continue_playing)
                     return False
+        # If user doesn't want to add their name onto the board,
+        # call continue_playing()
         elif user_choice == "[n] No":
             clear()
             print("Not a competitive one, eh? \n")
             print("That's ok, thank you for playing! \n")
             continue_playing()
             return False
+
+
+def slow_print_default(position_string, usernames, results):
+    """
+    Slow prints position, username and result in preferred format.
+    """
+    slow_print(
+        f"{position_string : >5} "
+        f"{usernames : ^35} {results : > 4}"
+        )
