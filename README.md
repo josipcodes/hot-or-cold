@@ -55,97 +55,97 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 
     - User can choose their difficulty level.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Scoreboard input**
 
     - User can choose to attempt to score a position in the scoreboard.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Scoreboard output**
 
     - User can choose to see scoreboard depending on the difficulty to know what they should be aiming for.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Scoreboard output - colored**
 
     - If the user won the game and scored a position on the leaderboard, their line will be emphasised with a green color.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **About section**
 
     - User can choose to read up on the game.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Username input**
 
     - User can choose their username.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Input validation**
 
     - User will be notified if their input is invalid and prompted for another attempt.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Guess output**
 
     - User will receive feedback on their guess within the game.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Guess reminder**
 
     - User has access to their previous guesses so they don't have to memorise it.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Play again?**
 
     - When viewing the scoreboard, user will be asked if they want to play again. This will only happen if the user finished the game before this.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Quit game**
 
     - User can choose to quit the game. The game will thank them for their participation.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Score calculation**
 
     - Score equals to the amount of player's guesses. It is used to compare user's result to others' on the scoreboard.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Game won confirmation**
 
     - Once player guesses the correct number, they will be notified and prompted to choose if they want to attempt to add their name to the scoreboard.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Shortcuts**
 
     - Our menu contains shortcuts, easily visible and accessible to the user.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Re-playability**
 
     - When launching the game, the number user needs to guess will be randomly chosen, allowing for countless plays.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 - **Colors**
 
     - Colors are user within the game for the sole purpose of emphasising information.
 
-![screenshot](documentation/features/PLACEHOLDER.png)
+![screenshot](documentation/features/features/difficulty.gif)
 
 
 ### Future Features

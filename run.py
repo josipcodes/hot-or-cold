@@ -5,7 +5,7 @@ from simple_term_menu import TerminalMenu
 # importing to delay printing
 import time
 # enabling text coloring
-import colorama
+from colorama import Fore, Style
 # importing statements.py
 from statements import (
     LAVA_STATEMENTS,
