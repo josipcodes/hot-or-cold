@@ -27,9 +27,13 @@ Color is used to emphasise information for the user.
 
 I used [coolors.co](https://coolors.co/ff0000-ffff00-00ff00-ffffff) to generate my colour palette:
 
-![screenshot](documentation/colour-scheme.png)
+![screenshot](documentation/general/palette.png)
 
 ## Flowchart
+
+I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project:
+
+![screenshot](documentation/general/flowchart.png)
 
 ## Features
 

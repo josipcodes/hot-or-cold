@@ -7,7 +7,8 @@ from art import tprint
 # importing to delay printing
 import time
 # enabling text coloring
-from colorama import Fore, Style
+import colorama
+# colorama.init(autoreset=True)
 # importing statements.py
 from statements import (
     LAVA_STATEMENTS,
