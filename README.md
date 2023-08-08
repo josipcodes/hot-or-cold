@@ -11,6 +11,8 @@ Our target audience are any users with access to the Internet, a bit of a free t
 
 Because why? Because we might have hidden a few throughout our sassy game.
 
+Our game is deployed on [Heroku](https://hot---or---cold-1a720aba2d56.herokuapp.com/) and [Render](https://hot-or-cold.onrender.com/).
+
 ![screenshot](documentation/general/heroku-deployed.png)
 
 ## UX
@@ -158,11 +160,23 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 
 ## Tools & Technologies Used
 
-- [PAGE NAME](https://LINK.org) used for PLACEHOLDER.
 - [Git](https://git-scm.com) used for version control. (`git add`, `git commit`, `git push`)
 - [GitHub](https://github.com) used for secure online code storage.
-- [PLACEHOLDER](https://pages.github.com) used for hosting the deployed front-end site. RENDER? HEROKU?
+- [Heroku](https://www.heroku.com/) used for hosting the deployed front-end site.
+- [Render](https://render.com/) used for secondary hosting and deployment of the front-end site.
 - [Codeanywhere](https://app.codeanywhere.com) used as a cloud-based IDE for development.
+- [LucidChart](https://lucid.app/) to create the flowchart used within README.
+- [Coolors](https://coolors.co/) to create a color palette used within README.
+- [Google API](https://cloud.google.com/apis/) to create an API used for communication and data transfer.
+- [Google Sheets](https://www.google.com/sheets/about/) used to create a spreadsheet used to track highscores.
+- [gspread](https://docs.gspread.org/en/v5.10.0/) used to access & add data to the [spreadsheet](https://docs.google.com/spreadsheets/d/1M4C6Bt9I8-Z1FVmuhbb_J4ridbD_wYYEfWBNhsJmj1c/edit?usp=sharing).
+- [art](https://pypi.org/project/art/) used to generate game name and goodbye message by utilising tprint.
+- [simple-term-menu](https://pypi.org/project/simple-term-menu/) used to create menus throughout the game.
+- [time](https://docs.python.org/3/library/time.html) used to delay printing.
+- [colorama](https://pypi.org/project/colorama/) used to print in color.
+- [sys](https://docs.python.org/3/library/sys.html) used to assist with delayed print.
+- [os](https://docs.python.org/3/library/os.html) used in clearing the terminal.
+- [CI Linter](https://pep8ci.herokuapp.com/#) used to validate code throughout .py files.
 
 ## Testing
 
@@ -214,7 +228,7 @@ There are no known differences between the local version developed, and the live
 
 ## Credits
 
-Below resources were used in the creation of the game. No content was explicitly copied unless stated otherwise within .js, .html or .css files.
+Below resources were used in the creation of the game. No content was explicitly copied unless stated otherwise.
 
 ### Content
 
@@ -222,17 +236,18 @@ Below resources were used in the creation of the game. No content was explicitly
 | --- | --- | --- |
 | [PLACEHOLDER](PLACEHOLDER LINK) | WHERE - PLACEHOLDER | WHAT - PLACEHOLDER |
 
-### Media - PLACEHOLDER
+### Media
 
-Placeholder, emoji
+Several emojis were used in print statements to boost user experience and provide feedback.
 
 | Source | Location | Type | Notes |
 | --- | --- | --- | --- |
-| [PLACEHOLDER](PLACEHOLDER LINK) | PLACEHOLDER WHERE | PLACEHOLDER WHAT | PLACEHOLDER NOTES |
+| [Emojipedia](https://emojipedia.org/four-leaf-clover/) | print statement | emoji | Four leaf clover |
+| [Emojipedia](https://emojipedia.org/fire/) | print statement | emoji | Fire |
+| [Emojipedia](https://emojipedia.org/snowman/) | print statement | emoji | Snowman |
 
 ### Acknowledgements
 
-- I would like to thank my Code Institute mentor, [Alex](PLACEHOLDER LINK) for their support throughout the development of this project.
-- I would like to thank the [Code Institute](https://codeinstitute.net) tutor team for their assistance with troubleshooting and debugging some project issues.
+- I would like to thank my Code Institute mentor, [Alex](https://github.com/lexach91) for their support throughout the development of this project.
 - I need to thank [Codewars](https://www.codewars.com); as their katas further helped in understanding Python. 
-- PLACEHOLDER
+- I want to thank Iva for testing the game post-deployment.
