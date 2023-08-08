@@ -65,6 +65,12 @@ I used [coolors.co](https://coolors.co/ff0000-ffff00-00ff00-ffffff) to generate 
 
 ![screenshot](documentation/features/PLACEHOLDER.png)
 
+- **Scoreboard output - colored**
+
+    - If the user won the game and scored a position on the leaderboard, their line will be emphasised with a green color.
+
+![screenshot](documentation/features/PLACEHOLDER.png)
+
 - **About section**
 
     - User can choose to read up on the game.
