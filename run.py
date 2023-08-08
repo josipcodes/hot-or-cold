@@ -6,7 +6,7 @@ from simple_term_menu import TerminalMenu
 from art import tprint
 # importing to delay printing
 import time
-# importing to enable text coloring
+# enabling text coloring
 from colorama import Fore, Style
 # importing statements.py
 from statements import (
@@ -22,6 +22,7 @@ from leaderboard import (
     print_scoreboard,
     scoreboard_preference
     )
+# importing helper functions
 from helpers import (
     slow_print,
     clear
@@ -46,10 +47,8 @@ SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
 
 def continue_playing():
     """
-    Function asks player if they would like to play again.
-    If yes, difficulty_menu() is called.
-    One could call main() but this prevents unnecessary clicks.
-    Otherwise quit_game() is called.
+    Function checks if player would like to play again,
+    and calls relevant function.
     """
     # Continue options.
     continue_options = [
@@ -57,11 +56,12 @@ def continue_playing():
         "[n] No"
     ]
 
+    # Continue menu.
     continue_menu = TerminalMenu(
         continue_options,
     )
 
-    # variable stores user's current choice within the menu.
+    # Variable stores user's current choice within the menu.
     user_choice = None
 
     print("Wanna play again?")
@@ -69,23 +69,27 @@ def continue_playing():
     while True:
         current_display = continue_menu.show()
         user_choice = continue_options[current_display]
-
+        # User navigates the menu with y/n, or arrows and Enter.
+        # No validation implemented as is implicit with the menu set up.
+        # If 'y', difficulty_menu() is called.
         if user_choice == "[y] Yes":
             difficulty_menu()
-            return False
+        # One could call main(),
+        # but current solution prevents unnecessary clicks.
+        # Otherwise quit_game() is called.
         elif user_choice == "[n] No":
             quit_game()
-            return False
+        # once choice made, returns False
+        return False
 
 
 def check_if_won(random_number, player_choice, game_mode, difficulty):
     """
     Function compares player's guess with the computer's choice.
-    If the choice is correct, player won:
-    Function informs the player - wording depends on the guess volume.
-    If the guess is wrong, check_choice() function is called.
     Return statements are sent to run_game() to control the flow.
     """
+    # If the choice is correct, player won:
+    # Function informs the player - wording depends on the guess volume.
     if random_number == player_choice:
         if len(player_guesses) != 0:
             win_statement = "attempts"
@@ -101,6 +105,7 @@ def check_if_won(random_number, player_choice, game_mode, difficulty):
             continue_playing,
         )
         return True
+    # If the guess is wrong, check_choice() function is called.
     else:
         check_choice(random_number, player_choice, difficulty)
         return False
@@ -125,14 +130,14 @@ def check_difference(player_guesses, difficulty):
     """
     Function checks player's guesses.
     Player is informed if:
-    -their first guess is wrong.
-    If the last two guesses player made are equal length away from the result,
+    -their first guess is wrong,
+    -if the last two guesses player made are equal length away from the result,
     -if the last guess is worse than the previous one,
     -if the last guess is better than the previous one,
-    -if the guess is within 5% or 10% of the random_number
-    5% notification is valid for intermediate and expert difficulties.
+    -if the guess is within certain percentage of the random_number.
     Wording is randomised between the available choices.
     """
+    # lava_divisor and hot_divisor are set based on difficulty.
     if difficulty == 10:
         lava_divisor = 10
         hot_divisor = 5
@@ -142,6 +147,7 @@ def check_difference(player_guesses, difficulty):
     elif difficulty == 1000:
         lava_divisor = 50
         hot_divisor = 25
+    # Statement is produced depending on the circumstance.
     if player_guesses[-1] <= difficulty / lava_divisor:
         statement_index = random.randint(0, 2)
         print(f"{LAVA_STATEMENTS[statement_index]}")
@@ -163,15 +169,13 @@ def check_difference(player_guesses, difficulty):
             print(f"{WARMER_STATEMENTS[statement_index]}")
 
 
-# list collecting difference between random number and player's choice.
+# List collecting difference between random number and player's choice.
 player_guesses = []
 
 
 def run_game(game_mode):
     """
-    Function takes the game_mode and
-    adjusts difficulty level parameter.
-    It obtains a pseudo-random number between 1 and difficulty int.
+    Function takes the game_mode and adjusts difficulty level parameter.
     It asks for input from user as long as the user doesn't guess the number.
     Once input is received, validate_input() is called.
     When validation result is returned,
@@ -180,34 +184,49 @@ def run_game(game_mode):
     """
     player_guesses.clear()
     clear()
+    # Sets difficulty based on the game_mode
     if game_mode == "beginner":
         difficulty = 10
     elif game_mode == "intermediate":
         difficulty = 100
     else:
         difficulty = 1000
+    # Pseudo-random number between 1 and difficulty int is generated.
     random_number = random.randint(1, difficulty)
     print(f"You need to guess a number between 1 and {difficulty}.")
+    # Variable which takes player's choice.
     player_choice = None
+    # Variable which takes player's previous choices.
     previous_choices = []
+    # Validation flag, default is False.
     validation = False
+    # Variable which takes player's previous choices as a str.
     previous_choices_str = ""
+    # Asks for input as long as validation flag is False.
     while validation is False:
         print()
         player_choice = input("Your guess: ")
         clear()
+        # If input is valid, does further actions.
         if validate_input(player_choice, difficulty):
+            # converts input to int
             player_choice = int(player_choice)
+            # appends the latest choice to previous_choices
             previous_choices.append(player_choice)
+            # sorts previous_choices in ascending order
             previous_choices.sort()
+            # for each choice, converts previous_choices to str
             previous_choices_str = ', '.join(
                 [str(choice) for choice in previous_choices]
                 )
+            # prints previous_choices_str in yellow
             print(
                 Fore.YELLOW +
                 f"Your previous guesses: {previous_choices_str}"
                 )
             print(Style.RESET_ALL)
+            # check_if_won regulates validation.
+            # If player won (True), loop is broken.
             validation = check_if_won(
                 random_number,
                 player_choice,
@@ -218,22 +237,28 @@ def run_game(game_mode):
 
 def validate_input(player_choice, difficulty):
     """
-    Function validates user's input by checking if int.
+    Function validates user's input,
+    by checking if it can be converted to int.
     If not int or choice is outside of parameters,
-    user is notified and asked for input.
+    user is notified, return False.
     If the choice is valid, bool True is returned.
     """
+    # Attempt converting to an int.
     try:
         player_choice = int(player_choice)
+    # Input validation, returns False if validation fails.
     except ValueError:
         print(f"You have entered '{player_choice}' instead of a number. \n")
         print(Fore.RED + "This is not a valid command.")
         print(Style.RESET_ALL)
         print("Please try again.")
         return False
+    # If input can be converted to an int, check if within the parameters.
     else:
+        # Returns True if choice within parameters.
         if int(player_choice) in range(1, difficulty + 1):
             return True
+        # Returns False if choice outside of parameters.
         else:
             print(
                 "Hold on, Katy Perry, "
@@ -257,7 +282,7 @@ def main():
     print(
         "Welcome, stranger! Choose an option below. "
         "All of them are bad, really. \n"
-    )
+        )
 
     # Main menu options.
     main_options = [
@@ -266,17 +291,18 @@ def main():
         "[3] Leaderboard",
         "[4] Quit"]
 
+    # Main menu.
     main_menu = TerminalMenu(
         main_options,
     )
 
-    # variable stores user's current choice within the menu.
+    # Variable stores user's current choice within the menu.
     user_choice = None
 
     while True:
         current_display = main_menu.show()
         user_choice = main_options[current_display]
-
+        # 'else' avoided to prevent unvalidated choice.
         if user_choice == "[1] New Game":
             difficulty_menu()
             return False
@@ -307,6 +333,7 @@ def difficulty_menu():
     clear()
     print("Choose a difficulty level, I dare you. \n")
 
+    # Difficulty menu.
     difficulty_menu = TerminalMenu(
         difficulty_options,
     )
@@ -366,6 +393,7 @@ def leaderboard_info():
 
     print("Choose which leaderboard you wish to take a sneak peak into.\n")
 
+    # Leaderboard menu.
     leaderboard_menu = TerminalMenu(
         leaderboard_options,
     )
@@ -373,16 +401,21 @@ def leaderboard_info():
     current_display = leaderboard_menu.show()
     user_choice = leaderboard_options[current_display]
 
+    # Calls main() if user wants to go a step back.
     if user_choice == "[4] Go back":
         main()
+    # Prints which leaderboard was chosen.
+    # No need to use .title() due to the user_choice format.
     else:
         print(f"{user_choice[4:]} leaderboard:\n")
+        # Calls print_scoreboard.
         print_scoreboard(
             user_choice.lower()[4:],
             False,
             SHEET,
             continue_playing
             )
+        # Calls return_option().
         return_option()
 
 
@@ -392,26 +425,63 @@ def return_option():
     triggered by 'r' or Enter since 'r' is the default option.
     Function calls main().
     """
+    # Return options.
     return_option = [
         "[r] Go back"
         ]
+
+    # Return menu.
     return_menu = TerminalMenu(
         return_option
     )
+
     current_display = return_menu.show()
     user_choice = return_option[current_display]
+
+    # Calls main if user_choice is to return.
     if user_choice == return_option[current_display]:
         main()
 
 
 def quit_game():
     """
-    Function prints a goodbye message to the user.
+    Function asks for confirmation of quitting.
+    If yes, prints goodbye message.
+    If no, calls return_option()
     """
     clear()
-    print("Thank you for playing Hot or Cold. \n")
-    print("Hope to see you soon. \n")
-    tprint("Bye", font="graffiti")
+
+    # Quit options.
+    quit_options = [
+        "[y] Yes",
+        "[n] No"
+    ]
+
+    # Quit menu.
+    quit_menu = TerminalMenu(
+        quit_options,
+    )
+
+    # Variable stores user's current choice within the menu.
+    user_choice = None
+
+    print("Are you sure you want to quit?")
+
+    while True:
+        current_display = quit_menu.show()
+        user_choice = quit_options[current_display]
+        # if 'y', prints a goodbye message
+        if user_choice == "[y] Yes":
+            clear()
+            print("Thank you for playing Hot or Cold. \n")
+            print("Hope to see you soon. \n")
+            tprint("Bye", font="graffiti")
+        # if 'n', calls return_option()
+        elif user_choice == "[n] No":
+            clear()
+            print("Let's go back. \n")
+            return_option()
+        return False
 
 
 # calls main function
