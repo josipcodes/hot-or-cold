@@ -357,6 +357,7 @@ def about_info():
     Function then calls return_option()
     """
     clear()
+    hello()
     print(
         "This game was created for educational purposes "
         "only as a part of the course with Code Institute. \n"
