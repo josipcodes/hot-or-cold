@@ -61,7 +61,7 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 
     - User can choose to attempt to score a position in the scoreboard.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/username.gif)
 
 - **Scoreboard output**
 
@@ -73,7 +73,7 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 
     - If the user won the game and scored a position on the leaderboard, their line will be emphasised with a green color.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/username.gif)
 
 - **About section**
 
@@ -83,9 +83,9 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 
 - **Username input**
 
-    - User can choose their username.
+    - User can choose their username. Username will be validated.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/username.gif)
 
 - **Input validation**
 
@@ -103,55 +103,58 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 
     - User has access to their previous guesses so they don't have to memorise it.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/guess-reminder.gif)
 
 - **Play again?**
 
     - When viewing the scoreboard, user will be asked if they want to play again. This will only happen if the user finished the game before this.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/play-again.gif)
 
 - **Quit game**
 
     - User can choose to quit the game. The game will thank them for their participation.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/bye.gif)
 
 - **Score calculation**
 
     - Score equals to the amount of player's guesses. It is used to compare user's result to others' on the scoreboard.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/username.gif)
 
 - **Game won confirmation**
 
     - Once player guesses the correct number, they will be notified and prompted to choose if they want to attempt to add their name to the scoreboard.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/random.gif)
 
 - **Shortcuts**
 
     - Our menu contains shortcuts, easily visible and accessible to the user.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/menu.gif)
 
 - **Re-playability**
 
     - When launching the game, the number user needs to guess will be randomly chosen, allowing for countless plays.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/random.gif)
 
 - **Colors**
 
-    - Colors are user within the game for the sole purpose of emphasising information.
+    - Colors are used within the game for the sole purpose of emphasising information.
 
-![screenshot](documentation/features/features/difficulty.gif)
+![screenshot](documentation/features/features/color.gif)
 
 
 ### Future Features
 
-- placeholder
-    - placeholder
+- Statement expansion
+    - We would like to add more statements used for randomisation to boost CX.
+- Different modes
+    - Ideally, user should be able to choose the level of game's sassiness.
+    - User should be able to set the game parameters, such as having to guess numbers between X and Y or to be guessing letters instead of numbers.
 
 ## Tools & Technologies Used
 
