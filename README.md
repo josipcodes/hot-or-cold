@@ -293,8 +293,6 @@ Below resources were used in the creation of the game. No content was explicitly
 | [Github](https://gist.github.com/gnuton/3c7a46447d2be0aee0b2) | leaderboard.py | slow print - copied but adapted |
 | [Python-Programs](https://python-programs.com/python-how-to-find-an-element-in-tuple-by-value/) | leaderboard.py | Find value in a tuple - copied |
 | [Stackoverflow](https://stackoverflow.com/questions/26987222/checking-whitespace-in-a-string-python) | leaderboard.py | isspace() |
-| [PLACEHOLDER](PLACEHOLDER LINK) | WHERE - PLACEHOLDER | WHAT - PLACEHOLDER |
-
 
 ### Media
 
@@ -310,4 +308,4 @@ Several emojis were used in print statements to boost user experience and provid
 
 - I would like to thank my Code Institute mentor, [Alex](https://github.com/lexach91) for their support throughout the development of this project.
 - I need to thank [Codewars](https://www.codewars.com); as their katas further helped in understanding Python. 
-- I want to thank Iva for testing the game post-deployment.
+- I want to thank Iva for play-testing the game post-deployment.
