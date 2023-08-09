@@ -177,6 +177,7 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 - [sys](https://docs.python.org/3/library/sys.html) used to assist with delayed print.
 - [os](https://docs.python.org/3/library/os.html) used in clearing the terminal.
 - [CI Linter](https://pep8ci.herokuapp.com/#) used to validate code throughout .py files.
+- [ScreenToGif](https://www.screentogif.com/) used in creation of README.
 
 ## Testing
 
@@ -275,7 +276,25 @@ Below resources were used in the creation of the game. No content was explicitly
 
 | Source | Location | Notes |
 | --- | --- | --- |
+| [Github](https://github.com/lexach91/algorithm-visualizer#render-deployment) | README | deployment steps |
+| [python.org](https://docs.python.org/3/library/random.html) | run.py | randomisation of statements, numbers |
+| [Stackoverflow](https://stackoverflow.com/questions/26069864/traceback-most-recent-call-last-error-in-python) | troubleshooting | traceback error |
+| [Youtube](https://www.youtube.com/watch?v=Zpa-rc9e388) | run.py | menu creation tutorial |
+| [FreeCodeCamp](https://www.freecodecamp.org/news/python-sort-list-how-to-order-by-descending-or-ascending/) | run and leaderboard.py | sort method |
+| [Stackoverflow](https://stackoverflow.com/questions/10897339/fetch-first-10-results-from-a-list-in-python) | leaderboard.py |fetching top 10 results from a list |
+| [TutorialKart](Phttps://www.tutorialkart.com/python/python-range/python-if-in-range/#gsc.tab=0) | run and leaderboard.py |range check |
+| [Stackoverflow](https://stackoverflow.com/questions/4172448/is-it-possible-to-break-a-long-line-to-multiple-lines-in-python) | throughout the project | breaking strings multiline |
+| [DelftStack](https://www.delftstack.com/howto/python/python-print-column-alignment/) | leaderboard.py | print alignment |
+| [GeeksForGeeks](https://www.geeksforgeeks.org/string-alignment-in-python-f-string/) | leaderboard.py | f-strings |
+| [Stackoverflow](https://stackoverflow.com/questions/744373/what-happens-when-using-mutual-or-circular-cyclic-imports) | troubleshooting | circular imports |
+| [GeeksForGeeks](https://www.geeksforgeeks.org/python-program-to-convert-a-list-to-string/) | run.py | list to string conversion |
+| [Stackoverflow](https://stackoverflow.com/questions/9777122/why-does-sort-cause-the-list-to-be-none-in-python) |troubleshooting | Sort returning None |
+| [GeeksForGeeks](https://www.geeksforgeeks.org/clear-screen-python/) | throughout the project | clearing terminal - copied |
+| [Github](https://gist.github.com/gnuton/3c7a46447d2be0aee0b2) | leaderboard.py | slow print - copied but adapted |
+| [Python-Programs](https://python-programs.com/python-how-to-find-an-element-in-tuple-by-value/) | leaderboard.py | Find value in a tuple - copied |
+| [Stackoverflow](https://stackoverflow.com/questions/26987222/checking-whitespace-in-a-string-python) | leaderboard.py | isspace() |
 | [PLACEHOLDER](PLACEHOLDER LINK) | WHERE - PLACEHOLDER | WHAT - PLACEHOLDER |
+
 
 ### Media
 
