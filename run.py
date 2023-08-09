@@ -2,8 +2,6 @@
 import random
 # importing to assist with menu building
 from simple_term_menu import TerminalMenu
-# importing to delay printing
-import time
 # enabling text coloring
 from colorama import Fore, Style
 # importing statements.py
