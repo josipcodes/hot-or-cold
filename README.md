@@ -285,7 +285,7 @@ Below resources were used in the creation of the game.
 | [Youtube](https://www.youtube.com/watch?v=Zpa-rc9e388) | run.py | menu creation tutorial |
 | [FreeCodeCamp](https://www.freecodecamp.org/news/python-sort-list-how-to-order-by-descending-or-ascending/) | run and leaderboard.py | sort method |
 | [Stackoverflow](https://stackoverflow.com/questions/10897339/fetch-first-10-results-from-a-list-in-python) | leaderboard.py |fetching top 10 results from a list |
-| [TutorialKart](Phttps://www.tutorialkart.com/python/python-range/python-if-in-range/#gsc.tab=0) | run and leaderboard.py |range check |
+| [TutorialKart](https://www.tutorialkart.com/python/python-range/python-if-in-range/#gsc.tab=0) | run and leaderboard.py |range check |
 | [Stackoverflow](https://stackoverflow.com/questions/4172448/is-it-possible-to-break-a-long-line-to-multiple-lines-in-python) | throughout the project | breaking strings multiline |
 | [DelftStack](https://www.delftstack.com/howto/python/python-print-column-alignment/) | leaderboard.py | print alignment |
 | [GeeksForGeeks](https://www.geeksforgeeks.org/string-alignment-in-python-f-string/) | leaderboard.py | f-strings |

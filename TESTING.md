@@ -10,19 +10,19 @@ No issues were found during PEP8 testing:
 
 **run.py**
 
-![screenshot](documentation/bugs/documentation/linter-run.png)
+![screenshot](documentation/bugs/documentation/testing/linter-run.png)
 
 **statements.py**
 
-![screenshot](documentation/bugs/documentation/linter-statements.png)
+![screenshot](documentation/bugs/documentation/testing/linter-statements.png)
 
 **leaderboard.py**
 
-![screenshot](documentation/bugs/documentation/linter-leaderboard.png)
+![screenshot](documentation/bugs/documentation/testing/linter-leaderboard.png)
 
 **helpers.py**
 
-![screenshot](documentation/bugs/documentation/linter-helpers.png)
+![screenshot](documentation/bugs/documentation/testing/linter-helpers.png)
 
 
 
@@ -45,6 +45,8 @@ No issues were found during PEP8 testing:
 | | Press 4 | Quit-menu prints | Pass | |
 | | Press non-specified key | No action | Pass | |
 
+| Location | Action | Expected Result | Pass/Fail | Comments |
+| --- | --- | --- | --- | --- |
 | Difficulty Menu | | | | |
 | | | Initial message prints | Pass | |
 | | | Difficulty Menu prints | Pass | |
@@ -58,12 +60,16 @@ No issues were found during PEP8 testing:
 | | Press 4 | Initial Screen prints | Pass | |
 | | Press non-specified key | No action | Pass | |
 
+| Location | Action | Expected Result | Pass/Fail | Comments |
+| --- | --- | --- | --- | --- |
 | About Section | | | | |
 | | | About Section prints | Pass | |
 | | | Return option prints | | Pass | |
 | | Press Enter on return option | Initial Screen prints | Pass | |
 | | Press r/R | Initial Screen prints | Pass | |
 
+| Location | Action | Expected Result | Pass/Fail | Comments |
+| --- | --- | --- | --- | --- |
 | Leaderboard Menu | | | | |
 | | | Initial message prints | Pass | |
 | | | Leaderboard menu prints | Pass | |
@@ -84,7 +90,8 @@ No issues were found during PEP8 testing:
 | | Game won | User's line is printed green if on the board | Pass | |
 | | Game won | Play again Section prints | Pass | |
 
-
+| Location | Action | Expected Result | Pass/Fail | Comments |
+| --- | --- | --- | --- | --- |
 | Quit Menu | | | | |
 | | | Initial message prints | Pass | |
 | | | Quit Menu prints | Pass | |
@@ -95,6 +102,8 @@ No issues were found during PEP8 testing:
 | | Press Enter on return option | Initial Screen prints | Pass | |
 | | Press r/R | Initial Screen prints | Pass | |
 
+| Location | Action | Expected Result | Pass/Fail | Comments |
+| --- | --- | --- | --- | --- |
 | In-game | | | | |
 | | | Initial message prints | Pass | Range is confirmed in the message |
 | | | Input request prints | Pass | |
@@ -114,6 +123,8 @@ No issues were found during PEP8 testing:
 | | Enter blank username | Warning prints, input requested again | Pass | |
 | | Enter username | Leaderboard Game Won scenario initialised | Pass | |
 
+| Location | Action | Expected Result | Pass/Fail | Comments |
+| --- | --- | --- | --- | --- |
 | Play again Section | | | | |
 | | | Initial message prints | Pass | |
 | | | Play again Menu prints | Pass | |
