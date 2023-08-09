@@ -194,9 +194,9 @@ The steps to deploy on Heroku are as follows:
 - Create a new Heroku app.
 - Choose app name and region.
 - Via Google Cloud, obtain credentials for Google Drive and Google Sheets APIs.*
-- Upload credentials file to your environment, name it `creds.json` and add it to .gitignore.
-- Access Settings, followed by Config Vars; add (key) Port and (value) 8000. 
-- Add (key) CREDS and (value) contents of `creds.json`.
+- Upload credentials file to your environment, name it `creds.json` and add it to `.gitignore`.
+- Access Settings, followed by Config Vars; add (key) `Port` and (value) `8000`. 
+- Add (key) `CREDS` and (value) contents of `creds.json`.
 - Set a buildback to Python and NodeJS in that order.
 - Connect the Heroku app to the repository by authorising access.
 - Enable automatic deploys (optional), deploy manually.
@@ -217,9 +217,9 @@ The steps to deploy on Render are as follows:
 - Add Render start command: `node index.js`.
 - Choose "Free Plan" followed by "Advanced Settings". 
 - Choose "Add Environment Variable".
-- Add (key) CREDS and (value) contents of `creds.json`.
-- Add (key) PORT and (value) 8000. 
-- Add (key) PYTHON_VERSION and (value) 3.10.7.
+- Add (key) `CREDS` and (value) contents of `creds.json`.
+- Add (key) `PORT` and (value) 8000. 
+- Add (key) `PYTHON_VERSION` and (value) `3.10.7`.
 - Enable automatic deploys (optional), deploy manually by clicking "Create Web Service".
 
 The live link can be found [here](https://hot-or-cold.onrender.com/)

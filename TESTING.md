@@ -10,19 +10,19 @@ No issues were found during PEP8 testing:
 
 **run.py**
 
-![screenshot](documentation/bugs/documentation/testing/linter-run.png)
+![screenshot](documentation/testing/linter-run.png)
 
 **statements.py**
 
-![screenshot](documentation/bugs/documentation/testing/linter-statements.png)
+![screenshot](documentation/testing/linter-statements.png)
 
 **leaderboard.py**
 
-![screenshot](documentation/bugs/documentation/testing/linter-leaderboard.png)
+![screenshot](documentation/testing/linter-leaderboard.png)
 
 **helpers.py**
 
-![screenshot](documentation/bugs/documentation/testing/linter-helpers.png)
+![screenshot](documentation/testing/linter-helpers.png)
 
 
 
