@@ -44,8 +44,14 @@ def clear():
 
 
 def hello():
+    """
+    Prints game name using graffiti font.
+    """
     tprint("Hot or cold", font="graffiti")
 
 
 def bye():
+    """
+    Prints a goodbye message using graffiti font.
+    """
     tprint("Bye", font="graffiti")
