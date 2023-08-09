@@ -31,6 +31,18 @@ I used [coolors.co](https://coolors.co/ff0000-ffff00-00ff00-ffffff) to generate 
 
 ![screenshot](documentation/general/palette.png)
 
+### User Stories
+
+#### First Time Visitor Goals
+- I want to be able to get information about the game.
+- I want to be able to learn the game logic by playing on easy mode.
+- I want to see how others scored, so I know what to be aiming for.
+- I want to be able to add my name to the scoreboard.
+
+#### Returning Visitor Goals
+- I want to be able to play harder modes and challenge myself.
+- I want each experience to be different by having to guess a different number each time and for output to be different instead of repetitive.
+
 ## Flowchart
 
 I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project:
