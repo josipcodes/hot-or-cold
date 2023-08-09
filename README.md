@@ -211,7 +211,7 @@ The steps to deploy on Render are as follows:
 - Connect the repository to Render.
 - Choose service name and region.
 - Via Google Cloud, obtain credentials for Google Drive and Google Sheets APIs.*
-- Upload credentials file to your environment, name it `creds.json` and add it to .gitignore.
+- Upload credentials file to your environment, name it `creds.json` and add it to `.gitignore`.
 - Select environment.
 - Add Render build command: `pip3 install -r requirements.txt`.
 - Add Render start command: `node index.js`.

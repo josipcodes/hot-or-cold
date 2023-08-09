@@ -64,7 +64,7 @@ No issues were found during PEP8 testing:
 | --- | --- | --- | --- | --- |
 | About Section | | | | |
 | | | About Section prints | Pass | |
-| | | Return option prints | | Pass | |
+| | | Return option prints | Pass | |
 | | Press Enter on return option | Initial Screen prints | Pass | |
 | | Press r/R | Initial Screen prints | Pass | |
 
