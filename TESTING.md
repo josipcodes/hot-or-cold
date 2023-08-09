@@ -110,7 +110,7 @@ No issues were found during PEP8 testing:
 | | Enter non-number | Warning prints, input requested again | Pass | |
 | | Enter number outside of range | Warning prints, input requested again | Pass | |
 | | Enter wrong number | Feedback provided, input requested again | Pass | |
-| | | Previous wrong guesses printed in yellow | | Pass | |
+| | | Previous wrong guesses printed in yellow | Pass | |
 | | Enter correct number | Feedback provided | Pass | |
 | | Game won | Question to add name to scoreboard prints, menu prints | Pass | |
 | | Press Enter on Yes | Goodbye message prints | Pass | |
