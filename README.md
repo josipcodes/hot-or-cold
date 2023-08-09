@@ -276,7 +276,7 @@ Below resources were used in the creation of the game. No content was explicitly
 
 | Source | Location | Notes |
 | --- | --- | --- |
-| [Github](https://github.com/lexach91/algorithm-visualizer#render-deployment) | README | deployment steps |
+| [Github](https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master) | run.py | API set up, declaring related variables |
 | [python.org](https://docs.python.org/3/library/random.html) | run.py | randomisation of statements, numbers |
 | [Stackoverflow](https://stackoverflow.com/questions/26069864/traceback-most-recent-call-last-error-in-python) | troubleshooting | traceback error |
 | [Youtube](https://www.youtube.com/watch?v=Zpa-rc9e388) | run.py | menu creation tutorial |
@@ -293,6 +293,7 @@ Below resources were used in the creation of the game. No content was explicitly
 | [Github](https://gist.github.com/gnuton/3c7a46447d2be0aee0b2) | leaderboard.py | slow print - copied but adapted |
 | [Python-Programs](https://python-programs.com/python-how-to-find-an-element-in-tuple-by-value/) | leaderboard.py | Find value in a tuple - copied |
 | [Stackoverflow](https://stackoverflow.com/questions/26987222/checking-whitespace-in-a-string-python) | leaderboard.py | isspace() |
+| [Github](https://github.com/lexach91/algorithm-visualizer#render-deployment) | README | deployment steps |
 
 ### Media
 
