@@ -270,12 +270,15 @@ There are no known differences between the local version developed, and the live
 
 ## Credits
 
-Below resources were used in the creation of the game. No content was explicitly copied unless stated otherwise.
+Below resources were used in the creation of the game.
 
-### Content
+### Code
 
 | Source | Location | Notes |
 | --- | --- | --- |
+| [Python-Programs](https://python-programs.com/python-how-to-find-an-element-in-tuple-by-value/) | leaderboard.py | Find value in a tuple |
+| [Github](https://gist.github.com/gnuton/3c7a46447d2be0aee0b2) | leaderboard.py | slow print |
+| [GeeksForGeeks](https://www.geeksforgeeks.org/clear-screen-python/) | throughout the project | clearing terminal |
 | [Github](https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master) | run.py | API set up, declaring related variables |
 | [python.org](https://docs.python.org/3/library/random.html) | run.py | randomisation of statements, numbers |
 | [Stackoverflow](https://stackoverflow.com/questions/26069864/traceback-most-recent-call-last-error-in-python) | troubleshooting | traceback error |
@@ -289,11 +292,16 @@ Below resources were used in the creation of the game. No content was explicitly
 | [Stackoverflow](https://stackoverflow.com/questions/744373/what-happens-when-using-mutual-or-circular-cyclic-imports) | troubleshooting | circular imports |
 | [GeeksForGeeks](https://www.geeksforgeeks.org/python-program-to-convert-a-list-to-string/) | run.py | list to string conversion |
 | [Stackoverflow](https://stackoverflow.com/questions/9777122/why-does-sort-cause-the-list-to-be-none-in-python) |troubleshooting | Sort returning None |
-| [GeeksForGeeks](https://www.geeksforgeeks.org/clear-screen-python/) | throughout the project | clearing terminal - copied |
-| [Github](https://gist.github.com/gnuton/3c7a46447d2be0aee0b2) | leaderboard.py | slow print - copied but adapted |
-| [Python-Programs](https://python-programs.com/python-how-to-find-an-element-in-tuple-by-value/) | leaderboard.py | Find value in a tuple - copied |
 | [Stackoverflow](https://stackoverflow.com/questions/26987222/checking-whitespace-in-a-string-python) | leaderboard.py | isspace() |
 | [Github](https://github.com/lexach91/algorithm-visualizer#render-deployment) | README | deployment steps |
+
+### Content
+
+| Source | Location | Notes |
+| --- | --- | --- |
+| [Genius](https://genius.com/Julie-andrews-my-favorite-things-lyrics) |statements.py | Julie Andrews - My Favorite Things lyrics |
+| [IMDb](https://www.imdb.com/title/tt0212346/) | statements.py | Miss Congeniality quotes |
+
 
 ### Media
 
