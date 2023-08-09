@@ -184,10 +184,51 @@ For all testing, please refer to the [TESTING.md](TESTING.md) file.
 
 ## Deployment
 
-The site was deployed to PLACEHOLDER. The steps to deploy are as follows:
-- Placeholder.
+The site was deployed to both Heroku and Render. Render was initially used due to account creation issues with Heroku, followed by Heroku's tech issues with inputting billing details.
 
-The live link can be found [here](PLACEHOLDER LINK)
+### Heroku
+
+The steps to deploy on Heroku are as follows:
+- Fork or clone the repository.
+- Create a new Heroku app.
+- Choose app name and region.
+- Via Google Cloud, obtain credentials for Google Drive and Google Sheets APIs.*
+- Upload credentials file to your environment, name it `creds.json` and add it to .gitignore.
+- Access Settings, followed by Config Vars; add (key) Port and (value) 8000. 
+- Add (key) CREDS and (value) contents of `creds.json`.
+- Set a buildback to Python and NodeJS in that order.
+- Connect the Heroku app to the repository by authorising access.
+- Enable automatic deploys (optional), deploy manually.
+
+The live link can be found [here](https://hot---or---cold-1a720aba2d56.herokuapp.com/).
+
+### Render
+
+The steps to deploy on Render are as follows:
+- Fork or clone the repository.
+- Create a new Render web service.
+- Connect the repository to Render.
+- Choose service name and region.
+- Via Google Cloud, obtain credentials for Google Drive and Google Sheets APIs.*
+- Upload credentials file to your environment, name it `creds.json` and add it to .gitignore.
+- Select environment.
+- Add Render build command: `pip3 install -r requirements.txt`.
+- Add Render start command: `node index.js`.
+- Choose "Free Plan" followed by "Advanced Settings". 
+- Choose "Add Environment Variable".
+- Add (key) CREDS and (value) contents of `creds.json`.
+- Add (key) PORT and (value) 8000. 
+- Add (key) PYTHON_VERSION and (value) 3.10.7.
+- Enable automatic deploys (optional), deploy manually by clicking "Create Web Service".
+
+The live link can be found [here](https://hot-or-cold.onrender.com/)
+
+*Spreadsheet creation:
+- Create a spreadsheet with 3 worksheets, "beginner", "intermediate", "expert".
+- Add headers for the first 2 columns in each worksheet: "Username", "Guesses" (feel free to change wording).
+- Add the name of your spreadsheet to SHEET constant variable in `run.py`.
+- Copy the contents of `client_email` from `creds.json` and share editing access of the spreadsheet with said email address. Choose not to notify recipient.
+
 
 ### Local Deployment
 
