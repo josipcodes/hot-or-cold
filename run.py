@@ -4,8 +4,6 @@ import random
 from simple_term_menu import TerminalMenu
 # enabling text coloring
 from colorama import Fore, Style
-# importing to prevent q/Esc from breaking the app
-import keyboard
 # importing statements.py
 from statements import (
     LAVA_STATEMENTS,
@@ -43,6 +41,7 @@ CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hot-or-cold-scoreboard")
+
 
 def continue_playing():
     """
