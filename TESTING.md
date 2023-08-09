@@ -6,7 +6,7 @@ Return back to the [README.md](README.md) file.
 
 ### PEP8
 
-No issues were found during PEP8 testing:
+No issues were found during PEP8 testing, however, I am aware that this might change due to GitHub's tendency to trim the empty line at the end of each document.
 
 **run.py**
 
@@ -25,9 +25,7 @@ No issues were found during PEP8 testing:
 ![screenshot](documentation/testing/linter-helpers.png)
 
 
-
 ### Manual Testing
-
 
 | Location | Action | Expected Result | Pass/Fail | Comments |
 | --- | --- | --- | --- | --- |
@@ -143,6 +141,7 @@ No issues were found during PEP8 testing:
 
 **Unfixed Bugs**
 
-- To my knowledge, there are no unfixed bugs.
+- When pressing Q/q/Escape while within the menu, app breaks. This is due to the specified keys being intended for such purpose within simple-term-menu library. All attempted fixes failed.
 
+    ![screenshot](documentation/general/escape.gif)
     
