@@ -139,7 +139,7 @@ No issues were found during PEP8 testing:
 
 - When playing again after a won game, previous choices wouldn't be set to 0, resulting in incorrect score at the end of the round.
 
-    - To fix this, I have included `player_guesses.clear()` within run_game() to flush out the previously stored data.
+    - To fix this, I have included `player_guesses.clear()` within `run_game()` to flush out the previously stored data.
 
 **Unfixed Bugs**
 
