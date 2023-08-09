@@ -126,15 +126,12 @@ No issues were found during PEP8 testing:
 
 **Fixed Bugs**
 
-- PLACEHOLDER
+- When playing again after a won game, previous choices wouldn't be set to 0, resulting in incorrect score at the end of the round.
 
-    ![screenshot](documentation/bugs/PLACEHOLDER.png)
+    - To fix this, I have included `player_guesses.clear()` within run_game() to flush out the previously stored data.
 
-    - To fix this, I have included a `PLACEHOLDER`.
+**Unfixed Bugs**
 
-## Unfixed Bugs
+- To my knowledge, there are no unfixed bugs.
 
-- PLACEHOLDER.
-
-    ![screenshot](documentation/bugs/PLACEHOLDER.png)
     
