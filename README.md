@@ -305,6 +305,7 @@ Below resources were used in the creation of the game.
 | [GeeksForGeeks](https://www.geeksforgeeks.org/python-program-to-convert-a-list-to-string/) | run.py | list to string conversion |
 | [Stackoverflow](https://stackoverflow.com/questions/9777122/why-does-sort-cause-the-list-to-be-none-in-python) |troubleshooting | Sort returning None |
 | [Stackoverflow](https://stackoverflow.com/questions/26987222/checking-whitespace-in-a-string-python) | leaderboard.py | isspace() |
+| [Stackoverflow](https://stackoverflow.com/questions/14639077/how-to-use-sys-exit-in-python) | run.py | safe exit |
 | [Github](https://github.com/lexach91/algorithm-visualizer#render-deployment) | README | deployment steps |
 
 ### Content

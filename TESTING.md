@@ -139,9 +139,14 @@ No issues were found during PEP8 testing, however, I am aware that this might ch
 
     - To fix this, I have included `player_guesses.clear()` within `run_game()` to flush out the previously stored data.
 
-**Unfixed Bugs**
-
-- When pressing Q/q/Escape while within the menu, app breaks. This is due to the specified keys being intended for such purpose within simple-term-menu library. All attempted fixes failed.
+- Simple-term-menu uses 'q' and 'Escape' as escape sequences. As a result, although not manifested as options within my menus, these buttons would cause a crash.
 
     ![screenshot](documentation/general/escape.gif)
+
+    - To fix this, I have added surrounded my if-elif statements within main() with try-except. Escape sequences now lead to main menu from anywhere within the menu instead of being switched off.
+
+**Unfixed Bugs**
+
+- To my knowledge, there are no unfixed bugs.
+
     

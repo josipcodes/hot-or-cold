@@ -4,6 +4,8 @@ import random
 from simple_term_menu import TerminalMenu
 # enabling text coloring
 from colorama import Fore, Style
+# used for safe exit
+import sys
 # importing statements.py
 from statements import (
     LAVA_STATEMENTS,
@@ -58,9 +60,6 @@ def continue_playing():
     continue_menu = TerminalMenu(
         continue_options,
     )
-
-    # Variable stores user's current choice within the menu.
-    user_choice = None
 
     print("Wanna play again?")
 
@@ -295,23 +294,27 @@ def main():
         main_options
     )
 
-    # Variable stores user's current choice within the menu.
-    user_choice = None
-
     while True:
-        current_display = main_menu.show()
-        user_choice = main_options[current_display]
-        # 'else' avoided to prevent unvalidated choice.
-        if user_choice == "[1] New Game":
-            difficulty_menu()
-            return False
-        elif user_choice == "[2] About":
-            about_info()
-        elif user_choice == "[3] Leaderboard":
-            leaderboard_info()
-        elif user_choice == "[4] Quit":
-            quit_game()
-            return False
+        # as simple-term-menu uses 'q' and 'Escape' as escape sequences,
+        # preventing accidental crash with try-except.
+        try:
+            current_display = main_menu.show()
+            user_choice = main_options[current_display]
+            if user_choice == "[1] New Game":
+                difficulty_menu()
+                return False
+            elif user_choice == "[2] About":
+                about_info()
+                return False
+            elif user_choice == "[3] Leaderboard":
+                leaderboard_info()
+                return False
+            elif user_choice == "[4] Quit":
+                quit_game()
+                return False
+        except TypeError:
+            # escape sequence will lead to main()
+            main()
 
 
 def difficulty_menu():
@@ -468,9 +471,6 @@ def quit_game():
         quit_options,
     )
 
-    # Variable stores user's current choice within the menu.
-    user_choice = None
-
     hello()
     print("Are you sure you want to quit? \n")
 
@@ -484,6 +484,8 @@ def quit_game():
             print("Hope to see you soon. \n")
             # prints goodbye in grafitti
             bye()
+            # safely exits the app
+            sys.exit()
         # if 'n', calls return_option()
         elif user_choice == "[n] No":
             clear()
