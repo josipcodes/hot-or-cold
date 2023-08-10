@@ -294,7 +294,7 @@ def main():
     # Main menu.
     main_menu = TerminalMenu(
             main_options,
-            # removing default Q and Escape key crash
+            # removing default keys to prevent accidental crash
             quit_keys=()
         )
 

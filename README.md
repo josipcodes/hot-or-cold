@@ -288,24 +288,28 @@ Below resources were used in the creation of the game.
 
 | Source | Location | Notes |
 | --- | --- | --- |
-| [Python-Programs](https://python-programs.com/python-how-to-find-an-element-in-tuple-by-value/) | leaderboard.py | Find value in a tuple |
+| [Python-Programs](https://python-programs.com/python-how-to-find-an-element-in-tuple-by-value/) | leaderboard | Find value in a tuple |
 | [Github](https://gist.github.com/gnuton/3c7a46447d2be0aee0b2) | leaderboard.py | slow print |
 | [GeeksForGeeks](https://www.geeksforgeeks.org/clear-screen-python/) | throughout the project | clearing terminal |
-| [Github](https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master) | run.py | API set up, declaring related variables |
+| [Github](https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master) | run | API set up, declaring related variables |
 | [python.org](https://docs.python.org/3/library/random.html) | run.py | randomisation of statements, numbers |
 | [Stackoverflow](https://stackoverflow.com/questions/26069864/traceback-most-recent-call-last-error-in-python) | troubleshooting | traceback error |
 | [Youtube](https://www.youtube.com/watch?v=Zpa-rc9e388) | run.py | menu creation tutorial |
-| [FreeCodeCamp](https://www.freecodecamp.org/news/python-sort-list-how-to-order-by-descending-or-ascending/) | run and leaderboard.py | sort method |
-| [Stackoverflow](https://stackoverflow.com/questions/10897339/fetch-first-10-results-from-a-list-in-python) | leaderboard.py |fetching top 10 results from a list |
-| [TutorialKart](https://www.tutorialkart.com/python/python-range/python-if-in-range/#gsc.tab=0) | run and leaderboard.py |range check |
+| [FreeCodeCamp](https://www.freecodecamp.org/news/python-sort-list-how-to-order-by-descending-or-ascending/) | run and leaderboard | sort method |
+| [Stackoverflow](https://stackoverflow.com/questions/10897339/fetch-first-10-results-from-a-list-in-python) | leaderboard |fetching top 10 results from a list |
+| [TutorialKart](https://www.tutorialkart.com/python/python-range/python-if-in-range/#gsc.tab=0) | run and leaderboard |range check |
 | [Stackoverflow](https://stackoverflow.com/questions/4172448/is-it-possible-to-break-a-long-line-to-multiple-lines-in-python) | throughout the project | breaking strings multiline |
-| [DelftStack](https://www.delftstack.com/howto/python/python-print-column-alignment/) | leaderboard.py | print alignment |
-| [GeeksForGeeks](https://www.geeksforgeeks.org/string-alignment-in-python-f-string/) | leaderboard.py | f-strings |
+| [DelftStack](https://www.delftstack.com/howto/python/python-print-column-alignment/) | leaderboard | print alignment |
+| [GeeksForGeeks](https://www.geeksforgeeks.org/string-alignment-in-python-f-string/) | leaderboard | f-strings |
 | [Stackoverflow](https://stackoverflow.com/questions/744373/what-happens-when-using-mutual-or-circular-cyclic-imports) | troubleshooting | circular imports |
-| [GeeksForGeeks](https://www.geeksforgeeks.org/python-program-to-convert-a-list-to-string/) | run.py | list to string conversion |
+| [GeeksForGeeks](https://www.geeksforgeeks.org/python-program-to-convert-a-list-to-string/) | run | list to string conversion |
 | [Stackoverflow](https://stackoverflow.com/questions/9777122/why-does-sort-cause-the-list-to-be-none-in-python) |troubleshooting | Sort returning None |
-| [Stackoverflow](https://stackoverflow.com/questions/26987222/checking-whitespace-in-a-string-python) | leaderboard.py | isspace() |
-| [Stackoverflow](https://stackoverflow.com/questions/14639077/how-to-use-sys-exit-in-python) | run.py | safe exit |
+| [Stackoverflow](https://stackoverflow.com/questions/26987222/checking-whitespace-in-a-string-python) | leaderboard | isspace() |
+| [Stackoverflow](https://stackoverflow.com/questions/14639077/how-to-use-sys-exit-in-python) | run | safe exit |
+| [Github](https://github.com/IngoMeyer441/simple-term-menu#additional-settings) | run | quit_keys |
+
+
+
 | [Github](https://github.com/lexach91/algorithm-visualizer#render-deployment) | README | deployment steps |
 
 ### Content
@@ -329,5 +333,6 @@ Several emojis were used in print statements to boost user experience and provid
 ### Acknowledgements
 
 - I would like to thank my Code Institute mentor, [Alex](https://github.com/lexach91) for their support throughout the development of this project.
+- I have to thank Jason from the Tutor team for helping me troubleshoot a bug with certain keys crashing the app.
 - I need to thank [Codewars](https://www.codewars.com); as their katas further helped in understanding Python. 
 - I want to thank Iva for play-testing the game post-deployment.

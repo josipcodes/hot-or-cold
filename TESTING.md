@@ -159,7 +159,7 @@ No issues were found during PEP8 testing, however, I am aware that this might ch
 
     - After a short discussion with the Tutor team, I have come to understand that `quit_keys` within `simple-term-menus` can be changed from their defaults. 
     
-    - As a final solution, I have left `try-except TypeError` but chose for any intended shut-down when within the menu to call `safe_exit()` which runs `sys.exit()`.
+    - As a final solution, I have left `try-except TypeError` although I'm conscious the solution would work without it. The current solution is to call `safe_exit()` which runs `sys.exit()` when within the menu.
 
 **Unfixed Bugs**
 
