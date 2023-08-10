@@ -272,6 +272,8 @@ def main():
     If user chooses 'Leaderboard', leaderboard_info() is called.
     If user chooses 'Quit game', quit_game() is called,
     while loop is stopped.
+    'q', 'Escape' keys as well as Ctrl+C' (and alternatives)
+    call safe_exit().
     """
     clear()
     # prints game name in graffity
@@ -296,7 +298,7 @@ def main():
 
     while True:
         # as simple-term-menu uses 'q' and 'Escape' as escape sequences,
-        # preventing accidental crash with try-except.
+        # 'q', 'Escape' keys as well as 'Ctrl+C' call safe_exit()
         try:
             current_display = main_menu.show()
             user_choice = main_options[current_display]
@@ -313,9 +315,8 @@ def main():
                 quit_game()
                 return False
         except TypeError:
-            # escape sequence will lead to main()
-            main()
-
+            safe_exit()
+    
 
 def difficulty_menu():
     """
@@ -484,8 +485,8 @@ def quit_game():
             print("Hope to see you soon. \n")
             # prints goodbye in grafitti
             bye()
-            # safely exits the app
-            sys.exit()
+            # calls safe_exit()
+            safe_exit()
         # if 'n', calls return_option()
         elif user_choice == "[n] No":
             clear()
@@ -495,6 +496,12 @@ def quit_game():
             return_option()
         return False
 
+
+def safe_exit():
+    """
+    Function safely exits the app.
+    """
+    sys.exit()
 
 # calls main function
 main()
