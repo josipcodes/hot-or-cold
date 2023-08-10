@@ -293,30 +293,35 @@ def main():
 
     # Main menu.
     main_menu = TerminalMenu(
-        main_options
-    )
+            main_options,
+            # removing default Q and Escape key crash
+            quit_keys=()
+        )
 
     while True:
-        # as simple-term-menu uses 'q' and 'Escape' as escape sequences,
-        # 'q', 'Escape' keys as well as 'Ctrl+C' call safe_exit()
         try:
             current_display = main_menu.show()
             user_choice = main_options[current_display]
+            # if choice is New game, calls difficulty_menu()
             if user_choice == "[1] New Game":
                 difficulty_menu()
                 return False
+            # if choice is About, calls about_info()
             elif user_choice == "[2] About":
                 about_info()
                 return False
+            # if choice is Leaderboard, calls leaderboard_info()
             elif user_choice == "[3] Leaderboard":
                 leaderboard_info()
                 return False
+            # if choice is Quit, calls quit_game()
             elif user_choice == "[4] Quit":
                 quit_game()
                 return False
+        # except statement allows for a safe exit with a goodbye message
         except TypeError:
             safe_exit()
-    
+
 
 def difficulty_menu():
     """
@@ -480,11 +485,6 @@ def quit_game():
         user_choice = quit_options[current_display]
         # if 'y', prints a goodbye message
         if user_choice == "[y] Yes":
-            clear()
-            print("Thank you for playing Hot or Cold. \n")
-            print("Hope to see you soon. \n")
-            # prints goodbye in grafitti
-            bye()
             # calls safe_exit()
             safe_exit()
         # if 'n', calls return_option()
@@ -501,6 +501,11 @@ def safe_exit():
     """
     Function safely exits the app.
     """
+    clear()
+    print("Thank you for playing Hot or Cold. \n")
+    print("Hope to see you soon. \n")
+    # prints goodbye in grafitti
+    bye()
     sys.exit()
 
 

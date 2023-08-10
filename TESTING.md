@@ -139,27 +139,31 @@ No issues were found during PEP8 testing, however, I am aware that this might ch
 
     - To fix this, I have included `player_guesses.clear()` within `run_game()` to flush out the previously stored data.
 
-**Unfixed Bugs**
-
 - Simple-term-menu uses 'q' and 'Escape' keys as escape sequences. As a result, although not manifested as options within my menus, these buttons would cause a crash when used within menus.
 
     ![screenshot](documentation/general/escape.gif)
 
-    - To fix this, I have surrounded my if-elif statements within `main()` with `try-except TypeError`, however, this caused `CTRL+C` not to perform as it would be read as `TypeError` when within menu. 
-    - Since preventing exit would be a bad practice, I have attempted to use pynput to read keyboard events in order to handle `CTRL+C` specific events, however, even after updating pynput I kept receiving the following error:
+    - To fix this, I have surrounded my `if-elif` statements within `main()` with `try-except TypeError`, however, this caused `CTRL+C` not to perform as it would be read as `TypeError` when within menu. 
+    - Since preventing exit would be a bad practice, I have attempted to use `pynput` to read keyboard events in order to handle `CTRL+C` specific events, however, even after updating pynput I kept receiving the following error:
 
-    `Traceback (most recent call last):`
-  `File "run.py", line 10, in <module>`
-    `from pynput import keyboard`
-  `File "/home/codeany/.local/lib/python3.8/site-packages/pynput/__init__.py", line 40, in <module>`
-    `from . import keyboard`
-  `File "/home/codeany/.local/lib/python3.8/site-packages/pynput/keyboard/__init__.py", line 31, in <module>`
-    `backend = backend(__name__)`
-  `File "/home/codeany/.local/lib/python3.8/site-packages/pynput/_util/__init__.py", line 76, in backend`
-    `raise ImportError('this platform is not supported: {}'.format(`
-`ImportError: this platform is not supported: ('failed to acquire X connection: Bad display name ""', DisplayNameError(''))`
+        `Traceback (most recent call last):`
+    `File "run.py", line 10, in <module>`
+        `from pynput import keyboard`
+    `File "/home/codeany/.local/lib/python3.8/site-packages/pynput/__init__.py", line 40, in <module>`
+        `from . import keyboard`
+    `File "/home/codeany/.local/lib/python3.8/site-packages/pynput/keyboard/__init__.py", line 31, in <module>`
+        `backend = backend(__name__)`
+    `File "/home/codeany/.local/lib/python3.8/site-packages/pynput/_util/__init__.py", line 76, in backend`
+        `raise ImportError('this platform is not supported: {}'.format(`
+    `ImportError: this platform is not supported: ('failed to acquire X connection: Bad display name ""', DisplayNameError(''))`
 
-    - As a result, I have opted to allow 'q' and 'Escape' keys to exit the app.
+    - After a short discussion with the Tutor team, I have come to understand that `quit_keys` within `simple-term-menus` can be changed from their defaults. 
+    
+    - As a final solution, I have left `try-except TypeError` but chose for any intended shut-down when within the menu to call `safe_exit()` which runs `sys.exit()`.
+
+**Unfixed Bugs**
+
+- To my knowledge, there are no unfixed bugs.
 
 
     
