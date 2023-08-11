@@ -184,6 +184,7 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 - [gspread](https://docs.gspread.org/en/v5.10.0/) used to access & add data to the [spreadsheet](https://docs.google.com/spreadsheets/d/1M4C6Bt9I8-Z1FVmuhbb_J4ridbD_wYYEfWBNhsJmj1c/edit?usp=sharing).
 - [art](https://pypi.org/project/art/) used to generate game name and goodbye message by utilising tprint.
 - [simple-term-menu](https://pypi.org/project/simple-term-menu/) used to create menus throughout the game.
+- [pynput](https://pypi.org/project/pynput/) attempted to use to set up event listeners. Not used in the final itteration.
 - [time](https://docs.python.org/3/library/time.html) used to delay printing.
 - [colorama](https://pypi.org/project/colorama/) used to print in color.
 - [sys](https://docs.python.org/3/library/sys.html) used to assist with delayed print.
