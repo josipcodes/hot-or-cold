@@ -295,7 +295,7 @@ Below resources were used in the creation of the game.
 | [Github](https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master) | run | API set up, declaring related variables |
 | [python.org](https://docs.python.org/3/library/random.html) | run.py | randomisation of statements, numbers |
 | [Stackoverflow](https://stackoverflow.com/questions/26069864/traceback-most-recent-call-last-error-in-python) | troubleshooting | traceback error |
-| [Youtube](https://www.youtube.com/watch?v=Zpa-rc9e388) | run.py | menu creation tutorial |
+| [Youtube](https://www.youtube.com/watch?v=Zpa-rc9e388) | run.py | menu creation tutorial, code replicated but not copied |
 | [FreeCodeCamp](https://www.freecodecamp.org/news/python-sort-list-how-to-order-by-descending-or-ascending/) | run and leaderboard | sort method |
 | [Stackoverflow](https://stackoverflow.com/questions/10897339/fetch-first-10-results-from-a-list-in-python) | leaderboard |fetching top 10 results from a list |
 | [TutorialKart](https://www.tutorialkart.com/python/python-range/python-if-in-range/#gsc.tab=0) | run and leaderboard |range check |
