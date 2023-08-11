@@ -273,8 +273,6 @@ def main():
     If user chooses 'Leaderboard', leaderboard_info() is called.
     If user chooses 'Quit game', quit_game() is called,
     while loop is stopped.
-    'q', 'Escape' keys as well as Ctrl+C' (and alternatives)
-    call safe_exit().
     """
     clear()
     # prints game name in graffity
