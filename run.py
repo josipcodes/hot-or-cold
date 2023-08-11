@@ -240,6 +240,8 @@ def validate_input(player_choice, difficulty):
     If not int or choice is outside of parameters,
     user is notified, return False.
     If the choice is valid, bool True is returned.
+    No validation for repeat guuesses of the same number,
+    as in different scenarios, such guesses can provide useful clues.
     """
     # Attempt converting to an int.
     try:
