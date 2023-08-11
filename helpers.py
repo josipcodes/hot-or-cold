@@ -55,3 +55,15 @@ def bye():
     Prints a goodbye message using graffiti font.
     """
     tprint("Bye", font="graffiti")
+
+
+def safe_exit():
+    """
+    Function safely exits the app.
+    """
+    clear()
+    print("Thank you for playing Hot or Cold. \n")
+    print("Hope to see you soon. \n")
+    # prints goodbye in grafitti
+    bye()
+    sys.exit()

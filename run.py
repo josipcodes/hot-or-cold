@@ -4,8 +4,6 @@ import random
 from simple_term_menu import TerminalMenu
 # enabling text coloring
 from colorama import Fore, Style
-# used for safe exit
-import sys
 # importing statements.py
 from statements import (
     LAVA_STATEMENTS,
@@ -25,7 +23,8 @@ from helpers import (
     slow_print,
     clear,
     hello,
-    bye
+    bye,
+    safe_exit
 )
 # Copied from Love sandwiches project
 import gspread
@@ -59,6 +58,8 @@ def continue_playing():
     # Continue menu.
     continue_menu = TerminalMenu(
         continue_options,
+        # removing default keys to prevent accidental crash
+        quit_keys=()
     )
 
     print("Wanna play again?")
@@ -346,6 +347,8 @@ def difficulty_menu():
     # Difficulty menu.
     difficulty_menu = TerminalMenu(
         difficulty_options,
+        # removing default keys to prevent accidental crash
+        quit_keys=()
     )
 
     current_display = difficulty_menu.show()
@@ -408,6 +411,8 @@ def leaderboard_info():
     # Leaderboard menu.
     leaderboard_menu = TerminalMenu(
         leaderboard_options,
+        # removing default keys to prevent accidental crash
+        quit_keys=()
     )
 
     current_display = leaderboard_menu.show()
@@ -447,7 +452,9 @@ def return_option():
 
     # Return menu.
     return_menu = TerminalMenu(
-        return_option
+        return_option,
+        # removing default keys to prevent accidental crash
+        quit_keys=()
     )
 
     current_display = return_menu.show()
@@ -475,6 +482,8 @@ def quit_game():
     # Quit menu.
     quit_menu = TerminalMenu(
         quit_options,
+        # removing default keys to prevent accidental crash
+        quit_keys=()
     )
 
     hello()
@@ -495,18 +504,6 @@ def quit_game():
             print("Let's go back. \n")
             return_option()
         return False
-
-
-def safe_exit():
-    """
-    Function safely exits the app.
-    """
-    clear()
-    print("Thank you for playing Hot or Cold. \n")
-    print("Hope to see you soon. \n")
-    # prints goodbye in grafitti
-    bye()
-    sys.exit()
 
 
 # calls main function
