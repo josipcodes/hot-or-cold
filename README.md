@@ -187,7 +187,7 @@ I used [lucidchart.app](https://lucid.app/) to create a flowchart of the project
 - [pynput](https://pypi.org/project/pynput/) attempted to use to set up event listeners. Not used in the final itteration.
 - [time](https://docs.python.org/3/library/time.html) used to delay printing.
 - [colorama](https://pypi.org/project/colorama/) used to print in color.
-- [sys](https://docs.python.org/3/library/sys.html) used to assist with delayed print.
+- [sys](https://docs.python.org/3/library/sys.html) used to assist with delayed print and safe exit.
 - [os](https://docs.python.org/3/library/os.html) used in clearing the terminal.
 - [CI Linter](https://pep8ci.herokuapp.com/#) used to validate code throughout .py files.
 - [ScreenToGif](https://www.screentogif.com/) used in creation of README.
